@@ -182,6 +182,13 @@ def api_export_excel():
         sclass_names = data.get('sclass_names') or None
         team_keyword = data.get('team_keyword') or None
         limit = data.get('limit')
+        
+        # V1.6新增: 时间精度筛选（datetime-local 格式: "2026-07-26T09:00"）
+        start_datetime = data.get('start_datetime') or None
+        end_datetime = data.get('end_datetime') or None
+        
+        # V1.6新增: 按球队拆分导出
+        split_by_team = bool(data.get('split_by_team', False))
         if limit:
             try:
                 limit = int(limit)
@@ -313,8 +320,17 @@ def api_export_excel():
             }
         
         # 启动后台导出线程
-        # V1.5: 根据match_mode选择不同的导出任务
-        if match_mode in ('halftime', 'custom'):
+        # V1.6: 根据split_by_team选择按球队拆分导出
+        if split_by_team:
+            # V1.6: 按球队拆分导出
+            thread = threading.Thread(
+                target=_run_team_export_task,
+                args=(task_id, date_start, date_end, start_datetime, end_datetime,
+                      sclass_names, team_keyword, limit,
+                      sheets_to_export, output_dir),
+                daemon=True
+            )
+        elif match_mode in ('halftime', 'custom'):
             # V1.5: 非完场快照导出
             thread = threading.Thread(
                 target=_run_non_fulltime_export_task,
@@ -327,7 +343,8 @@ def api_export_excel():
             # V1.4: 完场导出（保持原有行为）
             thread = threading.Thread(
                 target=_run_export_task,
-                args=(task_id, date_start, date_end, sclass_names, team_keyword, limit,
+                args=(task_id, date_start, date_end, start_datetime, end_datetime,
+                      sclass_names, team_keyword, limit,
                       output_path, sheets_to_export, max_per_file, output_dir),
                 daemon=True
             )
@@ -428,26 +445,27 @@ def download_file(filename):
 # 后台导出任务
 # ============================================================================
 
-def _run_export_task(task_id, date_start, date_end, sclass_names, team_keyword, limit,
+def _run_export_task(task_id, date_start, date_end, start_datetime, end_datetime,
+                     sclass_names, team_keyword, limit,
                      output_path, sheets_to_export, max_per_file, output_dir):
     """
-    后台执行导出任务 (V1.2)
+    后台执行导出任务 (V1.6)
     
-    V1.2新增：
-    - sheets_to_export: 自定义导出Sheet
-    - max_per_file: 分片导出，单文件最大比赛数
-    - output_dir: 自定义保存目录
+    V1.6新增：
+    - start_datetime/end_datetime: 时间精度筛选
     """
     try:
         with _task_lock:
             _export_tasks[task_id]['progress'] = 10
             _export_tasks[task_id]['message'] = '正在查询比赛数据...'
         
-        # 调用V1.0核心逻辑查询比赛
+        # 调用V1.0核心逻辑查询比赛（V1.6: 传入datetime参数）
         matches = query_matches(
             db_path=config.DEFAULT_DB_PATH,
             start_date=date_start,
             end_date=date_end,
+            start_datetime=start_datetime,
+            end_datetime=end_datetime,
             sclass_names=sclass_names,
             team_name=team_keyword,
             limit=limit,
@@ -574,6 +592,139 @@ def _run_export_task(task_id, date_start, date_end, sclass_names, team_keyword, 
                 _export_tasks[task_id]['status'] = 'completed'
                 _export_tasks[task_id]['message'] = f'导出完成：{total_matches}场比赛，分{num_parts}个文件'
                 _export_tasks[task_id]['files'] = files_info
+    
+    except Exception as e:
+        traceback.print_exc()
+        with _task_lock:
+            _export_tasks[task_id]['status'] = 'failed'
+            _export_tasks[task_id]['error'] = str(e)
+            _export_tasks[task_id]['message'] = f'导出失败: {str(e)}'
+
+
+def _run_team_export_task(task_id, date_start, date_end, start_datetime, end_datetime,
+                          sclass_names, team_keyword, limit,
+                          sheets_to_export, output_dir):
+    """
+    V1.6: 按球队拆分导出任务
+    
+    查询所有符合条件的比赛，按球队维度拆分为多个Excel文件。
+    每个球队生成一个独立文件，包含该球队参与的所有比赛（主队+客队）。
+    文件命名：{球队名称}_{yyyymmdd}.xlsx
+    """
+    try:
+        with _task_lock:
+            _export_tasks[task_id]['progress'] = 10
+            _export_tasks[task_id]['message'] = '正在查询比赛数据...'
+        
+        # 查询所有符合条件的比赛（V1.6: 传入datetime参数）
+        matches = query_matches(
+            db_path=config.DEFAULT_DB_PATH,
+            start_date=date_start,
+            end_date=date_end,
+            start_datetime=start_datetime,
+            end_datetime=end_datetime,
+            sclass_names=sclass_names,
+            team_name=team_keyword,
+            limit=limit,
+        )
+        
+        with _task_lock:
+            _export_tasks[task_id]['progress'] = 20
+            _export_tasks[task_id]['message'] = f'找到 {len(matches)} 场比赛，正在按球队拆分...'
+        
+        if not matches:
+            with _task_lock:
+                _export_tasks[task_id]['status'] = 'failed'
+                _export_tasks[task_id]['error'] = '没有找到符合条件的完场比赛数据'
+                _export_tasks[task_id]['message'] = '未找到数据'
+            return
+        
+        # 提取所有唯一球队名称（主队+客队）
+        all_teams = set()
+        for m in matches:
+            if m.home_team:
+                all_teams.add(m.home_team)
+            if m.away_team:
+                all_teams.add(m.away_team)
+        
+        all_teams = sorted(all_teams)
+        total_teams = len(all_teams)
+        
+        with _task_lock:
+            _export_tasks[task_id]['progress'] = 30
+            _export_tasks[task_id]['message'] = f'共 {total_teams} 支球队，正在生成Excel...'
+        
+        # 生成日期后缀（yyyymmdd 格式）
+        from datetime import datetime as _dt
+        date_suffix = _dt.now().strftime('%Y%m%d')
+        
+        from football_export.excel_exporter import export_to_excel
+        
+        files_info = []
+        for idx, team_name in enumerate(all_teams):
+            # 筛选该球队参与的比赛（主队或客队）
+            team_matches = [
+                m for m in matches
+                if m.home_team == team_name or m.away_team == team_name
+            ]
+            
+            if not team_matches:
+                continue
+            
+            # 生成文件名：{球队名称}_{yyyymmdd}.xlsx
+            # 使用 config.ILLEGAL_CHAR_REPLACE 替换非法字符
+            safe_team_name = team_name
+            for char, replacement in config.ILLEGAL_CHAR_REPLACE.items():
+                safe_team_name = safe_team_name.replace(char, replacement)
+            
+            team_filename = f"{safe_team_name}_{date_suffix}.xlsx"
+            team_output_path = os.path.join(output_dir, team_filename)
+            
+            # 更新进度
+            progress = 30 + int((idx / total_teams) * 60)
+            with _task_lock:
+                _export_tasks[task_id]['progress'] = progress
+                _export_tasks[task_id]['message'] = f'正在生成 {team_name} ({idx+1}/{total_teams})...'
+            
+            # 调用核心导出逻辑（不修改原有函数）
+            export_to_excel(
+                matches=team_matches,
+                output_path=team_output_path,
+                sclass_names=sclass_names,
+                start_date=date_start,
+                end_date=date_end,
+                sheets_to_export=sheets_to_export,
+            )
+            
+            # 计算下载路径
+            download_filename = team_filename
+            try:
+                rel_path = os.path.relpath(team_output_path, config.OUTPUT_DIR)
+                if rel_path.startswith('..'):
+                    raise ValueError("跨盘符路径")
+                download_url = f"/download/{rel_path}"
+            except ValueError:
+                import shutil
+                dest_path = os.path.join(config.OUTPUT_DIR, team_filename)
+                if os.path.exists(dest_path):
+                    dest_path = os.path.join(config.OUTPUT_DIR, f"cross_{team_filename}")
+                    download_filename = f"cross_{team_filename}"
+                shutil.copy2(team_output_path, dest_path)
+                download_url = f"/download/{download_filename}"
+            
+            files_info.append({
+                'filename': team_filename,
+                'download_url': download_url,
+                'file_size_kb': round(os.path.getsize(team_output_path) / 1024, 1),
+                'match_count': len(team_matches),
+                'team_name': team_name,
+            })
+        
+        with _task_lock:
+            _export_tasks[task_id]['progress'] = 100
+            _export_tasks[task_id]['status'] = 'completed'
+            _export_tasks[task_id]['message'] = f'导出完成：{total_teams} 支球队，共 {len(files_info)} 个文件'
+            _export_tasks[task_id]['files'] = files_info
     
     except Exception as e:
         traceback.print_exc()

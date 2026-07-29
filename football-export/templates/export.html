@@ -9,7 +9,7 @@
 <body>
     <div class="header">
         <h1>⚽ 足球比赛数据报表导出模块</h1>
-        <span class="version-badge">V1.5</span>
+        <span class="version-badge">V1.6</span>
     </div>
 
     <div class="container">
@@ -19,12 +19,12 @@
                 <span class="icon">🔍</span> 筛选条件
             </div>
             <div class="section-body">
-                <!-- 日期范围 -->
+                <!-- V1.6: 日期时间范围 -->
                 <div class="form-row">
-                    <label class="form-label">日期范围：</label>
-                    <input type="date" id="date_start" class="form-input date-input">
+                    <label class="form-label">日期时间范围：</label>
+                    <input type="datetime-local" id="date_start" class="form-input date-input" step="60">
                     <span class="date-separator">至</span>
-                    <input type="date" id="date_end" class="form-input date-input">
+                    <input type="datetime-local" id="date_end" class="form-input date-input" step="60">
                     <button class="btn btn-sm btn-secondary" onclick="setLastMonth()">最近一月</button>
                     <button class="btn btn-sm btn-secondary" onclick="setAllDates()">全部</button>
                 </div>
@@ -65,6 +65,16 @@
                 <div class="form-row">
                     <label class="form-label">球队名称：</label>
                     <input type="text" id="team_keyword" class="form-input" placeholder="输入球队名称（模糊搜索，留空则不限）">
+                </div>
+
+                <!-- V1.6新增: 按球队拆分导出 -->
+                <div class="form-row">
+                    <label class="form-label">按球队拆分：</label>
+                    <label class="checkbox-label" style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;">
+                        <input type="checkbox" id="split_by_team">
+                        <span>所有球队（每个球队生成独立Excel文件）</span>
+                    </label>
+                    <span class="hint">（V1.6新增：勾选后按球队维度拆分导出）</span>
                 </div>
 
                 <!-- V1.5新增: 比赛模式（完场/半场/自定义分钟区间） -->

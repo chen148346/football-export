@@ -168,6 +168,35 @@ def get_db_info(db_path: str = None) -> dict:
 # 比赛查询
 # ============================================================================
 
+def _datetime_to_match_time(dt_str: str) -> str:
+    """
+    将 datetime-local 格式字符串转换为 match_time 格式（YYYYMMDDHHMMSS）。
+    
+    支持的输入格式：
+        "2026-07-26T09:00"    → "20260726090000"
+        "2026-07-26T09:00:00" → "20260726090000"
+        "2026-07-26"          → "20260726000000"
+    
+    返回 None 如果格式无法解析。
+    """
+    if not dt_str:
+        return None
+    try:
+        # 移除 T 分隔符，统一处理
+        s = dt_str.replace("T", " ").replace("-", "").replace(":", "")
+        # 提取数字部分
+        digits = "".join(c for c in s if c.isdigit())
+        if len(digits) >= 8:
+            # 至少 YYYYMMDD
+            ymd = digits[:8]
+            hm = digits[8:12] if len(digits) >= 12 else "0000"
+            sec = digits[12:14] if len(digits) >= 14 else "00"
+            return f"{ymd}{hm}{sec}"
+    except Exception:
+        pass
+    return None
+
+
 def query_matches(
     db_path: str = None,
     start_date: str = None,
@@ -177,6 +206,8 @@ def query_matches(
     state_code: int = config.STATE_CODE_FINISHED,
     require_snapshot: bool = True,
     limit: int = None,
+    start_datetime: str = None,
+    end_datetime: str = None,
 ) -> List[MatchRecord]:
     """
     按筛选条件查询完场比赛。
@@ -190,6 +221,8 @@ def query_matches(
         state_code: 比赛状态码，默认 -1（完场）
         require_snapshot: 是否只返回有快照数据的比赛（默认True）
         limit: 最多返回多少条，None 表示不限
+        start_datetime: 开始时间 (datetime-local格式 "YYYY-MM-DDTHH:MM")，精确到分钟
+        end_datetime: 结束时间 (datetime-local格式 "YYYY-MM-DDTHH:MM")，精确到分钟
     
     返回：
         MatchRecord 列表，每条包含 matches + snapshots 数据
@@ -199,6 +232,11 @@ def query_matches(
         2. 优先用 matches.fulltime_snapshot_id 关联 snapshots 表
         3. 若 fulltime_snapshot_id 为空，fallback 到 snapshots.match_id + snapshot_type='fulltime'
         4. 按日期范围、联赛、球队进一步筛选
+    
+    V1.6变更：
+        新增 start_datetime/end_datetime 参数，支持精确到分钟的时间筛选。
+        当 datetime 参数存在时，优先使用 match_time 字段（YYYYMMDDHHMMSS）筛选，
+        忽略 start_date/end_date 参数。
     """
     if db_path is None:
         db_path = config.DEFAULT_DB_PATH
@@ -249,11 +287,22 @@ def query_matches(
         """
         params = [config.SNAPSHOT_TYPE_FULLTIME, state_code]
         
-        # 日期范围筛选（match_date 是 YYYY-MM-DD 格式）
-        if start_date:
+        # V1.6: 时间精度筛选（优先 datetime，其次 date）
+        # match_time 是 YYYYMMDDHHMMSS 格式，支持精确到分钟
+        start_mt = _datetime_to_match_time(start_datetime) if start_datetime else None
+        end_mt = _datetime_to_match_time(end_datetime) if end_datetime else None
+        
+        if start_mt:
+            sql += " AND m.match_time >= ?"
+            params.append(start_mt)
+        elif start_date:
             sql += " AND m.match_date >= ?"
             params.append(start_date)
-        if end_date:
+        
+        if end_mt:
+            sql += " AND m.match_time <= ?"
+            params.append(end_mt)
+        elif end_date:
             sql += " AND m.match_date <= ?"
             params.append(end_date)
         

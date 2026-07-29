@@ -14,34 +14,49 @@ document.addEventListener('DOMContentLoaded', function() {
     loadDbInfo();
 });
 
-// ========== 日期范围初始化 ==========
+// ========== V1.6: 日期时间范围初始化 ==========
 function initDateRange() {
+    // V1.6: 默认值为当前日期的 00:00 和 23:59
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    document.getElementById('date_start').value = `${yyyy}-${mm}-${dd}T00:00`;
+    document.getElementById('date_end').value = `${yyyy}-${mm}-${dd}T23:59`;
+
+    // 同时从后端获取数据库的日期范围，用于设置 min/max
     fetch('/api/date_range')
         .then(r => r.json())
         .then(data => {
             if (data.success) {
                 const d = data.data;
-                document.getElementById('date_start').value = d.default_start;
-                document.getElementById('date_end').value = d.default_end;
-                document.getElementById('date_start').min = d.min_date;
-                document.getElementById('date_start').max = d.max_date;
-                document.getElementById('date_end').min = d.min_date;
-                document.getElementById('date_end').max = d.max_date;
+                // datetime-local 的 min/max 需要带时间
+                document.getElementById('date_start').min = d.min_date + 'T00:00';
+                document.getElementById('date_start').max = d.max_date + 'T23:59';
+                document.getElementById('date_end').min = d.min_date + 'T00:00';
+                document.getElementById('date_end').max = d.max_date + 'T23:59';
             }
         })
         .catch(err => console.error('日期范围加载失败:', err));
 }
 
-// 快捷：最近一月
+// V1.6: 快捷：最近一月（带时间）
 function setLastMonth() {
     const today = new Date();
-    const end = today.toISOString().split('T')[0];
-    const start = new Date(today.getTime() - 30*24*60*60*1000).toISOString().split('T')[0];
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const end = `${yyyy}-${mm}-${dd}T23:59`;
+    const startDate = new Date(today.getTime() - 30*24*60*60*1000);
+    const sy = startDate.getFullYear();
+    const sm = String(startDate.getMonth() + 1).padStart(2, '0');
+    const sd = String(startDate.getDate()).padStart(2, '0');
+    const start = `${sy}-${sm}-${sd}T00:00`;
     document.getElementById('date_start').value = start;
     document.getElementById('date_end').value = end;
 }
 
-// 快捷：全部日期
+// V1.6: 快捷：全部日期（清空时间选择器）
 function setAllDates() {
     document.getElementById('date_start').value = '';
     document.getElementById('date_end').value = '';
@@ -244,6 +259,9 @@ function startExport() {
     const min_minute = document.getElementById('min_minute').value;
     const max_minute = document.getElementById('max_minute').value;
     
+    // V1.6新增: 按球队拆分
+    const split_by_team = document.getElementById('split_by_team').checked;
+    
     // 参数校验
     if (date_start && date_end && date_start > date_end) {
         showResult('error', '日期错误', '开始日期不能晚于结束日期');
@@ -282,7 +300,8 @@ function startExport() {
     // 构建请求参数
     const requestBody = {
         date_start, date_end, sclass_names, team_keyword, limit,
-        sheets, max_per_file, save_path  // V1.2参数
+        sheets, max_per_file, save_path,  // V1.2参数
+        split_by_team  // V1.6参数
     };
     
     // V1.5: 非完场模式参数
