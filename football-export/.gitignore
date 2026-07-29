@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# SQLite WAL 日志
+*.db-shm
+*.db-wal
+
+# 虚拟环境
+venv/
+.venv/
+env/
+
+# 导出文件
+download/*.xlsx
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
