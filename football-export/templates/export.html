@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>足球比赛数据报表导出模块 V1.5</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/export.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>⚽ 足球比赛数据报表导出模块</h1>
+        <span class="version-badge">V1.5</span>
+    </div>
+
+    <div class="container">
+        <!-- ==================== 筛选条件区 ==================== -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">🔍</span> 筛选条件
+            </div>
+            <div class="section-body">
+                <!-- 日期范围 -->
+                <div class="form-row">
+                    <label class="form-label">日期范围：</label>
+                    <input type="date" id="date_start" class="form-input date-input">
+                    <span class="date-separator">至</span>
+                    <input type="date" id="date_end" class="form-input date-input">
+                    <button class="btn btn-sm btn-secondary" onclick="setLastMonth()">最近一月</button>
+                    <button class="btn btn-sm btn-secondary" onclick="setAllDates()">全部</button>
+                </div>
+
+                <!-- 联赛多选（左右分栏） -->
+                <div class="form-row">
+                    <label class="form-label">联赛类型：</label>
+                    <div class="league-selector">
+                        <!-- 左侧：已选联赛 -->
+                        <div class="league-panel">
+                            <div class="panel-header">
+                                <span>已选联赛</span>
+                                <button class="btn btn-xs btn-link" onclick="clearSelectedLeagues()">清空</button>
+                            </div>
+                            <input type="text" id="selected_search" class="panel-search" placeholder="搜索已选..." oninput="filterSelected()">
+                            <div id="selected_list" class="league-list"></div>
+                        </div>
+                        <!-- 中间按钮 -->
+                        <div class="league-buttons">
+                            <button class="btn btn-icon" onclick="moveAllToSelected()" title="全选">⇉</button>
+                            <button class="btn btn-icon" onclick="moveToSelected()" title="添加">→</button>
+                            <button class="btn btn-icon" onclick="moveToAvailable()" title="移除">←</button>
+                            <button class="btn btn-icon" onclick="moveAllToAvailable()" title="清空">⇍</button>
+                        </div>
+                        <!-- 右侧：可选联赛 -->
+                        <div class="league-panel">
+                            <div class="panel-header">
+                                <span>可选联赛</span>
+                                <button class="btn btn-xs btn-link" onclick="selectAllLeagues()">全选</button>
+                            </div>
+                            <input type="text" id="available_search" class="panel-search" placeholder="搜索可选..." oninput="filterAvailable()">
+                            <div id="available_list" class="league-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 球队名称 -->
+                <div class="form-row">
+                    <label class="form-label">球队名称：</label>
+                    <input type="text" id="team_keyword" class="form-input" placeholder="输入球队名称（模糊搜索，留空则不限）">
+                </div>
+
+                <!-- V1.5新增: 比赛模式（完场/半场/自定义分钟区间） -->
+                <div class="form-row">
+                    <label class="form-label">比赛模式：</label>
+                    <select id="match_mode" class="form-input" onchange="onMatchModeChange()">
+                        <option value="fulltime" selected>完场（V1.4默认）</option>
+                        <option value="halftime">半场快照</option>
+                        <option value="custom">自定义分钟区间</option>
+                    </select>
+                    <span class="hint">（V1.5新增：支持非完场快照导出）</span>
+                </div>
+
+                <!-- V1.5新增: 自定义分钟区间（默认隐藏） -->
+                <div class="form-row" id="minute_range_row" style="display:none;">
+                    <label class="form-label">分钟区间：</label>
+                    <input type="number" id="min_minute" class="form-input" value="60" min="0" max="120" style="width:80px;">
+                    <span class="date-separator">至</span>
+                    <input type="number" id="max_minute" class="form-input" value="70" min="0" max="120" style="width:80px;">
+                    <span class="hint">（0-120分钟，智能去重取最接近上限的快照）</span>
+                </div>
+
+                <!-- V1.5新增: 关联完场快照复选框 -->
+                <div class="form-row" id="include_fulltime_row" style="display:none;">
+                    <label class="form-label">关联完场：</label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="include_fulltime">
+                        <span>同时导出完场快照（训练标签）</span>
+                    </label>
+                    <span class="hint">（勾选后生成prediction+label两个文件）</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 导出设置区 ==================== -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">⚙️</span> 导出设置
+            </div>
+            <div class="section-body">
+                <!-- 导出模式（固定训练模式，置灰） -->
+                <div class="form-row">
+                    <label class="form-label">导出模式：</label>
+                    <select id="export_mode" class="form-input" disabled style="background:#f0f0f0;">
+                        <option value="training" selected>训练模式（批量完场，含标签列）</option>
+                    </select>
+                    <span class="hint">（V1.1版本固定为训练模式）</span>
+                </div>
+
+                <!-- 数量限制 -->
+                <div class="form-row">
+                    <label class="form-label">数量限制：</label>
+                    <input type="number" id="limit" class="form-input" placeholder="留空则不限" min="1" style="width:150px;">
+                    <span class="hint">（限制导出比赛数量，用于测试）</span>
+                </div>
+
+                <!-- V1.2新增: 导出Sheet选择 -->
+                <div class="form-row">
+                    <label class="form-label">导出Sheet：</label>
+                    <div class="sheet-checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="sheet_match" value="match" checked disabled>
+                            <span>比赛</span>
+                            <span class="hint">(必选)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="sheet-cb" value="tech" checked>
+                            <span>指标</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="sheet-cb" value="events" checked>
+                            <span>事件</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="sheet-cb" value="player" checked>
+                            <span>球员</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="sheet-cb" value="near" checked>
+                            <span>近绩</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="sheet-cb" value="vs" checked>
+                            <span>往绩</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="sheet-cb" value="dist" checked>
+                            <span>分布</span>
+                        </label>
+                        <!-- V1.4新增5个Sheet（默认不勾选，可选导出） -->
+                        <label class="checkbox-item v14-sheet">
+                            <input type="checkbox" class="sheet-cb" value="first_half">
+                            <span>上半场统计</span>
+                        </label>
+                        <label class="checkbox-item v14-sheet">
+                            <input type="checkbox" class="sheet-cb" value="second_half">
+                            <span>下半场统计</span>
+                        </label>
+                        <label class="checkbox-item v14-sheet">
+                            <input type="checkbox" class="sheet-cb" value="league_rank">
+                            <span>联赛排名</span>
+                        </label>
+                        <label class="checkbox-item v14-sheet">
+                            <input type="checkbox" class="sheet-cb" value="half_full">
+                            <span>半全统计</span>
+                        </label>
+                        <label class="checkbox-item v14-sheet">
+                            <input type="checkbox" class="sheet-cb" value="detail_evt">
+                            <span>详细事件</span>
+                        </label>
+                        <button class="btn btn-sm btn-secondary" onclick="selectAllSheets(true)">全选</button>
+                        <button class="btn btn-sm btn-secondary" onclick="selectAllSheets(false)">清空</button>
+                    </div>
+                </div>
+
+                <!-- V1.2新增: 单文件最大比赛数（分片导出） -->
+                <div class="form-row">
+                    <label class="form-label">单文件最大比赛数：</label>
+                    <input type="number" id="max_per_file" class="form-input" value="50" min="1" style="width:150px;">
+                    <span class="hint">（超过此数量将自动分片导出，文件名追加_01、_02等序号）</span>
+                </div>
+
+                <!-- V1.2新增: 保存路径 -->
+                <div class="form-row">
+                    <label class="form-label">保存路径：</label>
+                    <input type="text" id="save_path" class="form-input" placeholder="留空则保存到默认目录（/home/z/my-project/download）" style="flex:1;">
+                    <span class="hint">（自定义保存目录，自动创建）</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 操作与反馈区 ==================== -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📤</span> 操作与反馈
+            </div>
+            <div class="section-body">
+                <!-- 操作按钮 -->
+                <div class="form-row">
+                    <button id="btn_export" class="btn btn-primary btn-lg" onclick="startExport()">
+                        <span class="btn-text">开始导出</span>
+                        <span class="btn-loading" style="display:none;">
+                            <span class="spinner"></span> 导出中...
+                        </span>
+                    </button>
+                    <button class="btn btn-secondary btn-lg" onclick="resetForm()">重置</button>
+                </div>
+
+                <!-- 进度反馈 -->
+                <div id="progress_area" class="progress-area" style="display:none;">
+                    <div class="progress-bar-container">
+                        <div id="progress_bar" class="progress-bar" style="width:0%"></div>
+                    </div>
+                    <div id="progress_text" class="progress-text">准备中...</div>
+                </div>
+
+                <!-- 结果反馈 -->
+                <div id="result_area" class="result-area" style="display:none;">
+                    <!-- 成功或错误信息将动态插入 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 数据库信息区 ==================== -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📊</span> 数据库信息
+            </div>
+            <div class="section-body">
+                <div id="db_info" class="db-info">
+                    <span class="loading">加载中...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>足球比赛数据报表导出模块 V1.5 | 非完场快照导出+预测模式 | 2026-07-13</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/export.js') }}"></script>
+</body>
+</html>
