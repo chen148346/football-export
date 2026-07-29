@@ -21,11 +21,32 @@ import os
 # 模块所在目录: football_export/
 _MODULE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# scripts/ 目录（模块的上级目录）
+# 项目目录（模块的上级目录，即 football-export/）
 _SCRIPTS_DIR = os.path.dirname(_MODULE_DIR)
 
-# 项目根目录（scripts/ 的上级目录）
+# 项目根目录（scripts/ 的上级目录，用于兼容旧版目录结构）
 _PROJECT_ROOT = os.path.dirname(_SCRIPTS_DIR)
+
+
+def _resolve_project_path(subpath: str) -> str:
+    """
+    跨平台路径解析：优先在项目目录(_SCRIPTS_DIR)下查找，
+    若不存在则回退到项目父目录(_PROJECT_ROOT)。
+    
+    兼容两种目录结构：
+    - 扁平结构：config.ini/upload/download 直接在 football-export/ 下
+    - 嵌套结构：config.ini/upload/download 在 football-export/ 的父目录下
+    """
+    primary = os.path.join(_SCRIPTS_DIR, subpath)
+    fallback = os.path.join(_PROJECT_ROOT, subpath)
+    # 如果主路径已存在（文件/目录），优先使用
+    if os.path.exists(primary):
+        return primary
+    # 如果回退路径存在，使用回退
+    if os.path.exists(fallback):
+        return fallback
+    # 都不存在时，默认使用主路径（将在需要时自动创建）
+    return primary
 
 # ============================================================================
 # 数据库配置
@@ -34,30 +55,43 @@ _PROJECT_ROOT = os.path.dirname(_SCRIPTS_DIR)
 # 数据库文件路径（可通过环境变量覆盖）
 # 默认查找顺序：环境变量 -> 项目根目录/upload/下的.db文件 -> 项目根目录/football.db
 def _find_default_db():
-    """自动查找默认数据库文件"""
+    """
+    自动查找默认数据库文件。
+    
+    查找顺序（跨平台兼容）：
+    1. 环境变量 FOOTBALL_DB_PATH
+    2. 项目目录/upload/*.db（优先）或 父目录/upload/*.db
+    3. 项目目录/football.db（优先）或 父目录/football.db
+    """
     # 1. 环境变量指定
     env_path = os.environ.get("FOOTBALL_DB_PATH")
     if env_path and os.path.exists(env_path):
         return env_path
     
-    # 2. 项目根目录/upload/目录下的.db文件
-    upload_dir = os.path.join(_PROJECT_ROOT, "upload")
-    if os.path.isdir(upload_dir):
-        for fname in sorted(os.listdir(upload_dir)):
-            if fname.endswith(".db") and fname != "test_football.db":
-                return os.path.join(upload_dir, fname)
+    # 2. upload/目录下的.db文件（优先项目目录，其次父目录）
+    for base_dir in (_SCRIPTS_DIR, _PROJECT_ROOT):
+        upload_dir = os.path.join(base_dir, "upload")
+        if os.path.isdir(upload_dir):
+            for fname in sorted(os.listdir(upload_dir)):
+                if fname.endswith(".db") and fname != "test_football.db":
+                    return os.path.join(upload_dir, fname)
     
-    # 3. 项目根目录下的football.db
-    fallback = os.path.join(_PROJECT_ROOT, "football.db")
-    return fallback
+    # 3. football.db（优先项目目录，其次父目录）
+    for base_dir in (_SCRIPTS_DIR, _PROJECT_ROOT):
+        db_path = os.path.join(base_dir, "football.db")
+        if os.path.exists(db_path):
+            return db_path
+    
+    # 都不存在，默认项目目录下
+    return os.path.join(_SCRIPTS_DIR, "football.db")
 
 DEFAULT_DB_PATH = _find_default_db()
 
 # 导出文件输出目录
-# 默认为项目根目录下的 download/ 目录
+# 默认为项目目录下的 download/ 目录（跨平台兼容）
 OUTPUT_DIR = os.environ.get(
     "FOOTBALL_EXPORT_DIR",
-    os.path.join(_PROJECT_ROOT, "download")
+    _resolve_project_path("download")
 )
 
 # 确保输出目录存在（自动创建）
@@ -377,10 +411,10 @@ TECH_STAT_PERCENT_KINDS = {
     "PASSBALL_SUCCESS_PERCENT",
 }
 
-# V1.4: config.ini配置文件路径
+# V1.4: config.ini配置文件路径（跨平台兼容，优先项目目录）
 CONFIG_INI_PATH = os.environ.get(
     "FOOTBALL_CONFIG_INI",
-    os.path.join(_PROJECT_ROOT, "config.ini")
+    _resolve_project_path("config.ini")
 )
 
 # ============================================================================

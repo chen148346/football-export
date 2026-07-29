@@ -210,10 +210,30 @@ def api_export_excel():
         # 安全校验：禁止路径遍历
         if save_path:
             save_path = os.path.abspath(save_path)
-            # 禁止系统目录
-            forbidden = ['/etc', '/var', '/usr', '/bin', '/sbin', '/root']
+            # 跨平台禁止目录列表（Linux + Windows）
+            forbidden = [
+                # Linux 系统目录
+                '/etc', '/var', '/usr', '/bin', '/sbin', '/root', '/proc', '/sys',
+                # Windows 系统目录（os.path.normcase 统一处理大小写和分隔符）
+            ]
+            # Windows 系统目录（仅在 Windows 上生效）
+            if os.name == 'nt':
+                windir = os.environ.get('WINDIR', r'C:\Windows')
+                program_files = os.environ.get('ProgramFiles', r'C:\Program Files')
+                program_files_x86 = os.environ.get('ProgramFiles(x86)', r'C:\Program Files (x86)')
+                system_drive = os.environ.get('SystemDrive', 'C:')
+                forbidden.extend([
+                    windir,
+                    program_files,
+                    program_files_x86,
+                    os.path.join(system_drive + os.sep, 'Windows'),
+                    os.path.join(system_drive + os.sep, 'Program Files'),
+                ])
+            # 统一规范化后比较
+            norm_save = os.path.normcase(os.path.normpath(save_path))
             for fb in forbidden:
-                if save_path.startswith(fb):
+                norm_fb = os.path.normcase(os.path.normpath(fb))
+                if norm_save.startswith(norm_fb):
                     return jsonify({
                         'success': False,
                         'error': f'禁止保存到系统目录: {fb}'
@@ -739,9 +759,13 @@ def _handle_cross_drive_path(file_path, filename):
 def main():
     """启动Flask Web应用"""
     import argparse
+    # 跨平台端口配置：优先读取环境变量 DEPLOY_RUN_PORT（沙箱环境），
+    # 其次 FOOTBALL_PORT，最后默认 5000
+    default_port = int(os.environ.get('DEPLOY_RUN_PORT',
+                         os.environ.get('FOOTBALL_PORT', '5000')))
     parser = argparse.ArgumentParser(description='足球比赛数据报表导出模块 - Web应用 V1.5 重构与优化')
     parser.add_argument('--host', default='0.0.0.0', help='监听地址')
-    parser.add_argument('--port', type=int, default=5000, help='监听端口')
+    parser.add_argument('--port', type=int, default=default_port, help='监听端口')
     parser.add_argument('--debug', action='store_true', help='调试模式')
     args = parser.parse_args()
     
@@ -751,6 +775,7 @@ def main():
     print(f"数据库: {config.DEFAULT_DB_PATH}")
     print(f"输出目录: {config.OUTPUT_DIR}")
     print(f"访问地址: http://localhost:{args.port}")
+    print(f"运行平台: {'Windows' if os.name == 'nt' else 'Linux/macOS'}")
     print("=" * 60)
     
     app.run(host=args.host, port=args.port, debug=args.debug)
