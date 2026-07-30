@@ -822,7 +822,16 @@ def generate_filename_v15(
             dt = datetime.datetime.strptime(date_str, "%Y-%m-%d")
             return dt.strftime("%y%m%d")
         except (ValueError, TypeError):
-            return date_str.replace("-", "")[-6:] if date_str else "all"
+            pass
+        try:
+            # 支持 ISO datetime 格式: YYYY-MM-DDTHH:MM
+            dt = datetime.datetime.strptime(date_str.split("T")[0], "%Y-%m-%d")
+            return dt.strftime("%y%m%d")
+        except (ValueError, TypeError, IndexError):
+            pass
+        # 最后兜底：提取数字部分
+        digits = "".join(ch for ch in date_str if ch.isdigit())
+        return digits[-6:] if len(digits) >= 6 else "all"
     
     start = format_date_yymmdd(start_date)
     end = format_date_yymmdd(end_date)
