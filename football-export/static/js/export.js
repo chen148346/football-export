@@ -262,8 +262,8 @@ function startExport() {
     // V1.6新增: 按球队拆分
     const split_by_team = document.getElementById('split_by_team').checked;
     
-    // 参数校验
-    if (date_start && date_end && date_start > date_end) {
+    // 参数校验（使用日期部分比较）
+    if (date_start_only && date_end_only && date_start_only > date_end_only) {
         showResult('error', '日期错误', '开始日期不能晚于结束日期');
         return;
     }
@@ -298,8 +298,13 @@ function startExport() {
     updateProgress(5, '正在提交导出请求...');
     
     // 构建请求参数
+    // V1.6: 分离日期部分和完整时间部分，确保日期筛选正确
+    const date_start_only = date_start ? date_start.split('T')[0] : null;
+    const date_end_only = date_end ? date_end.split('T')[0] : null;
     const requestBody = {
-        date_start, date_end, sclass_names, team_keyword, limit,
+        date_start: date_start_only, date_end: date_end_only,
+        start_datetime: date_start, end_datetime: date_end,
+        sclass_names, team_keyword, limit,
         sheets, max_per_file, save_path,  // V1.2参数
         split_by_team  // V1.6参数
     };

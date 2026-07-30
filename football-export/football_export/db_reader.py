@@ -312,10 +312,10 @@ def query_matches(
             sql += f" AND m.sclass_name IN ({placeholders})"
             params.extend(sclass_names)
         
-        # 球队名称模糊搜索（主队或客队）
+        # 球队名称精确搜索（主队或客队）
         if team_name:
-            sql += " AND (m.home_team LIKE ? OR m.away_team LIKE ?)"
-            params.extend([f"%{team_name}%", f"%{team_name}%"])
+            sql += " AND (m.home_team = ? OR m.away_team = ?)"
+            params.extend([team_name, team_name])
         
         # V1.5修复: 只返回有快照数据的比赛
         # 原实现将条件放在WHERE子句，导致LEFT JOIN退化为INNER JOIN
@@ -512,8 +512,8 @@ def query_non_fulltime_snapshots(
             where_clauses.append(f"m.sclass_name IN ({placeholders})")
             params.extend(sclass_names)
         if team_name:
-            where_clauses.append("(m.home_team LIKE ? OR m.away_team LIKE ?)")
-            params.extend([f'%{team_name}%', f'%{team_name}%'])
+            where_clauses.append("(m.home_team = ? OR m.away_team = ?)")
+            params.extend([team_name, team_name])
         
         where_sql = (" WHERE " + " AND ".join(where_clauses)) if where_clauses else ""
         
