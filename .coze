@@ -1,0 +1,10 @@
+[project]
+requires = ["python-3.8"]
+
+[dev]
+build = ["pip", "install", "-r", "football-export/requirements.txt"]
+run = ["sh", "-c", "cd football-export && python app.py --port ${DEPLOY_RUN_PORT}"]
+
+[deploy]
+build = ["pip", "install", "-r", "football-export/requirements.txt"]
+run = ["sh", "-c", "cd football-export && python app.py --port ${DEPLOY_RUN_PORT}"]
