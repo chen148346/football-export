@@ -189,6 +189,16 @@ def api_export_excel():
         
         # V1.6新增: 按球队拆分导出
         split_by_team = bool(data.get('split_by_team', False))
+        
+        # V1.7新增: 每队比赛数量上限
+        max_matches_per_team = data.get('max_matches_per_team')
+        if max_matches_per_team is not None:
+            try:
+                max_matches_per_team = int(max_matches_per_team)
+                if max_matches_per_team <= 0:
+                    max_matches_per_team = None
+            except (ValueError, TypeError):
+                max_matches_per_team = None
         if limit:
             try:
                 limit = int(limit)
@@ -327,7 +337,7 @@ def api_export_excel():
                 target=_run_team_export_task,
                 args=(task_id, date_start, date_end, start_datetime, end_datetime,
                       sclass_names, team_keyword, limit,
-                      sheets_to_export, output_dir),
+                      sheets_to_export, output_dir, max_matches_per_team),
                 daemon=True
             )
         elif match_mode in ('halftime', 'custom'):
@@ -603,13 +613,19 @@ def _run_export_task(task_id, date_start, date_end, start_datetime, end_datetime
 
 def _run_team_export_task(task_id, date_start, date_end, start_datetime, end_datetime,
                           sclass_names, team_keyword, limit,
-                          sheets_to_export, output_dir):
+                          sheets_to_export, output_dir, max_matches_per_team=None):
     """
     V1.6: 按球队拆分导出任务
+    V1.7: 新增子目录保存 + 每队比赛数量上限
     
     查询所有符合条件的比赛，按球队维度拆分为多个Excel文件。
     每个球队生成一个独立文件，包含该球队参与的所有比赛（主队+客队）。
-    文件命名：{球队名称}_{yyyymmdd}.xlsx
+    
+    V1.7变更：
+    1. 文件保存到子目录：{联赛名称}_{yymmdd}_{yymmdd}/
+       单选联赛用联赛名，多选/全选用 'multi'
+       日期为空时用 '000000'
+    2. 每队比赛数量上限：按 match_time 降序取最近 N 场
     """
     try:
         with _task_lock:
@@ -638,6 +654,31 @@ def _run_team_export_task(task_id, date_start, date_end, start_datetime, end_dat
                 _export_tasks[task_id]['error'] = '没有找到符合条件的完场比赛数据'
                 _export_tasks[task_id]['message'] = '未找到数据'
             return
+        
+        # ========== V1.7: 计算子目录名 ==========
+        # 联赛名称：单选用联赛名，多选/全选用 'multi'
+        if sclass_names and len(sclass_names) == 1:
+            dir_league_name = sclass_names[0]
+        else:
+            dir_league_name = 'multi'
+        # 替换非法字符
+        for char, replacement in config.ILLEGAL_CHAR_REPLACE.items():
+            dir_league_name = dir_league_name.replace(char, replacement)
+        
+        # 日期格式：yymmdd（6位），空值用 '000000'
+        def _to_yymmdd(d):
+            if not d:
+                return '000000'
+            # 处理 YYYY-MM-DD 或 datetime-local 格式
+            d_clean = d.split('T')[0] if 'T' in d else d
+            parts = d_clean.split('-')
+            if len(parts) == 3:
+                return parts[0][2:] + parts[1] + parts[2]  # '2026' → '26'
+            return '000000'
+        
+        subdir_name = f"{dir_league_name}_{_to_yymmdd(date_start)}_{_to_yymmdd(date_end)}"
+        team_output_dir = os.path.join(output_dir, subdir_name)
+        os.makedirs(team_output_dir, exist_ok=True)
         
         # 提取所有唯一球队名称（主队+客队）
         all_teams = set()
@@ -671,6 +712,11 @@ def _run_team_export_task(task_id, date_start, date_end, start_datetime, end_dat
             if not team_matches:
                 continue
             
+            # V1.7: 按 match_time 降序排列，取最近 N 场
+            if max_matches_per_team and max_matches_per_team > 0:
+                team_matches.sort(key=lambda m: m.match_time or '', reverse=True)
+                team_matches = team_matches[:max_matches_per_team]
+            
             # 生成文件名：{球队名称}_{yyyymmdd}.xlsx
             # 使用 config.ILLEGAL_CHAR_REPLACE 替换非法字符
             safe_team_name = team_name
@@ -678,7 +724,7 @@ def _run_team_export_task(task_id, date_start, date_end, start_datetime, end_dat
                 safe_team_name = safe_team_name.replace(char, replacement)
             
             team_filename = f"{safe_team_name}_{date_suffix}.xlsx"
-            team_output_path = os.path.join(output_dir, team_filename)
+            team_output_path = os.path.join(team_output_dir, team_filename)
             
             # 更新进度
             progress = 30 + int((idx / total_teams) * 60)
@@ -696,7 +742,9 @@ def _run_team_export_task(task_id, date_start, date_end, start_datetime, end_dat
                 sheets_to_export=sheets_to_export,
             )
             
-            # 计算下载路径
+            # 计算下载路径（文件在子目录中）
+            # 使用子目录下的相对路径
+            download_rel = os.path.join(subdir_name, team_filename)
             download_filename = team_filename
             try:
                 rel_path = os.path.relpath(team_output_path, config.OUTPUT_DIR)

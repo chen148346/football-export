@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initDateRange();
     loadSclassList();
     loadDbInfo();
+    onSplitByTeamChange();  // V1.7: 初始化比赛数量输入框状态
 });
 
 // ========== V1.6: 日期时间范围初始化 ==========
@@ -232,6 +233,12 @@ function onMatchModeChange() {
     }
 }
 
+// ========== V1.7新增: 按球队拆分勾选联动 ==========
+function onSplitByTeamChange() {
+    const checked = document.getElementById('split_by_team').checked;
+    document.getElementById('max_matches_per_team').disabled = !checked;
+}
+
 // ========== 开始导出 ==========
 function startExport() {
     // 收集参数
@@ -261,6 +268,10 @@ function startExport() {
     
     // V1.6新增: 按球队拆分
     const split_by_team = document.getElementById('split_by_team').checked;
+    
+    // V1.7新增: 每队比赛数量上限
+    const max_matches_per_team_input = document.getElementById('max_matches_per_team').value;
+    const max_matches_per_team = max_matches_per_team_input ? parseInt(max_matches_per_team_input) : null;
     
     // V1.6: 分离日期部分和完整时间部分，确保日期筛选正确
     const date_start_only = date_start ? date_start.split('T')[0] : null;
@@ -307,7 +318,8 @@ function startExport() {
         start_datetime: date_start, end_datetime: date_end,
         sclass_names, team_keyword, limit,
         sheets, max_per_file, save_path,  // V1.2参数
-        split_by_team  // V1.6参数
+        split_by_team,  // V1.6参数
+        max_matches_per_team  // V1.7参数
     };
     
     // V1.5: 非完场模式参数

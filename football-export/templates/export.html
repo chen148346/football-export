@@ -9,7 +9,7 @@
 <body>
     <div class="header">
         <h1>⚽ 足球比赛数据报表导出模块</h1>
-        <span class="version-badge">V1.6</span>
+        <span class="version-badge">V1.7</span>
     </div>
 
     <div class="container">
@@ -71,10 +71,15 @@
                 <div class="form-row">
                     <label class="form-label">按球队拆分：</label>
                     <label class="checkbox-label" style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;">
-                        <input type="checkbox" id="split_by_team">
+                        <input type="checkbox" id="split_by_team" onchange="onSplitByTeamChange()">
                         <span>所有球队（每个球队生成独立Excel文件）</span>
                     </label>
-                    <span class="hint">（V1.6新增：勾选后按球队维度拆分导出）</span>
+                    <!-- V1.7新增: 每队比赛数量上限 -->
+                    <label style="display:inline-flex;align-items:center;gap:4px;margin-left:12px;color:#666;">
+                        <span>比赛数量：</span>
+                        <input type="number" id="max_matches_per_team" class="form-input" value="10" min="1" style="width:80px;" disabled>
+                    </label>
+                    <span class="hint" id="split_hint">（V1.7：勾选后设置每支球队导出的最近比赛场数，留空或≤0则不限制）</span>
                 </div>
 
                 <!-- V1.5新增: 比赛模式（完场/半场/自定义分钟区间） -->
