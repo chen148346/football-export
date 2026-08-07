@@ -344,7 +344,8 @@ def api_export_excel():
             # V1.5: 非完场快照导出
             thread = threading.Thread(
                 target=_run_non_fulltime_export_task,
-                args=(task_id, date_start, date_end, sclass_names, team_keyword, limit,
+                args=(task_id, date_start, date_end, start_datetime, end_datetime,
+                      sclass_names, team_keyword, limit,
                       match_mode, min_minute, max_minute, include_fulltime,
                       sheets_to_export, output_dir, sclass_names),
                 daemon=True
@@ -786,7 +787,8 @@ def _run_team_export_task(task_id, date_start, date_end, start_datetime, end_dat
 # V1.5 新增 - 非完场快照导出任务
 # ============================================================================
 
-def _run_non_fulltime_export_task(task_id, date_start, date_end, sclass_names, team_keyword, limit,
+def _run_non_fulltime_export_task(task_id, date_start, date_end, start_datetime, end_datetime,
+                                   sclass_names, team_keyword, limit,
                                    match_mode, min_minute, max_minute, include_fulltime,
                                    sheets_to_export, output_dir, sclass_names_for_filename):
     """
@@ -823,6 +825,8 @@ def _run_non_fulltime_export_task(task_id, date_start, date_end, sclass_names, t
             include_fulltime=include_fulltime,
             start_date=date_start,
             end_date=date_end,
+            start_datetime=start_datetime,
+            end_datetime=end_datetime,
             sclass_names=sclass_names,
             team_name=team_keyword,
             limit=limit,

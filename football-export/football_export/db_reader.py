@@ -458,6 +458,8 @@ def query_non_fulltime_snapshots(
     sclass_names: list = None,
     team_name: str = None,
     limit: int = None,
+    start_datetime: str = None,
+    end_datetime: str = None,
 ) -> dict:
     """
     V1.5新增 - 查询非完场快照数据。
@@ -501,10 +503,21 @@ def query_non_fulltime_snapshots(
         where_clauses = []
         params = []
         
-        if start_date:
+        # V1.7修复: 时间精度筛选（优先 datetime，其次 date）
+        start_mt = _datetime_to_match_time(start_datetime) if start_datetime else None
+        end_mt = _datetime_to_match_time(end_datetime) if end_datetime else None
+        
+        if start_mt:
+            where_clauses.append("m.match_time >= ?")
+            params.append(start_mt)
+        elif start_date:
             where_clauses.append("m.match_date >= ?")
             params.append(start_date)
-        if end_date:
+        
+        if end_mt:
+            where_clauses.append("m.match_time <= ?")
+            params.append(end_mt)
+        elif end_date:
             where_clauses.append("m.match_date <= ?")
             params.append(end_date)
         if sclass_names:
