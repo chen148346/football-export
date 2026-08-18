@@ -43,6 +43,17 @@ from football_export import (
 )
 
 # ============================================================================
+# 北京时间工具函数
+# ============================================================================
+
+def _beijing_now():
+    """返回当前北京时间（UTC+8）"""
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    utc_now = _dt.now(_tz.utc)
+    return utc_now + _td(hours=config.BEIJING_TZ_OFFSET_HOURS)
+
+
+# ============================================================================
 # Flask应用初始化
 # ============================================================================
 
@@ -99,7 +110,7 @@ def api_date_range():
         dr = get_date_range(db_path)
         
         # 计算默认日期范围（最近一个月）
-        today = datetime.now()
+        today = _beijing_now()
         default_end = today.strftime('%Y-%m-%d')
         default_start = (today - timedelta(days=30)).strftime('%Y-%m-%d')
         
@@ -697,8 +708,7 @@ def _run_team_export_task(task_id, date_start, date_end, start_datetime, end_dat
             _export_tasks[task_id]['message'] = f'共 {total_teams} 支球队，正在生成Excel...'
         
         # 生成日期后缀（yyyymmdd 格式）
-        from datetime import datetime as _dt
-        date_suffix = _dt.now().strftime('%Y%m%d')
+        date_suffix = _beijing_now().strftime('%Y%m%d')
         
         from football_export.excel_exporter import export_to_excel
         

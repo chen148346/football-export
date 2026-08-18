@@ -33,6 +33,12 @@ from . import json_parser
 from .db_reader import MatchRecord
 
 
+def _beijing_now() -> datetime.datetime:
+    """返回当前北京时间（UTC+8）"""
+    utc_now = datetime.datetime.utcnow()
+    return utc_now + datetime.timedelta(hours=config.BEIJING_TZ_OFFSET_HOURS)
+
+
 # ============================================================================
 # 样式定义
 # ============================================================================
@@ -489,7 +495,7 @@ def generate_filename(
     
     start = start_date or "all"
     end = end_date or "all"
-    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    timestamp = _beijing_now().strftime("%Y%m%d%H%M%S")
     
     return config.EXPORT_FILENAME_TEMPLATE.format(
         league=league,
@@ -712,7 +718,7 @@ def generate_filename_v12(
         part_index: 分片序号（None=不分片）
     """
     # 导出日期：yymmdd
-    export_date = datetime.datetime.now().strftime("%y%m%d")
+    export_date = _beijing_now().strftime("%y%m%d")
     
     # 赛事名称
     if not sclass_names:
@@ -799,7 +805,7 @@ def generate_filename_v15(
     - 日期格式统一为yymmdd
     """
     # 时间戳：yymmddhhmm（精确到分钟）
-    timestamp = datetime.datetime.now().strftime("%y%m%d%H%M")
+    timestamp = _beijing_now().strftime("%y%m%d%H%M")
     
     # 联赛名称：单联赛用中文名，多联赛统一用Multi
     if not sclass_names:
