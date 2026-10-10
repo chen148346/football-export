@@ -378,6 +378,66 @@ def iter_matches(db_path: str, limit: int = None):
 
 
 # ============================================================================
+# 月份分布分析（快速模式，不扫描内容，仅 SQL 聚合）
+# ============================================================================
+def run_dist_analysis(db_path: str):
+    """
+    输出带 JSON 的完场比赛按月分布，用于定位深层数据集中在哪些历史月份。
+    只读连接；展示：月份 / 完场总数 / 带 shijian / 带 analysis。
+    """
+    uri = f"file:{db_path}?mode=ro"
+    conn = sqlite3.connect(uri, uri=True)
+    rows = []
+    try:
+        # 同 iter_matches 的关联口径：优先 fulltime_snapshot_id
+        cur = conn.execute(
+            "SELECT COUNT(*) FROM matches "
+            "WHERE fulltime_snapshot_id IS NOT NULL AND fulltime_snapshot_id <> 0"
+        )
+        with_ft_id = cur.fetchone()[0]
+        cur = conn.execute("SELECT COUNT(*) FROM matches")
+        total = cur.fetchone()[0]
+        use_ft_id = total > 0 and with_ft_id > total * 0.5
+
+        if use_ft_id:
+            sql = (
+                "SELECT substr(m.match_time,1,6) ym, "
+                "COUNT(DISTINCT m.id) ft_total, "
+                "COUNT(DISTINCT CASE WHEN COALESCE(s.shijian_json,'')!='' THEN m.id END) has_sj, "
+                "COUNT(DISTINCT CASE WHEN COALESCE(s.analysis_json,'')!='' THEN m.id END) has_an "
+                "FROM matches m "
+                "LEFT JOIN snapshots s ON s.id = m.fulltime_snapshot_id "
+                "WHERE m.latest_state_code = -1 "
+                "GROUP BY ym ORDER BY ym"
+            )
+        else:
+            sql = (
+                "SELECT substr(m.match_time,1,6) ym, "
+                "COUNT(DISTINCT m.id) ft_total, "
+                "COUNT(DISTINCT CASE WHEN COALESCE(s.shijian_json,'')!='' THEN m.id END) has_sj, "
+                "COUNT(DISTINCT CASE WHEN COALESCE(s.analysis_json,'')!='' THEN m.id END) has_an "
+                "FROM matches m "
+                "LEFT JOIN snapshots s ON s.match_id = m.id AND s.snapshot_type='fulltime' "
+                "WHERE m.latest_state_code = -1 "
+                "GROUP BY ym ORDER BY ym"
+            )
+        rows = conn.execute(sql).fetchall()
+    finally:
+        conn.close()
+
+    lines = ["月份      完场数  带shijian  带analysis"]
+    for ym, ft, sj, an in rows:
+        lines.append(f"{ym}    {ft:<7} {sj:<9} {an}")
+    total_ft = sum(r[1] for r in rows)
+    total_sj = sum(r[2] for r in rows)
+    total_an = sum(r[3] for r in rows)
+    lines.append("-" * 40)
+    lines.append(f"合计      {total_ft:<7} {total_sj:<9} {total_an}")
+    print("\n".join(lines))
+    return rows
+
+
+# ============================================================================
 # 报告生成
 # ============================================================================
 def build_team_seed(col: ScanCollector) -> dict:
@@ -601,9 +661,17 @@ def main():
         "--out", default=None,
         help="报告输出目录（默认：脚本所在目录/scan_report）"
     )
+    parser.add_argument(
+        "--dist", action="store_true",
+        help="只输出带JSON比赛的月份分布（快速聚合），不做全量扫描"
+    )
     args = parser.parse_args()
 
     db_path = os.path.abspath(args.db)
+
+    if args.dist:
+        run_dist_analysis(db_path)
+        return
     if not os.path.exists(db_path):
         print(f"[错误] 数据库不存在：{db_path}", file=sys.stderr)
         sys.exit(1)
