@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定表头导出 - 足球比赛数据报表导出模块 V1.8</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/export.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1>⚽ 足球比赛数据报表导出模块</h1>
+        <span class="version-badge">V1.8 固定表头</span>
+    </div>
+
+    <div class="container">
+        <!-- ==================== 功能说明区 ==================== -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📌</span> 固定表头导出说明
+            </div>
+            <div class="section-body">
+                <p style="color:#555;line-height:1.7;">
+                    本页面为<strong>固定表头导出</strong>功能，与 V1.7 动态表头并存。
+                    <br>
+                    特点：
+                    <span style="color:#4472C4;">1. 8 个 Sheet 表头固定不变</span> ·
+                    <span style="color:#4472C4;">2. 全部简体中文字段</span> ·
+                    <span style="color:#4472C4;">3. 统计项英文键/数字码自动归一</span> ·
+                    <span style="color:#4472C4;">4. 球队名按球队ID归一（同一球队不同翻译自动统一）</span> ·
+                    <span style="color:#4472C4;">5. 缺失字段留空</span>
+                </p>
+                <div class="form-row">
+                    <label class="form-label">固定包含 Sheet：</label>
+                    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+                        <span class="sheet-tag">比赛</span><span class="sheet-tag">指标</span>
+                        <span class="sheet-tag">近绩</span><span class="sheet-tag">往绩</span>
+                        <span class="sheet-tag">上半场统计</span><span class="sheet-tag">下半场统计</span>
+                        <span class="sheet-tag">联赛排名</span><span class="sheet-tag">详细事件</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 筛选条件区 ==================== -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">🔍</span> 筛选条件
+            </div>
+            <div class="section-body">
+                <!-- 日期时间范围 -->
+                <div class="form-row">
+                    <label class="form-label">日期时间范围：</label>
+                    <input type="datetime-local" id="date_start" class="form-input date-input" step="60">
+                    <span class="date-separator">至</span>
+                    <input type="datetime-local" id="date_end" class="form-input date-input" step="60">
+                    <button class="btn btn-sm btn-secondary" onclick="setLastMonth()">最近一月</button>
+                    <button class="btn btn-sm btn-secondary" onclick="setAllDates()">全部</button>
+                </div>
+
+                <!-- 联赛多选（左右分栏） -->
+                <div class="form-row">
+                    <label class="form-label">联赛类型：</label>
+                    <div class="league-selector">
+                        <div class="league-panel">
+                            <div class="panel-header">
+                                <span>已选联赛</span>
+                                <button class="btn btn-xs btn-link" onclick="clearSelectedLeagues()">清空</button>
+                            </div>
+                            <input type="text" id="selected_search" class="panel-search" placeholder="搜索已选..." oninput="filterSelected()">
+                            <div id="selected_list" class="league-list"></div>
+                        </div>
+                        <div class="league-buttons">
+                            <button class="btn btn-icon" onclick="moveAllToSelected()" title="全选">⇉</button>
+                            <button class="btn btn-icon" onclick="moveToSelected()" title="添加">→</button>
+                            <button class="btn btn-icon" onclick="moveToAvailable()" title="移除">←</button>
+                            <button class="btn btn-icon" onclick="moveAllToAvailable()" title="清空">⇍</button>
+                        </div>
+                        <div class="league-panel">
+                            <div class="panel-header">
+                                <span>可选联赛</span>
+                                <button class="btn btn-xs btn-link" onclick="selectAllLeagues()">全选</button>
+                            </div>
+                            <input type="text" id="available_search" class="panel-search" placeholder="搜索可选..." oninput="filterAvailable()">
+                            <div id="available_list" class="league-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 球队名称 -->
+                <div class="form-row">
+                    <label class="form-label">球队名称：</label>
+                    <input type="text" id="team_keyword" class="form-input" placeholder="输入球队名称（模糊搜索，留空则不限）">
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 导出设置区 ==================== -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">⚙️</span> 导出设置
+            </div>
+            <div class="section-body">
+                <!-- 数量限制 -->
+                <div class="form-row">
+                    <label class="form-label">数量限制：</label>
+                    <input type="number" id="limit" class="form-input" placeholder="留空则不限" min="1" style="width:150px;">
+                    <span class="hint">（限制导出比赛数量，用于测试）</span>
+                </div>
+
+                <!-- 单文件最大比赛数（分片导出） -->
+                <div class="form-row">
+                    <label class="form-label">单文件最大比赛数：</label>
+                    <input type="number" id="max_per_file" class="form-input" value="50" min="1" style="width:150px;">
+                    <span class="hint">（超过此数量自动分片导出，文件名追加_01、_02等序号）</span>
+                </div>
+
+                <!-- 保存路径 -->
+                <div class="form-row">
+                    <label class="form-label">保存路径：</label>
+                    <input type="text" id="save_path" class="form-input" placeholder="留空则保存到默认目录" style="flex:1;">
+                    <span class="hint">（自定义保存目录，自动创建）</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 操作与反馈区 ==================== -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📤</span> 操作与反馈
+            </div>
+            <div class="section-body">
+                <div class="form-row">
+                    <button id="btn_export" class="btn btn-primary btn-lg" onclick="startFixedExport()">
+                        <span class="btn-text">开始固定表头导出</span>
+                        <span class="btn-loading" style="display:none;">
+                            <span class="spinner"></span> 导出中...
+                        </span>
+                    </button>
+                    <button class="btn btn-secondary btn-lg" onclick="resetForm()">重置</button>
+                </div>
+
+                <div id="progress_area" class="progress-area" style="display:none;">
+                    <div class="progress-bar-container">
+                        <div id="progress_bar" class="progress-bar" style="width:0%"></div>
+                    </div>
+                    <div id="progress_text" class="progress-text">准备中...</div>
+                </div>
+
+                <div id="result_area" class="result-area" style="display:none;"></div>
+            </div>
+        </div>
+
+        <!-- ==================== 数据库信息区 ==================== -->
+        <div class="section">
+            <div class="section-title">
+                <span class="icon">📊</span> 数据库信息
+            </div>
+            <div class="section-body">
+                <div id="db_info" class="db-info">
+                    <span class="loading">加载中...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>足球比赛数据报表导出模块 V1.8 固定表头 | 8 Sheet 固定表头简体中文 | 2026-10</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/fixed_export.js') }}"></script>
+</body>
+</html>

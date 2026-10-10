@@ -80,6 +80,12 @@ def index():
     return render_template('export.html', version='V1.1')
 
 
+@app.route('/fixed')
+def fixed_export_page():
+    """固定表头导出页面（V1.8 新功能）"""
+    return render_template('fixed_export.html', version='V1.8')
+
+
 # ============================================================================
 # API路由
 # ============================================================================
@@ -386,6 +392,79 @@ def api_export_excel():
         }), 500
 
 
+@app.route('/api/fixed_export', methods=['POST'])
+def api_fixed_export():
+    """
+    固定表头导出接口（新功能页面，V1.8）
+    8 个 Sheet 表头固定，简体中文，统计项双编码归一，球队名按 team_id 归一。
+
+    请求参数（JSON）：
+        start_datetime / end_datetime: datetime-local 时间范围（可选）
+        sclass_names: list 联赛列表（可选）
+        team_keyword: str 球队模糊搜索（可选）
+        limit: int 数量限制（可选）
+        max_per_file: int 单文件最大比赛数（默认50）
+        save_path: str 自定义保存目录（可选）
+    """
+    try:
+        data = request.get_json(force=True, silent=True) or {}
+
+        start_datetime = data.get('start_datetime') or None
+        end_datetime = data.get('end_datetime') or None
+        sclass_names = data.get('sclass_names') or None
+        team_keyword = data.get('team_keyword') or None
+        limit = data.get('limit')
+
+        if limit:
+            try:
+                limit = int(limit)
+            except (ValueError, TypeError):
+                limit = None
+
+        max_per_file = data.get('max_per_file')
+        if max_per_file:
+            try:
+                max_per_file = int(max_per_file)
+                if max_per_file < 1:
+                    max_per_file = None
+            except (ValueError, TypeError):
+                max_per_file = None
+        if max_per_file is None:
+            max_per_file = config.DEFAULT_MAX_MATCHES_PER_FILE
+
+        save_path = data.get('save_path') or None
+        if save_path:
+            save_path = os.path.abspath(save_path)
+            forbidden_dir = os.path.normcase(os.path.normpath('/root'))
+            if os.path.normcase(os.path.normpath(save_path)).startswith(forbidden_dir):
+                return jsonify({'success': False, 'error': '禁止保存到 /root 目录'}), 400
+            os.makedirs(save_path, exist_ok=True)
+            output_dir = save_path
+        else:
+            output_dir = config.OUTPUT_DIR
+
+        task_id = f"fixed_{int(time.time() * 1000)}"
+        with _task_lock:
+            _export_tasks[task_id] = {
+                'status': 'running', 'progress': 0, 'message': '任务排队中...',
+                'start_time': time.time(),
+            }
+
+        thread = threading.Thread(
+            target=_run_fixed_export_task,
+            args=(task_id, start_datetime, end_datetime, sclass_names,
+                  team_keyword, limit, output_dir, max_per_file),
+            daemon=True,
+        )
+        thread.start()
+
+        return jsonify({'success': True, 'task_id': task_id, 'message': '固定表头导出任务已启动'})
+
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'success': False, 'error': f'服务器错误: {str(e)}'}), 500
+
+
 @app.route('/api/export_status/<task_id>')
 def api_export_status(task_id):
     """查询导出任务状态 (V1.2: 支持分片多文件)"""
@@ -615,6 +694,98 @@ def _run_export_task(task_id, date_start, date_end, start_datetime, end_datetime
                 _export_tasks[task_id]['message'] = f'导出完成：{total_matches}场比赛，分{num_parts}个文件'
                 _export_tasks[task_id]['files'] = files_info
     
+    except Exception as e:
+        traceback.print_exc()
+        with _task_lock:
+            _export_tasks[task_id]['status'] = 'failed'
+            _export_tasks[task_id]['error'] = str(e)
+            _export_tasks[task_id]['message'] = f'导出失败: {str(e)}'
+
+
+def _run_fixed_export_task(task_id, start_datetime, end_datetime, sclass_names,
+                           team_keyword, limit, output_dir, max_per_file):
+    """
+    固定表头导出后台任务（V1.8新页面）。
+
+    逻辑与 V1.7 类似：查完场比赛 → 分片 → 用 FixedExporter 生成
+    8 个固定表头 Sheet 的 Excel。
+    """
+    try:
+        from football_export.db_reader import query_matches
+        from football_export.fixed_exporter import (
+            export_fixed_excel, generate_fixed_filename,
+        )
+
+        with _task_lock:
+            _export_tasks[task_id]['progress'] = 10
+            _export_tasks[task_id]['message'] = '正在查询比赛数据...'
+
+        matches = query_matches(
+            db_path=config.DEFAULT_DB_PATH,
+            start_datetime=start_datetime,
+            end_datetime=end_datetime,
+            sclass_names=sclass_names,
+            team_name=team_keyword,
+            limit=limit,
+        )
+
+        with _task_lock:
+            _export_tasks[task_id]['progress'] = 30
+            _export_tasks[task_id]['message'] = f'找到 {len(matches)} 场比赛，正在生成固定表头Excel...'
+
+        if not matches:
+            with _task_lock:
+                _export_tasks[task_id]['status'] = 'failed'
+                _export_tasks[task_id]['error'] = '没有找到符合条件的完场比赛数据'
+                _export_tasks[task_id]['message'] = '未找到数据'
+            return
+
+        total_matches = len(matches)
+        league = sclass_names[0] if sclass_names and len(sclass_names) == 1 else 'multi'
+        start_tag = (start_datetime or 'all')[:10].replace('-', '')
+        end_tag = (end_datetime or 'all')[:10].replace('-', '')
+
+        if total_matches <= max_per_file:
+            filename = generate_fixed_filename(league, start_tag, end_tag)
+            output_path = os.path.join(output_dir, filename)
+            export_fixed_excel(matches, output_path)
+
+            rel_path = os.path.basename(output_path)
+            with _task_lock:
+                _export_tasks[task_id]['progress'] = 100
+                _export_tasks[task_id]['status'] = 'completed'
+                _export_tasks[task_id]['message'] = f'导出完成：{total_matches}场比赛'
+                _export_tasks[task_id]['output_path'] = output_path
+                _export_tasks[task_id]['filename'] = rel_path
+                _export_tasks[task_id]['download_url'] = f"/download/{rel_path}"
+                if os.path.exists(output_path):
+                    _export_tasks[task_id]['file_size_kb'] = round(
+                        os.path.getsize(output_path) / 1024, 1)
+        else:
+            import math
+            num_parts = math.ceil(total_matches / max_per_file)
+            files_info = []
+            for i in range(num_parts):
+                start_idx = i * max_per_file
+                end_idx = min((i + 1) * max_per_file, total_matches)
+                part_matches = matches[start_idx:end_idx]
+                part_filename = generate_fixed_filename(league, start_tag, end_tag).replace(
+                    '.xlsx', f'_{i+1:02d}.xlsx')
+                part_output_path = os.path.join(output_dir, part_filename)
+                export_fixed_excel(part_matches, part_output_path)
+                files_info.append({
+                    'filename': part_filename,
+                    'download_url': f"/download/{part_filename}",
+                    'file_size_kb': round(os.path.getsize(part_output_path) / 1024, 1),
+                    'match_count': len(part_matches),
+                    'part_index': i + 1,
+                })
+            with _task_lock:
+                _export_tasks[task_id]['progress'] = 100
+                _export_tasks[task_id]['status'] = 'completed'
+                _export_tasks[task_id]['message'] = f'导出完成：{total_matches}场比赛，分{num_parts}个文件'
+                _export_tasks[task_id]['files'] = files_info
+
     except Exception as e:
         traceback.print_exc()
         with _task_lock:

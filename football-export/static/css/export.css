@@ -463,3 +463,15 @@ body {
 .checkbox-item.v14-sheet span {
     color: #e65100;
 }
+
+/* ========== V1.8 固定表头导出 - Sheet标签样式 ========== */
+.sheet-tag {
+    display: inline-block;
+    background: #e8f0fe;
+    color: #1a56db;
+    border: 1px solid #b3c7ef;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 600;
+}

@@ -1,0 +1,2882 @@
+{
+  "1344": {
+    "canonical_name": "杜塞尔多夫",
+    "occurrence_count": 50,
+    "name_variants": {
+      "杜塞尔多夫": 50
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "507": {
+    "canonical_name": "罗森博格",
+    "occurrence_count": 48,
+    "name_variants": {
+      "罗森博格": 48
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1233": {
+    "canonical_name": "鲁森比洛克",
+    "occurrence_count": 46,
+    "name_variants": {
+      "鲁森比洛克": 46
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "514": {
+    "canonical_name": "特罗姆瑟",
+    "occurrence_count": 46,
+    "name_variants": {
+      "特罗姆瑟": 46
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "44648": {
+    "canonical_name": "CSA布加勒斯特星",
+    "occurrence_count": 44,
+    "name_variants": {
+      "CSA布加勒斯特星": 44
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "14704": {
+    "canonical_name": "图纳里",
+    "occurrence_count": 42,
+    "name_variants": {
+      "图纳里": 42
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "7800": {
+    "canonical_name": "富川FC",
+    "occurrence_count": 42,
+    "name_variants": {
+      "富川FC": 42
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "744": {
+    "canonical_name": "英格兰",
+    "occurrence_count": 40,
+    "name_variants": {
+      "英格兰": 40
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "494": {
+    "canonical_name": "金泉尚武",
+    "occurrence_count": 40,
+    "name_variants": {
+      "金泉尚武": 40
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2914": {
+    "canonical_name": "布里斯班狮吼",
+    "occurrence_count": 36,
+    "name_variants": {
+      "布里斯班狮吼": 36
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "10656": {
+    "canonical_name": "梅洛",
+    "occurrence_count": 35,
+    "name_variants": {
+      "梅洛": 35
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "34741": {
+    "canonical_name": "皇家皮拉尔",
+    "occurrence_count": 35,
+    "name_variants": {
+      "皇家皮拉尔": 35
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "640": {
+    "canonical_name": "挪威",
+    "occurrence_count": 31,
+    "name_variants": {
+      "挪威": 31
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "27118": {
+    "canonical_name": "西泉女足",
+    "occurrence_count": 30,
+    "name_variants": {
+      "西泉女足": 30
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "33090": {
+    "canonical_name": "卡布尔彻",
+    "occurrence_count": 29,
+    "name_variants": {
+      "卡布尔彻": 29
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "40540": {
+    "canonical_name": "斐济U16",
+    "occurrence_count": 18,
+    "name_variants": {
+      "斐济U16": 18
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "40539": {
+    "canonical_name": "萨摩亚U16",
+    "occurrence_count": 14,
+    "name_variants": {
+      "萨摩亚U16": 14
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "73911": {
+    "canonical_name": "芬瑟布尔斯联女足",
+    "occurrence_count": 9,
+    "name_variants": {
+      "芬瑟布尔斯联女足": 9
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "5997": {
+    "canonical_name": "康戈迪亚齐安",
+    "occurrence_count": 7,
+    "name_variants": {
+      "康戈迪亚齐安": 7
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "70794": {
+    "canonical_name": "西海岸游骑兵女足",
+    "occurrence_count": 7,
+    "name_variants": {
+      "西海岸游骑兵女足": 7
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "28068": {
+    "canonical_name": "伊斯特恩沙伯女足",
+    "occurrence_count": 7,
+    "name_variants": {
+      "伊斯特恩沙伯女足": 7
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "40180": {
+    "canonical_name": "新喀里多尼亚U16",
+    "occurrence_count": 6,
+    "name_variants": {
+      "新喀里多尼亚U16": 6
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "40508": {
+    "canonical_name": "塔希提U16",
+    "occurrence_count": 6,
+    "name_variants": {
+      "塔希提U16": 6
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "481": {
+    "canonical_name": "浦项制铁",
+    "occurrence_count": 6,
+    "name_variants": {
+      "浦项制铁": 6
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2910": {
+    "canonical_name": "中央海岸水手",
+    "occurrence_count": 5,
+    "name_variants": {
+      "中央海岸水手": 5
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "472": {
+    "canonical_name": "博德闪耀",
+    "occurrence_count": 5,
+    "name_variants": {
+      "博德闪耀": 5
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2713": {
+    "canonical_name": "扑雷索夫",
+    "occurrence_count": 5,
+    "name_variants": {
+      "扑雷索夫": 5
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "17711": {
+    "canonical_name": "辛迪泰哥维斯特",
+    "occurrence_count": 5,
+    "name_variants": {
+      "辛迪泰哥维斯特": 5
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "18031": {
+    "canonical_name": "乌尔基萨大学",
+    "occurrence_count": 5,
+    "name_variants": {
+      "乌尔基萨大学": 5
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "4075": {
+    "canonical_name": "济州SK",
+    "occurrence_count": 5,
+    "name_variants": {
+      "济州SK": 5
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "484": {
+    "canonical_name": "全北现代",
+    "occurrence_count": 5,
+    "name_variants": {
+      "全北现代": 5
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "480": {
+    "canonical_name": "蔚山HD",
+    "occurrence_count": 5,
+    "name_variants": {
+      "蔚山HD": 5
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1273": {
+    "canonical_name": "布莱尼",
+    "occurrence_count": 5,
+    "name_variants": {
+      "布莱尼": 5
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "485": {
+    "canonical_name": "瓦勒伦加",
+    "occurrence_count": 5,
+    "name_variants": {
+      "瓦勒伦加": 5
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2913": {
+    "canonical_name": "珀斯光荣",
+    "occurrence_count": 4,
+    "name_variants": {
+      "珀斯光荣": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "5953": {
+    "canonical_name": "惠灵顿凤凰",
+    "occurrence_count": 4,
+    "name_variants": {
+      "惠灵顿凤凰": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2900": {
+    "canonical_name": "阿德莱德联",
+    "occurrence_count": 4,
+    "name_variants": {
+      "阿德莱德联": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "15409": {
+    "canonical_name": "沃伦塔利",
+    "occurrence_count": 4,
+    "name_variants": {
+      "沃伦塔利": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "20059": {
+    "canonical_name": "阿富马齐",
+    "occurrence_count": 4,
+    "name_variants": {
+      "阿富马齐": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "23525": {
+    "canonical_name": "圣格奥尔基塞普西",
+    "occurrence_count": 4,
+    "name_variants": {
+      "圣格奥尔基塞普西": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "30763": {
+    "canonical_name": "奥克兰联女足",
+    "occurrence_count": 4,
+    "name_variants": {
+      "奥克兰联女足": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "71074": {
+    "canonical_name": "库克群岛U16",
+    "occurrence_count": 4,
+    "name_variants": {
+      "库克群岛U16": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "771": {
+    "canonical_name": "意大利",
+    "occurrence_count": 4,
+    "name_variants": {
+      "意大利": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "21249": {
+    "canonical_name": "FC安养",
+    "occurrence_count": 4,
+    "name_variants": {
+      "FC安养": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "741": {
+    "canonical_name": "FC首尔",
+    "occurrence_count": 4,
+    "name_variants": {
+      "FC首尔": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "488": {
+    "canonical_name": "大田市民",
+    "occurrence_count": 4,
+    "name_variants": {
+      "大田市民": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "10241": {
+    "canonical_name": "KFUM奥斯陆",
+    "occurrence_count": 4,
+    "name_variants": {
+      "KFUM奥斯陆": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "495": {
+    "canonical_name": "维京",
+    "occurrence_count": 4,
+    "name_variants": {
+      "维京": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1282": {
+    "canonical_name": "桑德菲杰",
+    "occurrence_count": 4,
+    "name_variants": {
+      "桑德菲杰": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "505": {
+    "canonical_name": "莫尔德",
+    "occurrence_count": 4,
+    "name_variants": {
+      "莫尔德": 4
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "25830": {
+    "canonical_name": "布罗德海滩联合",
+    "occurrence_count": 3,
+    "name_variants": {
+      "布罗德海滩联合": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "19064": {
+    "canonical_name": "洛根利泰柠",
+    "occurrence_count": 3,
+    "name_variants": {
+      "洛根利泰柠": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "14408": {
+    "canonical_name": "布里斯班前锋",
+    "occurrence_count": 3,
+    "name_variants": {
+      "布里斯班前锋": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "9951": {
+    "canonical_name": "卡帕拉巴",
+    "occurrence_count": 3,
+    "name_variants": {
+      "卡帕拉巴": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "14549": {
+    "canonical_name": "墨尔本城",
+    "occurrence_count": 3,
+    "name_variants": {
+      "墨尔本城": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "151": {
+    "canonical_name": "沙尔克04",
+    "occurrence_count": 3,
+    "name_variants": {
+      "沙尔克04": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "175": {
+    "canonical_name": "凯泽斯劳滕",
+    "occurrence_count": 3,
+    "name_variants": {
+      "凯泽斯劳滕": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "136": {
+    "canonical_name": "纽伦堡",
+    "occurrence_count": 3,
+    "name_variants": {
+      "纽伦堡": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "21706": {
+    "canonical_name": "斯卡利卡",
+    "occurrence_count": 3,
+    "name_variants": {
+      "斯卡利卡": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1232": {
+    "canonical_name": "特伦辛",
+    "occurrence_count": 3,
+    "name_variants": {
+      "特伦辛": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "39213": {
+    "canonical_name": "FK柯西斯",
+    "occurrence_count": 3,
+    "name_variants": {
+      "FK柯西斯": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "24229": {
+    "canonical_name": "科马尔诺",
+    "occurrence_count": 3,
+    "name_variants": {
+      "科马尔诺": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "17310": {
+    "canonical_name": "林达伯史特范斯提",
+    "occurrence_count": 3,
+    "name_variants": {
+      "林达伯史特范斯提": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "6736": {
+    "canonical_name": "拜侯尔",
+    "occurrence_count": 3,
+    "name_variants": {
+      "拜侯尔": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "4846": {
+    "canonical_name": "胡内多阿拉",
+    "occurrence_count": 3,
+    "name_variants": {
+      "胡内多阿拉": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "55698": {
+    "canonical_name": "CSM斯拉蒂纳",
+    "occurrence_count": 3,
+    "name_variants": {
+      "CSM斯拉蒂纳": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "59356": {
+    "canonical_name": "CS布加勒斯特迪纳摩",
+    "occurrence_count": 3,
+    "name_variants": {
+      "CS布加勒斯特迪纳摩": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "40392": {
+    "canonical_name": "达姆布雷维塔",
+    "occurrence_count": 3,
+    "name_variants": {
+      "达姆布雷维塔": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "45198": {
+    "canonical_name": "维图尔",
+    "occurrence_count": 3,
+    "name_variants": {
+      "维图尔": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "31057": {
+    "canonical_name": "坎特伯雷女足",
+    "occurrence_count": 3,
+    "name_variants": {
+      "坎特伯雷女足": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "40513": {
+    "canonical_name": "巴布亚新几内亚U16",
+    "occurrence_count": 3,
+    "name_variants": {
+      "巴布亚新几内亚U16": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "40512": {
+    "canonical_name": "所罗门群岛U16",
+    "occurrence_count": 3,
+    "name_variants": {
+      "所罗门群岛U16": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "40491": {
+    "canonical_name": "新西兰U16",
+    "occurrence_count": 3,
+    "name_variants": {
+      "新西兰U16": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "18032": {
+    "canonical_name": "维拉多尔米尼",
+    "occurrence_count": 3,
+    "name_variants": {
+      "维拉多尔米尼": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "13924": {
+    "canonical_name": "伊希库斯尼斯塔史",
+    "occurrence_count": 3,
+    "name_variants": {
+      "伊希库斯尼斯塔史": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "18021": {
+    "canonical_name": "梅洛小阿根廷",
+    "occurrence_count": 3,
+    "name_variants": {
+      "梅洛小阿根廷": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "18022": {
+    "canonical_name": "利涅尔斯",
+    "occurrence_count": 3,
+    "name_variants": {
+      "利涅尔斯": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "13241": {
+    "canonical_name": "阿梅尼奥",
+    "occurrence_count": 3,
+    "name_variants": {
+      "阿梅尼奥": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "13280": {
+    "canonical_name": "弗朗德里亚",
+    "occurrence_count": 3,
+    "name_variants": {
+      "弗朗德里亚": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "18034": {
+    "canonical_name": "多科苏德体育会",
+    "occurrence_count": 3,
+    "name_variants": {
+      "多科苏德体育会": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "36749": {
+    "canonical_name": "卡米尼罗斯",
+    "occurrence_count": 3,
+    "name_variants": {
+      "卡米尼罗斯": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "13928": {
+    "canonical_name": "圣马丁布萨科",
+    "occurrence_count": 3,
+    "name_variants": {
+      "圣马丁布萨科": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "12437": {
+    "canonical_name": "维拉圣卡罗斯",
+    "occurrence_count": 3,
+    "name_variants": {
+      "维拉圣卡罗斯": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "815": {
+    "canonical_name": "塞内加尔",
+    "occurrence_count": 3,
+    "name_variants": {
+      "塞内加尔": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "642": {
+    "canonical_name": "塞尔维亚",
+    "occurrence_count": 3,
+    "name_variants": {
+      "塞尔维亚": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "497": {
+    "canonical_name": "仁川联队",
+    "occurrence_count": 3,
+    "name_variants": {
+      "仁川联队": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "9945": {
+    "canonical_name": "江原FC",
+    "occurrence_count": 3,
+    "name_variants": {
+      "江原FC": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "16584": {
+    "canonical_name": "光州FC",
+    "occurrence_count": 3,
+    "name_variants": {
+      "光州FC": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "5586": {
+    "canonical_name": "水原FC",
+    "occurrence_count": 3,
+    "name_variants": {
+      "水原FC": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "498": {
+    "canonical_name": "布兰",
+    "occurrence_count": 3,
+    "name_variants": {
+      "布兰": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "478": {
+    "canonical_name": "腓特烈斯塔",
+    "occurrence_count": 3,
+    "name_variants": {
+      "腓特烈斯塔": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "4174": {
+    "canonical_name": "克里斯蒂安松",
+    "occurrence_count": 3,
+    "name_variants": {
+      "克里斯蒂安松": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2255": {
+    "canonical_name": "萨普斯堡",
+    "occurrence_count": 3,
+    "name_variants": {
+      "萨普斯堡": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2822": {
+    "canonical_name": "海于格松",
+    "occurrence_count": 3,
+    "name_variants": {
+      "海于格松": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1285": {
+    "canonical_name": "斯托姆加斯特",
+    "occurrence_count": 3,
+    "name_variants": {
+      "斯托姆加斯特": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "496": {
+    "canonical_name": "汉坎",
+    "occurrence_count": 3,
+    "name_variants": {
+      "汉坎": 3
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "36969": {
+    "canonical_name": "阳光海岸流浪者",
+    "occurrence_count": 2,
+    "name_variants": {
+      "阳光海岸流浪者": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "32042": {
+    "canonical_name": "叶士域治城",
+    "occurrence_count": 2,
+    "name_variants": {
+      "叶士域治城": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "33016": {
+    "canonical_name": "罗宾市蓝",
+    "occurrence_count": 2,
+    "name_variants": {
+      "罗宾市蓝": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "19660": {
+    "canonical_name": "荷兰公园老鹰",
+    "occurrence_count": 2,
+    "name_variants": {
+      "荷兰公园老鹰": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "10471": {
+    "canonical_name": "瑞德兰茨联",
+    "occurrence_count": 2,
+    "name_variants": {
+      "瑞德兰茨联": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2909": {
+    "canonical_name": "悉尼FC",
+    "occurrence_count": 2,
+    "name_variants": {
+      "悉尼FC": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "20394": {
+    "canonical_name": "西悉尼流浪者",
+    "occurrence_count": 2,
+    "name_variants": {
+      "西悉尼流浪者": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "70866": {
+    "canonical_name": "奥克兰FC",
+    "occurrence_count": 2,
+    "name_variants": {
+      "奥克兰FC": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "27561": {
+    "canonical_name": "雅加达通尼斯",
+    "occurrence_count": 2,
+    "name_variants": {
+      "雅加达通尼斯": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "33666": {
+    "canonical_name": "蒙海姆",
+    "occurrence_count": 2,
+    "name_variants": {
+      "蒙海姆": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "458": {
+    "canonical_name": "菲尔特",
+    "occurrence_count": 2,
+    "name_variants": {
+      "菲尔特": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2760": {
+    "canonical_name": "马格德堡",
+    "occurrence_count": 2,
+    "name_variants": {
+      "马格德堡": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1116": {
+    "canonical_name": "布伦瑞克",
+    "occurrence_count": 2,
+    "name_variants": {
+      "布伦瑞克": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1080": {
+    "canonical_name": "达姆施塔特",
+    "occurrence_count": 2,
+    "name_variants": {
+      "达姆施塔特": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "487": {
+    "canonical_name": "卡尔斯鲁厄",
+    "occurrence_count": 2,
+    "name_variants": {
+      "卡尔斯鲁厄": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "169": {
+    "canonical_name": "汉诺威96",
+    "occurrence_count": 2,
+    "name_variants": {
+      "汉诺威96": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "278": {
+    "canonical_name": "赫拉克勒斯",
+    "occurrence_count": 2,
+    "name_variants": {
+      "赫拉克勒斯": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "10978": {
+    "canonical_name": "泽沃伦火车头",
+    "occurrence_count": 2,
+    "name_variants": {
+      "泽沃伦火车头": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1352": {
+    "canonical_name": "布拉迪斯拉发",
+    "occurrence_count": 2,
+    "name_variants": {
+      "布拉迪斯拉发": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "35842": {
+    "canonical_name": "索非亚1948中央陆军",
+    "occurrence_count": 2,
+    "name_variants": {
+      "索非亚1948中央陆军": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1103": {
+    "canonical_name": "拉斯理工体育会",
+    "occurrence_count": 2,
+    "name_variants": {
+      "拉斯理工体育会": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "14710": {
+    "canonical_name": "亚历山德里",
+    "occurrence_count": 2,
+    "name_variants": {
+      "亚历山德里": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "950": {
+    "canonical_name": "哥利亚",
+    "occurrence_count": 2,
+    "name_variants": {
+      "哥利亚": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "4433": {
+    "canonical_name": "西罗尔",
+    "occurrence_count": 2,
+    "name_variants": {
+      "西罗尔": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "3071": {
+    "canonical_name": "佩特罗鲁",
+    "occurrence_count": 2,
+    "name_variants": {
+      "佩特罗鲁": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "35043": {
+    "canonical_name": "AFC金属布佐",
+    "occurrence_count": 2,
+    "name_variants": {
+      "AFC金属布佐": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "14695": {
+    "canonical_name": "斯克拉雷西塔",
+    "occurrence_count": 2,
+    "name_variants": {
+      "斯克拉雷西塔": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "50371": {
+    "canonical_name": "CSM 马雷",
+    "occurrence_count": 2,
+    "name_variants": {
+      "CSM 马雷": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "67938": {
+    "canonical_name": "威灵顿凤凰女足后备队",
+    "occurrence_count": 2,
+    "name_variants": {
+      "威灵顿凤凰女足后备队": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "26463": {
+    "canonical_name": "南方联女足",
+    "occurrence_count": 2,
+    "name_variants": {
+      "南方联女足": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "297": {
+    "canonical_name": "萨兰迪兵工厂",
+    "occurrence_count": 2,
+    "name_variants": {
+      "萨兰迪兵工厂": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "13927": {
+    "canonical_name": "埃斯卡拉达",
+    "occurrence_count": 2,
+    "name_variants": {
+      "埃斯卡拉达": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "17046": {
+    "canonical_name": "拉费雷尔",
+    "occurrence_count": 2,
+    "name_variants": {
+      "拉费雷尔": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "13325": {
+    "canonical_name": "布朗安德奎",
+    "occurrence_count": 2,
+    "name_variants": {
+      "布朗安德奎": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "17954": {
+    "canonical_name": "基尔梅斯阿根廷",
+    "occurrence_count": 2,
+    "name_variants": {
+      "基尔梅斯阿根廷": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "18033": {
+    "canonical_name": "联合防卫队",
+    "occurrence_count": 2,
+    "name_variants": {
+      "联合防卫队": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "13373": {
+    "canonical_name": "BsAs交流会",
+    "occurrence_count": 2,
+    "name_variants": {
+      "BsAs交流会": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "17949": {
+    "canonical_name": "意杜萨高",
+    "occurrence_count": 2,
+    "name_variants": {
+      "意杜萨高": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "11008": {
+    "canonical_name": "意大利亚诺",
+    "occurrence_count": 2,
+    "name_variants": {
+      "意大利亚诺": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "13926": {
+    "canonical_name": "萨卡兹斯帕斯",
+    "occurrence_count": 2,
+    "name_variants": {
+      "萨卡兹斯帕斯": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "12286": {
+    "canonical_name": "阿卡苏索",
+    "occurrence_count": 2,
+    "name_variants": {
+      "阿卡苏索": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "649": {
+    "canonical_name": "法国",
+    "occurrence_count": 2,
+    "name_variants": {
+      "法国": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "646": {
+    "canonical_name": "荷兰",
+    "occurrence_count": 2,
+    "name_variants": {
+      "荷兰": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "636": {
+    "canonical_name": "爱沙尼亚",
+    "occurrence_count": 2,
+    "name_variants": {
+      "爱沙尼亚": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2363": {
+    "canonical_name": "新西兰",
+    "occurrence_count": 2,
+    "name_variants": {
+      "新西兰": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "760": {
+    "canonical_name": "以色列",
+    "occurrence_count": 2,
+    "name_variants": {
+      "以色列": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "751": {
+    "canonical_name": "摩尔多瓦",
+    "occurrence_count": 2,
+    "name_variants": {
+      "摩尔多瓦": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "736": {
+    "canonical_name": "芬兰",
+    "occurrence_count": 2,
+    "name_variants": {
+      "芬兰": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "772": {
+    "canonical_name": "西班牙",
+    "occurrence_count": 2,
+    "name_variants": {
+      "西班牙": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "761": {
+    "canonical_name": "阿尔巴尼亚",
+    "occurrence_count": 2,
+    "name_variants": {
+      "阿尔巴尼亚": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "631": {
+    "canonical_name": "拉脱维亚",
+    "occurrence_count": 2,
+    "name_variants": {
+      "拉脱维亚": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "7384": {
+    "canonical_name": "威尔士",
+    "occurrence_count": 2,
+    "name_variants": {
+      "威尔士": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "894": {
+    "canonical_name": "安道尔",
+    "occurrence_count": 2,
+    "name_variants": {
+      "安道尔": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "630": {
+    "canonical_name": "爱尔兰",
+    "occurrence_count": 2,
+    "name_variants": {
+      "爱尔兰": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "10072": {
+    "canonical_name": "忠北清州",
+    "occurrence_count": 2,
+    "name_variants": {
+      "忠北清州": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "501": {
+    "canonical_name": "釜山偶像",
+    "occurrence_count": 2,
+    "name_variants": {
+      "釜山偶像": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "506": {
+    "canonical_name": "全南天龙",
+    "occurrence_count": 2,
+    "name_variants": {
+      "全南天龙": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1284": {
+    "canonical_name": "斯达",
+    "occurrence_count": 2,
+    "name_variants": {
+      "斯达": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2091": {
+    "canonical_name": "米亚尔比",
+    "occurrence_count": 2,
+    "name_variants": {
+      "米亚尔比": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "226": {
+    "canonical_name": "兰讷斯",
+    "occurrence_count": 2,
+    "name_variants": {
+      "兰讷斯": 2
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "9954": {
+    "canonical_name": "罗切达尔流浪",
+    "occurrence_count": 1,
+    "name_variants": {
+      "罗切达尔流浪": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "21491": {
+    "canonical_name": "卡利拿",
+    "occurrence_count": 1,
+    "name_variants": {
+      "卡利拿": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "10013": {
+    "canonical_name": "北极星",
+    "occurrence_count": 1,
+    "name_variants": {
+      "北极星": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "27318": {
+    "canonical_name": "库梅拉",
+    "occurrence_count": 1,
+    "name_variants": {
+      "库梅拉": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "32754": {
+    "canonical_name": "圣乔治维莱FC",
+    "occurrence_count": 1,
+    "name_variants": {
+      "圣乔治维莱FC": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "37558": {
+    "canonical_name": "洛根地铁",
+    "occurrence_count": 1,
+    "name_variants": {
+      "洛根地铁": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "8312": {
+    "canonical_name": "布里斯班",
+    "occurrence_count": 1,
+    "name_variants": {
+      "布里斯班": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2901": {
+    "canonical_name": "墨尔本胜利",
+    "occurrence_count": 1,
+    "name_variants": {
+      "墨尔本胜利": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2915": {
+    "canonical_name": "纽卡斯尔喷气机",
+    "occurrence_count": 1,
+    "name_variants": {
+      "纽卡斯尔喷气机": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "51511": {
+    "canonical_name": "麦克阿瑟FC",
+    "occurrence_count": 1,
+    "name_variants": {
+      "麦克阿瑟FC": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "10519": {
+    "canonical_name": "布里斯班奥林匹克",
+    "occurrence_count": 1,
+    "name_variants": {
+      "布里斯班奥林匹克": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "9959": {
+    "canonical_name": "潘尼苏拉",
+    "occurrence_count": 1,
+    "name_variants": {
+      "潘尼苏拉": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "21086": {
+    "canonical_name": "摩顿城精英",
+    "occurrence_count": 1,
+    "name_variants": {
+      "摩顿城精英": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "23927": {
+    "canonical_name": "奥迪萨",
+    "occurrence_count": 1,
+    "name_variants": {
+      "奥迪萨": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "11775": {
+    "canonical_name": "高阿体育会",
+    "occurrence_count": 1,
+    "name_variants": {
+      "高阿体育会": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "23929": {
+    "canonical_name": "果阿",
+    "occurrence_count": 1,
+    "name_variants": {
+      "果阿": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "26760": {
+    "canonical_name": "甸普",
+    "occurrence_count": 1,
+    "name_variants": {
+      "甸普": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "33907": {
+    "canonical_name": "VFL宾拉塔",
+    "occurrence_count": 1,
+    "name_variants": {
+      "VFL宾拉塔": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1076": {
+    "canonical_name": "埃弗斯堡",
+    "occurrence_count": 1,
+    "name_variants": {
+      "埃弗斯堡": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "425": {
+    "canonical_name": "德累斯顿",
+    "occurrence_count": 1,
+    "name_variants": {
+      "德累斯顿": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1117": {
+    "canonical_name": "荷尔斯泰因",
+    "occurrence_count": 1,
+    "name_variants": {
+      "荷尔斯泰因": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "139": {
+    "canonical_name": "柏林赫塔",
+    "occurrence_count": 1,
+    "name_variants": {
+      "柏林赫塔": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "95": {
+    "canonical_name": "波鸿",
+    "occurrence_count": 1,
+    "name_variants": {
+      "波鸿": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1086": {
+    "canonical_name": "普鲁士明斯特",
+    "occurrence_count": 1,
+    "name_variants": {
+      "普鲁士明斯特": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1720": {
+    "canonical_name": "帕德博恩",
+    "occurrence_count": 1,
+    "name_variants": {
+      "帕德博恩": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "90": {
+    "canonical_name": "比勒菲尔德",
+    "occurrence_count": 1,
+    "name_variants": {
+      "比勒菲尔德": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "671": {
+    "canonical_name": "利贝雷茨",
+    "occurrence_count": 1,
+    "name_variants": {
+      "利贝雷茨": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "172": {
+    "canonical_name": "弗赖堡",
+    "occurrence_count": 1,
+    "name_variants": {
+      "弗赖堡": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "510": {
+    "canonical_name": "亚琛",
+    "occurrence_count": 1,
+    "name_variants": {
+      "亚琛": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "4443": {
+    "canonical_name": "威尔伯特",
+    "occurrence_count": 1,
+    "name_variants": {
+      "威尔伯特": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1595": {
+    "canonical_name": "伊斯坦布尔巴萨克塞尔",
+    "occurrence_count": 1,
+    "name_variants": {
+      "伊斯坦布尔巴萨克塞尔": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "8521": {
+    "canonical_name": "BW林茨",
+    "occurrence_count": 1,
+    "name_variants": {
+      "BW林茨": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "252": {
+    "canonical_name": "费耶诺德",
+    "occurrence_count": 1,
+    "name_variants": {
+      "费耶诺德": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "250": {
+    "canonical_name": "特温特",
+    "occurrence_count": 1,
+    "name_variants": {
+      "特温特": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "68": {
+    "canonical_name": "伊普斯维奇",
+    "occurrence_count": 1,
+    "name_variants": {
+      "伊普斯维奇": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1134": {
+    "canonical_name": "奥芬巴查",
+    "occurrence_count": 1,
+    "name_variants": {
+      "奥芬巴查": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "516": {
+    "canonical_name": "加拉塔萨雷",
+    "occurrence_count": 1,
+    "name_variants": {
+      "加拉塔萨雷": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1223": {
+    "canonical_name": "迪欧斯捷尔",
+    "occurrence_count": 1,
+    "name_variants": {
+      "迪欧斯捷尔": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "651": {
+    "canonical_name": "布拉格斯拉维亚",
+    "occurrence_count": 1,
+    "name_variants": {
+      "布拉格斯拉维亚": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "684": {
+    "canonical_name": "奥洛穆茨",
+    "occurrence_count": 1,
+    "name_variants": {
+      "奥洛穆茨": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "49199": {
+    "canonical_name": "马尔泽尼斯",
+    "occurrence_count": 1,
+    "name_variants": {
+      "马尔泽尼斯": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2712": {
+    "canonical_name": "波德布雷佐瓦",
+    "occurrence_count": 1,
+    "name_variants": {
+      "波德布雷佐瓦": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "22112": {
+    "canonical_name": "伊比利亚1999",
+    "occurrence_count": 1,
+    "name_variants": {
+      "伊比利亚1999": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "4911": {
+    "canonical_name": "多布鲁察",
+    "occurrence_count": 1,
+    "name_variants": {
+      "多布鲁察": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "713": {
+    "canonical_name": "拜斯迪卡",
+    "occurrence_count": 1,
+    "name_variants": {
+      "拜斯迪卡": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "12184": {
+    "canonical_name": "奥斯泰华B队",
+    "occurrence_count": 1,
+    "name_variants": {
+      "奥斯泰华B队": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1031": {
+    "canonical_name": "日利纳",
+    "occurrence_count": 1,
+    "name_variants": {
+      "日利纳": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2729": {
+    "canonical_name": "米查路文斯",
+    "occurrence_count": 1,
+    "name_variants": {
+      "米查路文斯": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1442": {
+    "canonical_name": "保德比斯基",
+    "occurrence_count": 1,
+    "name_variants": {
+      "保德比斯基": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "39145": {
+    "canonical_name": "盖兹马洛克",
+    "occurrence_count": 1,
+    "name_variants": {
+      "盖兹马洛克": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "39129": {
+    "canonical_name": "奥拉华尼",
+    "occurrence_count": 1,
+    "name_variants": {
+      "奥拉华尼": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2714": {
+    "canonical_name": "斯特里达",
+    "occurrence_count": 1,
+    "name_variants": {
+      "斯特里达": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "4493": {
+    "canonical_name": "波希米亚1905",
+    "occurrence_count": 1,
+    "name_variants": {
+      "波希米亚1905": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "5780": {
+    "canonical_name": "纳普里达克",
+    "occurrence_count": 1,
+    "name_variants": {
+      "纳普里达克": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1292": {
+    "canonical_name": "慕拉",
+    "occurrence_count": 1,
+    "name_variants": {
+      "慕拉": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2895": {
+    "canonical_name": "比托姆",
+    "occurrence_count": 1,
+    "name_variants": {
+      "比托姆": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "13111": {
+    "canonical_name": "塔特拉",
+    "occurrence_count": 1,
+    "name_variants": {
+      "塔特拉": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2383": {
+    "canonical_name": "施历斯",
+    "occurrence_count": 1,
+    "name_variants": {
+      "施历斯": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "6469": {
+    "canonical_name": "杜纳达纳",
+    "occurrence_count": 1,
+    "name_variants": {
+      "杜纳达纳": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "14931": {
+    "canonical_name": "斯洛博齐亚",
+    "occurrence_count": 1,
+    "name_variants": {
+      "斯洛博齐亚": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "64532": {
+    "canonical_name": "图努马古雷",
+    "occurrence_count": 1,
+    "name_variants": {
+      "图努马古雷": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "1149": {
+    "canonical_name": "比拉斯萨",
+    "occurrence_count": 1,
+    "name_variants": {
+      "比拉斯萨": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "944": {
+    "canonical_name": "马历克",
+    "occurrence_count": 1,
+    "name_variants": {
+      "马历克": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "35042": {
+    "canonical_name": "AFC布加勒斯特",
+    "occurrence_count": 1,
+    "name_variants": {
+      "AFC布加勒斯特": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "66967": {
+    "canonical_name": "FC贝卡",
+    "occurrence_count": 1,
+    "name_variants": {
+      "FC贝卡": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "68320": {
+    "canonical_name": "坎普隆穆塞尔",
+    "occurrence_count": 1,
+    "name_variants": {
+      "坎普隆穆塞尔": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "75975": {
+    "canonical_name": "ACS巴尔斯",
+    "occurrence_count": 1,
+    "name_variants": {
+      "ACS巴尔斯": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "8569": {
+    "canonical_name": "塔古穆里斯",
+    "occurrence_count": 1,
+    "name_variants": {
+      "塔古穆里斯": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "27261": {
+    "canonical_name": "帕勒斯",
+    "occurrence_count": 1,
+    "name_variants": {
+      "帕勒斯": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "721": {
+    "canonical_name": "布加勒斯特迪纳摩",
+    "occurrence_count": 1,
+    "name_variants": {
+      "布加勒斯特迪纳摩": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "14674": {
+    "canonical_name": "塞库耶斯克",
+    "occurrence_count": 1,
+    "name_variants": {
+      "塞库耶斯克": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "6005": {
+    "canonical_name": "米奥文尼",
+    "occurrence_count": 1,
+    "name_variants": {
+      "米奥文尼": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "3070": {
+    "canonical_name": "哥利亚布沙",
+    "occurrence_count": 1,
+    "name_variants": {
+      "哥利亚布沙": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "66756": {
+    "canonical_name": "艾勒斯利女足",
+    "occurrence_count": 1,
+    "name_variants": {
+      "艾勒斯利女足": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "31290": {
+    "canonical_name": "南方联盟(NZL)女足",
+    "occurrence_count": 1,
+    "name_variants": {
+      "南方联盟(NZL)女足": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "31302": {
+    "canonical_name": "森特尔女足",
+    "occurrence_count": 1,
+    "name_variants": {
+      "森特尔女足": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "33406": {
+    "canonical_name": "佩雷斯培顿女足",
+    "occurrence_count": 1,
+    "name_variants": {
+      "佩雷斯培顿女足": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "71947": {
+    "canonical_name": "惠灵顿联女足",
+    "occurrence_count": 1,
+    "name_variants": {
+      "惠灵顿联女足": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "33453": {
+    "canonical_name": "卡洛里女足",
+    "occurrence_count": 1,
+    "name_variants": {
+      "卡洛里女足": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "37521": {
+    "canonical_name": "惠灵顿联合女足",
+    "occurrence_count": 1,
+    "name_variants": {
+      "惠灵顿联合女足": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "31058": {
+    "canonical_name": "卡皮塔尔女足",
+    "occurrence_count": 1,
+    "name_variants": {
+      "卡皮塔尔女足": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "40490": {
+    "canonical_name": "瓦努阿图U16",
+    "occurrence_count": 1,
+    "name_variants": {
+      "瓦努阿图U16": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "13925": {
+    "canonical_name": "米德兰",
+    "occurrence_count": 1,
+    "name_variants": {
+      "米德兰": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "17943": {
+    "canonical_name": "菲尼斯皮拉尔",
+    "occurrence_count": 1,
+    "name_variants": {
+      "菲尼斯皮拉尔": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "728": {
+    "canonical_name": "班菲尔德",
+    "occurrence_count": 1,
+    "name_variants": {
+      "班菲尔德": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "778": {
+    "canonical_name": "巴西",
+    "occurrence_count": 1,
+    "name_variants": {
+      "巴西": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "809": {
+    "canonical_name": "科特迪瓦",
+    "occurrence_count": 1,
+    "name_variants": {
+      "科特迪瓦": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "874": {
+    "canonical_name": "伊拉克",
+    "occurrence_count": 1,
+    "name_variants": {
+      "伊拉克": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "813": {
+    "canonical_name": "摩洛哥",
+    "occurrence_count": 1,
+    "name_variants": {
+      "摩洛哥": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "644": {
+    "canonical_name": "瑞典",
+    "occurrence_count": 1,
+    "name_variants": {
+      "瑞典": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "648": {
+    "canonical_name": "瑞士",
+    "occurrence_count": 1,
+    "name_variants": {
+      "瑞士": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "763": {
+    "canonical_name": "哈萨克斯坦",
+    "occurrence_count": 1,
+    "name_variants": {
+      "哈萨克斯坦": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "632": {
+    "canonical_name": "斯洛文尼亚",
+    "occurrence_count": 1,
+    "name_variants": {
+      "斯洛文尼亚": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "647": {
+    "canonical_name": "奥地利",
+    "occurrence_count": 1,
+    "name_variants": {
+      "奥地利": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "5764": {
+    "canonical_name": "科索沃",
+    "occurrence_count": 1,
+    "name_variants": {
+      "科索沃": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "752": {
+    "canonical_name": "斯洛伐克",
+    "occurrence_count": 1,
+    "name_variants": {
+      "斯洛伐克": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "747": {
+    "canonical_name": "捷克",
+    "occurrence_count": 1,
+    "name_variants": {
+      "捷克": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "754": {
+    "canonical_name": "法罗群岛",
+    "occurrence_count": 1,
+    "name_variants": {
+      "法罗群岛": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "901": {
+    "canonical_name": "格鲁吉亚",
+    "occurrence_count": 1,
+    "name_variants": {
+      "格鲁吉亚": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "881": {
+    "canonical_name": "约旦",
+    "occurrence_count": 1,
+    "name_variants": {
+      "约旦": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "819": {
+    "canonical_name": "墨西哥",
+    "occurrence_count": 1,
+    "name_variants": {
+      "墨西哥": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "811": {
+    "canonical_name": "刚果民主共和国",
+    "occurrence_count": 1,
+    "name_variants": {
+      "刚果民主共和国": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "798": {
+    "canonical_name": "巴拿马",
+    "occurrence_count": 1,
+    "name_variants": {
+      "巴拿马": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "810": {
+    "canonical_name": "加纳",
+    "occurrence_count": 1,
+    "name_variants": {
+      "加纳": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "768": {
+    "canonical_name": "克罗地亚",
+    "occurrence_count": 1,
+    "name_variants": {
+      "克罗地亚": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "914": {
+    "canonical_name": "哥斯达黎加",
+    "occurrence_count": 1,
+    "name_variants": {
+      "哥斯达黎加": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "903": {
+    "canonical_name": "日本",
+    "occurrence_count": 1,
+    "name_variants": {
+      "日本": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "767": {
+    "canonical_name": "乌拉圭",
+    "occurrence_count": 1,
+    "name_variants": {
+      "乌拉圭": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "757": {
+    "canonical_name": "希腊",
+    "occurrence_count": 1,
+    "name_variants": {
+      "希腊": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "638": {
+    "canonical_name": "丹麦",
+    "occurrence_count": 1,
+    "name_variants": {
+      "丹麦": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "770": {
+    "canonical_name": "北马其顿",
+    "occurrence_count": 1,
+    "name_variants": {
+      "北马其顿": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "641": {
+    "canonical_name": "苏格兰",
+    "occurrence_count": 1,
+    "name_variants": {
+      "苏格兰": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "634": {
+    "canonical_name": "乌克兰",
+    "occurrence_count": 1,
+    "name_variants": {
+      "乌克兰": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "755": {
+    "canonical_name": "马耳他",
+    "occurrence_count": 1,
+    "name_variants": {
+      "马耳他": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "797": {
+    "canonical_name": "美国",
+    "occurrence_count": 1,
+    "name_variants": {
+      "美国": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "783": {
+    "canonical_name": "伊朗",
+    "occurrence_count": 1,
+    "name_variants": {
+      "伊朗": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "491": {
+    "canonical_name": "大邱FC",
+    "occurrence_count": 1,
+    "name_variants": {
+      "大邱FC": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "477": {
+    "canonical_name": "城南FC",
+    "occurrence_count": 1,
+    "name_variants": {
+      "城南FC": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "21244": {
+    "canonical_name": "华城FC",
+    "occurrence_count": 1,
+    "name_variants": {
+      "华城FC": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "21243": {
+    "canonical_name": "金浦市民",
+    "occurrence_count": 1,
+    "name_variants": {
+      "金浦市民": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "499": {
+    "canonical_name": "水原三星",
+    "occurrence_count": 1,
+    "name_variants": {
+      "水原三星": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "47543": {
+    "canonical_name": "忠南牙山",
+    "occurrence_count": 1,
+    "name_variants": {
+      "忠南牙山": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "4074": {
+    "canonical_name": "庆南FC",
+    "occurrence_count": 1,
+    "name_variants": {
+      "庆南FC": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "509": {
+    "canonical_name": "利勒斯特罗姆",
+    "occurrence_count": 1,
+    "name_variants": {
+      "利勒斯特罗姆": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "482": {
+    "canonical_name": "利恩",
+    "occurrence_count": 1,
+    "name_variants": {
+      "利恩": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "5656": {
+    "canonical_name": "斯塔达尔斯",
+    "occurrence_count": 1,
+    "name_variants": {
+      "斯塔达尔斯": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "2290": {
+    "canonical_name": "兰黑姆",
+    "occurrence_count": 1,
+    "name_variants": {
+      "兰黑姆": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "6643": {
+    "canonical_name": "利森",
+    "occurrence_count": 1,
+    "name_variants": {
+      "利森": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "413": {
+    "canonical_name": "哥德堡",
+    "occurrence_count": 1,
+    "name_variants": {
+      "哥德堡": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "162": {
+    "canonical_name": "美因茨",
+    "occurrence_count": 1,
+    "name_variants": {
+      "美因茨": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "410": {
+    "canonical_name": "哈马比",
+    "occurrence_count": 1,
+    "name_variants": {
+      "哈马比": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  },
+  "10206": {
+    "canonical_name": "班加",
+    "occurrence_count": 1,
+    "name_variants": {
+      "班加": 1
+    },
+    "observed_lang": [
+      "str"
+    ]
+  }
+}

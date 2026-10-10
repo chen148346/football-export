@@ -16,6 +16,7 @@ import datetime
 from typing import Any, Optional, Union, Dict, List
 
 from . import config
+from . import fixed_schema
 
 
 # ============================================================================
@@ -396,6 +397,49 @@ def extract_events(shijian: dict, match_id: int) -> List[dict]:
         })
     
     return results
+
+
+def extract_tech_stats_flat(shijian: dict, match_id: int, list_key: str = "itemList") -> dict:
+    """
+    固定表头导出专用 - 提取技术统计并按简体中文统计项归一。
+
+    与 extract_tech_stats 的区别：
+    - 支持任意 list_key（itemList / firstHalfList / secondHalfList）
+    - 输出 stats_cn：{中文统计项: {"home": value, "away": value}}
+    - 英文键与数字码（双编码）归一到一个简体中文列
+    百分比字段（控球率/成功率等）同样小数化。
+    """
+    item_list = safe_get(shijian, "techStat", list_key, default=[])
+    if not isinstance(item_list, list):
+        return {"match_id": match_id, "stats_cn": {}}
+
+    stats_cn = {}
+    for item in item_list:
+        if not isinstance(item, dict):
+            continue
+        kind = to_str(safe_get(item, "kind", default=""))
+        name = to_str(safe_get(item, "name", default=""))
+        home_val = safe_get(item, "home", "value", default="")
+        away_val = safe_get(item, "away", "value", default="")
+
+        if not kind:
+            continue
+
+        # 双编码归一：英文键 / 数字码 -> 简体中文统计项
+        cn = fixed_schema.kind_to_cn(kind)
+        if not cn or cn == kind:
+            # 未收录的英文键，尝试用 name 字段（可能自带中文/繁体）
+            cn = name or kind
+
+        if kind in config.V15_TECH_STAT_PERCENT_KINDS or kind in config.TECH_STAT_PERCENT_KINDS:
+            home_val = _int_to_decimal(home_val)
+            away_val = _int_to_decimal(away_val)
+
+        # 若中文统计项已存在（双编码合并），保留第一次（英文键优先）取值
+        if cn not in stats_cn:
+            stats_cn[cn] = {"home": home_val, "away": away_val}
+
+    return {"match_id": match_id, "stats_cn": stats_cn}
 
 
 def extract_tech_stats(shijian: dict, match_id: int) -> dict:
@@ -849,6 +893,135 @@ def extract_league_rank_stats(analysis: dict, match_id: int) -> dict:
         }
     
     return {"match_id": match_id, "stats": stats}
+
+
+def extract_league_rank_stats_cn(analysis: dict, match_id: int) -> dict:
+    """
+    固定表头导出专用 - 从 analysis_json.curLeagueStat.itemList 提取联赛排名。
+
+    返回字典：
+        {kind: {"home": value, "away": value}, ...}
+    取值与 extract_league_rank_stats 一致（GoalAvg/LossAvg 转 float，其余转 int）。
+    只保留固定 schema 收录的 kind（LEAGUE_RANK_FIXED 的 kind 集合）。
+    """
+    cls = safe_get(analysis, "curLeagueStat", default=None)
+    if not cls or not isinstance(cls, dict):
+        return {}
+    item_list = safe_get(cls, "itemList", default=[])
+    if not isinstance(item_list, list):
+        return {}
+
+    allowed = set(fixed_schema.LEAGUE_RANK_FIXED.values())
+    stats = {}
+    for item in item_list:
+        if not isinstance(item, dict):
+            continue
+        kind = to_str(safe_get(item, "kind", default=""))
+        if kind not in allowed:
+            continue
+        home_val = safe_get(item, "homeValue", default="")
+        away_val = safe_get(item, "awayValue", default="")
+
+        if kind in fixed_schema.LEAGUE_RANK_FLOAT_KINDS:
+            home_val = _safe_float(home_val)
+            away_val = _safe_float(away_val)
+        else:
+            home_val = _safe_int(home_val)
+            away_val = _safe_int(away_val)
+
+        stats[kind] = {"home": home_val, "away": away_val}
+
+    return stats
+
+
+def extract_detailed_events_fixed(shijian: dict, match_id: int) -> List[dict]:
+    """
+    固定表头导出专用 - 从 shijian_json.eventTxt.EventTxtLives 提取详细事件，
+    并按简体中文事件类型归一，同时从 Context 文本解析球队/球员。
+
+    返回每行事件：
+        {
+            "match_id": int, "event_index": int,
+            "time": str (timeTxt),
+            "event_type": str (简体中文),
+            "team": str (解析出的球队名，可能为空),
+            "player": str (解析出的球员名，可能为空),
+            "detail": str (去HTML后的完整事件内容),
+        }
+
+    注意：EventTxtLives 是倒序排列，必须先 reversed() 还原为正序。
+    """
+    import re
+
+    event_txt = safe_get(shijian, "eventTxt", default=None)
+    if not event_txt or not isinstance(event_txt, dict):
+        return []
+    lives = safe_get(event_txt, "EventTxtLives", default=[])
+    if not isinstance(lives, list) or len(lives) == 0:
+        return []
+
+    lives = list(reversed(lives))
+
+    results = []
+    for i, live in enumerate(lives):
+        if not isinstance(live, dict):
+            continue
+        kind = to_str(safe_get(live, "kind", default=""))
+        context = to_str(safe_get(live, "Context", default=""))
+        context = re.sub(r'<[^>]+>', '', context).strip()
+
+        # kind -> 简体中文事件类型（未收录则回退原 kind）
+        event_type = fixed_schema.EVENT_KIND_CN.get(kind, kind)
+
+        # 从 Context 解析球队/球员：优先尝试常见模式
+        team, player = _parse_event_context(context, kind)
+
+        results.append({
+            "match_id": match_id,
+            "event_index": i,
+            "time": to_str(safe_get(live, "timeTxt", default="")),
+            "event_type": event_type,
+            "team": team,
+            "player": player,
+            "detail": context,
+        })
+
+    return results
+
+
+def _parse_event_context(context: str, kind: str) -> (str, str):
+    """
+    从事件 Context 文本中尽力解析球队名与球员名。
+    规则：
+    - 常见分隔符：' ' 空白、'、'、'，'、'、'、':'、'：'
+    - 若含常见中文分隔（的/推射/头球/破门/开出/获得/罚失等），取首段为球员、次段为动作
+    - 返回 (team, player)，解析不到则 ("", "") 交由 detail 展示完整内容。
+    """
+    import re
+    if not context:
+        return "", ""
+
+    # 动作关键词（用于把"球员XX动作"拆出球员名）
+    action_markers = [
+        "破门", "头球攻门", "推射", "射门", "罚失", "罚进", "开出角球",
+        "被替换下场", "替换上场", "替换", "获得黄牌", "获得红牌", "犯规",
+        "越位", "进球", "扳平", "反超", "乌龙球", "点球",
+    ]
+    parts = re.split(r'[\s、，,：:；;]+', context)
+    player = ""
+    team = ""
+    if parts:
+        first = parts[0]
+        # 若首段即含动作词，说明首段是"球员+动作"合并；取动作前的部分
+        for marker in sorted(action_markers, key=len, reverse=True):
+            if marker in first:
+                head = first.split(marker)[0].strip()
+                if head and len(head) < 15:
+                    player = head
+                break
+        if not player and len(first) < 15 and first:
+            player = first
+    return team, player
 
 
 def _safe_int(value):

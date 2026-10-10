@@ -91,4 +91,11 @@ logs/
 .preview
 
 # CodeGraph index
-.codegraph
+
+# SQLite / local db (do not track runtime database)
+*.db
+*.db-shm
+*.db-wal
+
+# CodeGraph tool cache (do not commit)
+.codegraph/

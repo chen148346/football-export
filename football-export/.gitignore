@@ -23,4 +23,4 @@ download/*.xlsx
 .idea/
 *.swp
 *.swo
-*~
+*~*.db
