@@ -23,8 +23,8 @@
                     本页面为<strong>固定表头导出</strong>功能，与 V1.7 动态表头并存。
                     <br>
                     特点：
-                    <span style="color:#4472C4;">1. 8 个 Sheet 表头固定不变</span> ·
-                    <span style="color:#4472C4;">2. 全部简体中文字段</span> ·
+                    <span style="color:#4472C4;">1. 8 个 Sheet 表头固定不变，Sheet 名与 V1.7 一致（英文）</span> ·
+                    <span style="color:#4472C4;">2. 表头统一使用简体中文字段</span> ·
                     <span style="color:#4472C4;">3. 统计项英文键/数字码自动归一</span> ·
                     <span style="color:#4472C4;">4. 球队名按球队ID归一（同一球队不同翻译自动统一）</span> ·
                     <span style="color:#4472C4;">5. 缺失字段留空</span>
@@ -32,10 +32,10 @@
                 <div class="form-row">
                     <label class="form-label">固定包含 Sheet：</label>
                     <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-                        <span class="sheet-tag">比赛</span><span class="sheet-tag">指标</span>
-                        <span class="sheet-tag">近绩</span><span class="sheet-tag">往绩</span>
-                        <span class="sheet-tag">上半场统计</span><span class="sheet-tag">下半场统计</span>
-                        <span class="sheet-tag">联赛排名</span><span class="sheet-tag">详细事件</span>
+                        <span class="sheet-tag">match_overview</span><span class="sheet-tag">tech_stats</span>
+                        <span class="sheet-tag">near_matches</span><span class="sheet-tag">vs_matches</span>
+                        <span class="sheet-tag">first_half_stats</span><span class="sheet-tag">second_half_stats</span>
+                        <span class="sheet-tag">league_rank_stats</span><span class="sheet-tag">detail_events</span>
                     </div>
                 </div>
             </div>
@@ -90,6 +90,34 @@
                 <div class="form-row">
                     <label class="form-label">球队名称：</label>
                     <input type="text" id="team_keyword" class="form-input" placeholder="输入球队名称（模糊搜索，留空则不限）">
+                </div>
+
+                <!-- 比赛模式（与 V1.7 一致） -->
+                <div class="form-row">
+                    <label class="form-label">比赛模式：</label>
+                    <select id="match_mode" class="form-input" style="width:220px;" onchange="onMatchModeChange()">
+                        <option value="fulltime">全场（完场快照）</option>
+                        <option value="halftime">半场（中场快照）</option>
+                        <option value="custom">自定义分钟区间（进行中）</option>
+                    </select>
+                </div>
+
+                <!-- 自定义分钟区间（仅 custom 模式显示） -->
+                <div class="form-row" id="minute_range_row" style="display:none;">
+                    <label class="form-label">分钟区间：</label>
+                    <input type="number" id="min_minute" class="form-input" value="0" min="0" max="120" style="width:120px;">
+                    <span class="date-separator">至</span>
+                    <input type="number" id="max_minute" class="form-input" value="90" min="0" max="120" style="width:120px;">
+                    <span class="hint">（进行中快照所处分钟，0-120）</span>
+                </div>
+
+                <!-- 关联完场（仅非全场模式显示） -->
+                <div class="form-row" id="include_fulltime_row" style="display:none;">
+                    <label class="form-label">关联完场：</label>
+                    <label class="checkbox-label" style="font-weight:normal;">
+                        <input type="checkbox" id="include_fulltime">
+                        <span>同时导出对应完场比赛（label/tag）</span>
+                    </label>
                 </div>
             </div>
         </div>

@@ -205,6 +205,20 @@ function startFixedExport() {
     const max_per_file = document.getElementById('max_per_file').value || null;
     const save_path = document.getElementById('save_path').value.trim() || null;
 
+    // V1.8: 比赛模式（与 V1.7 一致）
+    const match_mode = document.getElementById('match_mode').value || 'fulltime';
+    const include_fulltime = document.getElementById('include_fulltime').checked;
+    let min_minute = null;
+    let max_minute = null;
+    if (match_mode === 'custom') {
+        min_minute = parseInt(document.getElementById('min_minute').value, 10);
+        max_minute = parseInt(document.getElementById('max_minute').value, 10);
+        if (isNaN(min_minute) || isNaN(max_minute)) {
+            alert('请输入有效的分钟区间');
+            return;
+        }
+    }
+
     // 校验：至少一个筛选条件
     if (!date_start && !date_end && !sclass_names && !team_keyword) {
         alert('请至少设置一个筛选条件（日期范围 / 联赛 / 球队）');
@@ -223,6 +237,10 @@ function startFixedExport() {
         end_datetime: date_end,
         sclass_names: sclass_names,
         team_keyword: team_keyword,
+        match_mode: match_mode,
+        include_fulltime: include_fulltime,
+        min_minute: min_minute,
+        max_minute: max_minute,
         limit: limit,
         max_per_file: max_per_file,
         save_path: save_path,
@@ -338,8 +356,30 @@ function resetForm() {
     document.getElementById('limit').value = '';
     document.getElementById('max_per_file').value = '50';
     document.getElementById('save_path').value = '';
+    document.getElementById('match_mode').value = 'fulltime';
+    document.getElementById('min_minute').value = '0';
+    document.getElementById('max_minute').value = '90';
+    document.getElementById('include_fulltime').checked = false;
+    onMatchModeChange();
     document.getElementById('progress_area').style.display = 'none';
     document.getElementById('result_area').style.display = 'none';
     resetButton();
     initDateRange();
+}
+
+// ========== 比赛模式切换（V1.8，与 V1.7 一致） ==========
+function onMatchModeChange() {
+    const mode = document.getElementById('match_mode').value;
+    const minuteRow = document.getElementById('minute_range_row');
+    const fulltimeRow = document.getElementById('include_fulltime_row');
+    if (mode === 'custom') {
+        minuteRow.style.display = 'flex';
+        fulltimeRow.style.display = 'flex';
+    } else if (mode === 'halftime') {
+        minuteRow.style.display = 'none';
+        fulltimeRow.style.display = 'flex';
+    } else {
+        minuteRow.style.display = 'none';
+        fulltimeRow.style.display = 'none';
+    }
 }

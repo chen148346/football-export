@@ -95,29 +95,29 @@ class FixedExporter:
             away_team = self.tm.canonical_by_variant(m.away_team) or m.away_team
 
             rows.append({
-                "match_id": m.match_id,
-                "sclass_name": m.sclass_name,
-                "match_date": m.match_date,
-                "match_time": match_time_str,
-                "home_team": home_team,
-                "away_team": away_team,
-                "home_rank": m.home_rank,
-                "away_rank": m.away_rank,
-                "home_score": m.home_score,
-                "away_score": m.away_score,
-                "home_half_score": m.home_half_score,
-                "away_half_score": m.away_half_score,
-                "home_red": m.home_red,
-                "away_red": m.away_red,
-                "home_yellow": m.home_yellow,
-                "away_yellow": m.away_yellow,
-                "home_formation": home_formation,
-                "away_formation": away_formation,
-                "home_corner": home_corner,
-                "away_corner": away_corner,
-                "home_half_corner": home_half_corner,
-                "away_half_corner": away_half_corner,
-                "referee_name": referee_name,
+                "比赛编号": m.match_id,
+                "联赛": m.sclass_name,
+                "比赛日期": m.match_date,
+                "比赛时间": match_time_str,
+                "主队": home_team,
+                "客队": away_team,
+                "主队排名": m.home_rank,
+                "客队排名": m.away_rank,
+                "主队比分": m.home_score,
+                "客队比分": m.away_score,
+                "主队半场比分": m.home_half_score,
+                "客队半场比分": m.away_half_score,
+                "主队红牌": m.home_red,
+                "客队红牌": m.away_red,
+                "主队黄牌": m.home_yellow,
+                "客队黄牌": m.away_yellow,
+                "主队阵型": home_formation,
+                "客队阵型": away_formation,
+                "主队角球": home_corner,
+                "客队角球": away_corner,
+                "主队半场角球": home_half_corner,
+                "客队半场角球": away_half_corner,
+                "主裁": referee_name,
             })
         return headers, rows
 
@@ -173,24 +173,24 @@ class FixedExporter:
                 h, a = b["home_score"], b["away_score"]
                 result = self._result_text(h, a)
                 rows.append({
-                    "match_id": b["match_id"],
-                    "match_time": b["match_time"],
-                    "league_name": b["league_name"],
-                    "home_team": home_name,
-                    "home_id": b["home_team_id"],
-                    "home_score": h,
-                    "home_half_score": b["home_half_score"],
-                    "home_corner": b["home_corner"],
-                    "home_yellow": b["home_yellow"],
-                    "home_red": b["home_red"],
-                    "away_team": away_name,
-                    "away_id": b["away_team_id"],
-                    "away_score": a,
-                    "away_half_score": b["away_half_score"],
-                    "away_corner": b["away_corner"],
-                    "away_yellow": b["away_yellow"],
-                    "away_red": b["away_red"],
-                    "result": result,
+                    "比赛编号": b["match_id"],
+                    "比赛时间": b["match_time"],
+                    "联赛": b["league_name"],
+                    "主队": home_name,
+                    "主队ID": b["home_team_id"],
+                    "主队比分": h,
+                    "主队半场比分": b["home_half_score"],
+                    "主队角球": b["home_corner"],
+                    "主队黄牌": b["home_yellow"],
+                    "主队红牌": b["home_red"],
+                    "客队": away_name,
+                    "客队ID": b["away_team_id"],
+                    "客队比分": a,
+                    "客队半场比分": b["away_half_score"],
+                    "客队角球": b["away_corner"],
+                    "客队黄牌": b["away_yellow"],
+                    "客队红牌": b["away_red"],
+                    "赛果": result,
                 })
                 # 增量学习球队名称
                 self.tm.observe(b["home_team_id"], b["home_team_name"])
@@ -225,7 +225,7 @@ class FixedExporter:
 
     # ---------------- 详细事件 ----------------
     def build_detail_events_sheet(self, matches):
-        headers = fixed_schema.FIXED_SHEETS[7][2]
+        headers = fixed_schema.DETAIL_EVENTS_FIXED_HEADERS
         rows = []
         for m in matches:
             events = json_parser.extract_detailed_events_fixed(m.shijian_json, m.match_id) \

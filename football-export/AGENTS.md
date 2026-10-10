@@ -57,4 +57,4 @@ SQL 关联：优先 `matches.fulltime_snapshot_id = snapshots.id`，否则回退
 ## 两个导出模式
 
 - **V1.7 动态表头**（`/`）：所有匹配字段 union，保留全量信息。
-- **V1.8 固定表头**（`/fixed`）：8 个 Sheet 表头固定（比赛/指标/近绩/往绩/上半场统计/下半场统计/联赛排名/详细事件），简体中文，双编码归一，球队ID归一，缺失留空。阈值原则：固定(≥25%) / 剔除(<20%)。
+- **V1.8 固定表头**（`/fixed`）：8 个 Sheet 表头固定，**Sheet 名与 V1.7 一致使用英文 id**（match_overview/tech_stats/near_matches/vs_matches/first_half_stats/second_half_stats/league_rank_stats/detail_events），**表头统一为简体中文**，双编码归一，球队ID归一，缺失留空。阈值原则：固定(≥25%) / 剔除(<20%)。**筛选与文件名与 V1.7 完全一致**：支持 match_mode（fulltime/halftime/custom）+ 自定义分钟区间 + 关联完场（label），文件名格式 `{时间戳}_{联赛}_{起日}_{止日}_{类型}_{字段}.xlsx`（FT/HT/PR + prediction/label 后缀）。

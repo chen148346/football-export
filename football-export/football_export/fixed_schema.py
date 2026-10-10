@@ -203,39 +203,39 @@ EVENT_KIND_CN_FULL.update({
 # 6. 比赛 Sheet 固定列（matches 表 + shijian/analysis 提取）
 # ============================================================================
 MATCH_FIXED_HEADERS = [
-    "match_id", "sclass_name", "match_date", "match_time",
-    "home_team", "away_team",
-    "home_rank", "away_rank",
-    "home_score", "away_score",
-    "home_half_score", "away_half_score",
-    "home_red", "away_red",
-    "home_yellow", "away_yellow",
-    "home_formation", "away_formation",
-    "home_corner", "away_corner",
-    "home_half_corner", "away_half_corner",
-    "referee_name",
+    "比赛编号", "联赛", "比赛日期", "比赛时间",
+    "主队", "客队", "主队排名", "客队排名",
+    "主队比分", "客队比分", "主队半场比分", "客队半场比分",
+    "主队红牌", "客队红牌", "主队黄牌", "客队黄牌",
+    "主队阵型", "客队阵型", "主队角球", "客队角球",
+    "主队半场角球", "客队半场角球", "主裁",
 ]
 
 # 近绩/往绩固定列（简体中文明）
 BRIEF_FIXED_HEADERS = [
-    "match_id", "match_time", "league_name",
-    "home_team", "home_id", "home_score", "home_half_score",
-    "home_corner", "home_yellow", "home_red",
-    "away_team", "away_id", "away_score", "away_half_score",
-    "away_corner", "away_yellow", "away_red",
-    "result",
+    "比赛编号", "比赛时间", "联赛",
+    "主队", "主队ID", "主队比分", "主队半场比分",
+    "主队角球", "主队黄牌", "主队红牌",
+    "客队", "客队ID", "客队比分", "客队半场比分",
+    "客队角球", "客队黄牌", "客队红牌",
+    "赛果",
 ]
+
+# 详细事件固定列（简体中文明，作为 detail_events 的实际表头）
+DETAIL_EVENTS_FIXED_HEADERS = ["比赛编号", "事件时间", "事件类型", "球队", "球员", "详情"]
 
 # ============================================================================
 # 7. 8 个 Sheet 元信息（顺序即工作簿顺序）
+#    第一个元素：sheet id；第二个元素：工作簿中英文标题（与原版一致）；
+#    第三个元素：展示用简体中文表头（仅 detail_events 直接取用，其余在 build 内生成）
 # ============================================================================
 FIXED_SHEETS = [
-    ("match_overview", "比赛", MATCH_FIXED_HEADERS),
-    ("tech_stats", "指标", ["比赛编号"] + [f"主队_{cn}" for cn in TECH_FIXED_CN] + [f"客队_{cn}" for cn in TECH_FIXED_CN]),
-    ("near_matches", "近绩", BRIEF_FIXED_HEADERS),
-    ("vs_matches", "往绩", BRIEF_FIXED_HEADERS),
-    ("first_half_stats", "上半场统计", ["比赛编号"] + [f"主队_{cn}" for cn in FIRST_HALF_FIXED_CN] + [f"客队_{cn}" for cn in FIRST_HALF_FIXED_CN]),
-    ("second_half_stats", "下半场统计", ["比赛编号"] + [f"主队_{cn}" for cn in SECOND_HALF_FIXED_CN] + [f"客队_{cn}" for cn in SECOND_HALF_FIXED_CN]),
-    ("league_rank_stats", "联赛排名", ["比赛编号", "主队"] + [f"主队_{cn}" for cn in LEAGUE_RANK_FIXED] + ["客队"] + [f"客队_{cn}" for cn in LEAGUE_RANK_FIXED]),
-    ("detail_events", "详细事件", ["比赛编号", "事件时间", "事件类型", "球队", "球员", "详情"]),
+    ("match_overview", "match_overview", MATCH_FIXED_HEADERS),
+    ("tech_stats", "tech_stats", ["比赛编号"] + [f"主队_{cn}" for cn in TECH_FIXED_CN] + [f"客队_{cn}" for cn in TECH_FIXED_CN]),
+    ("near_matches", "near_matches", BRIEF_FIXED_HEADERS),
+    ("vs_matches", "vs_matches", BRIEF_FIXED_HEADERS),
+    ("first_half_stats", "first_half_stats", ["比赛编号"] + [f"主队_{cn}" for cn in FIRST_HALF_FIXED_CN] + [f"客队_{cn}" for cn in FIRST_HALF_FIXED_CN]),
+    ("second_half_stats", "second_half_stats", ["比赛编号"] + [f"主队_{cn}" for cn in SECOND_HALF_FIXED_CN] + [f"客队_{cn}" for cn in SECOND_HALF_FIXED_CN]),
+    ("league_rank_stats", "league_rank_stats", ["比赛编号", "主队"] + [f"主队_{cn}" for cn in LEAGUE_RANK_FIXED] + ["客队"] + [f"客队_{cn}" for cn in LEAGUE_RANK_FIXED]),
+    ("detail_events", "detail_events", DETAIL_EVENTS_FIXED_HEADERS),
 ]

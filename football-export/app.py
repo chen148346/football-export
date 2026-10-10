@@ -402,6 +402,9 @@ def api_fixed_export():
         start_datetime / end_datetime: datetime-local 时间范围（可选）
         sclass_names: list 联赛列表（可选）
         team_keyword: str 球队模糊搜索（可选）
+        match_mode: str 比赛模式 fulltime/halftime/custom（默认fulltime）
+        min_minute/max_minute: int 自定义分钟区间（match_mode=custom时有效）
+        include_fulltime: bool 是否同时导出完场标签（非完场模式有效）
         limit: int 数量限制（可选）
         max_per_file: int 单文件最大比赛数（默认50）
         save_path: str 自定义保存目录（可选）
@@ -420,6 +423,24 @@ def api_fixed_export():
                 limit = int(limit)
             except (ValueError, TypeError):
                 limit = None
+
+        # V1.8: 比赛模式（与 V1.7 一致）
+        match_mode = data.get('match_mode', 'fulltime')
+        if match_mode not in ('fulltime', 'halftime', 'custom'):
+            match_mode = 'fulltime'
+        include_fulltime = bool(data.get('include_fulltime', False))
+        min_minute = data.get('min_minute')
+        max_minute = data.get('max_minute')
+        if match_mode == 'custom':
+            try:
+                min_minute = int(min_minute) if min_minute is not None else 0
+                max_minute = int(max_minute) if max_minute is not None else 90
+            except (ValueError, TypeError):
+                return jsonify({'success': False, 'error': '分钟区间必须为整数'}), 400
+            if min_minute < 0 or max_minute > 120:
+                return jsonify({'success': False, 'error': '分钟区间必须在0-120范围内'}), 400
+            if min_minute >= max_minute:
+                return jsonify({'success': False, 'error': '开始分钟必须小于结束分钟'}), 400
 
         max_per_file = data.get('max_per_file')
         if max_per_file:
@@ -453,7 +474,8 @@ def api_fixed_export():
         thread = threading.Thread(
             target=_run_fixed_export_task,
             args=(task_id, start_datetime, end_datetime, sclass_names,
-                  team_keyword, limit, output_dir, max_per_file),
+                  team_keyword, limit, output_dir, max_per_file,
+                  match_mode, min_minute, max_minute, include_fulltime),
             daemon=True,
         )
         thread.start()
@@ -703,31 +725,62 @@ def _run_export_task(task_id, date_start, date_end, start_datetime, end_datetime
 
 
 def _run_fixed_export_task(task_id, start_datetime, end_datetime, sclass_names,
-                           team_keyword, limit, output_dir, max_per_file):
+                           team_keyword, limit, output_dir, max_per_file,
+                           match_mode='fulltime', min_minute=None, max_minute=None,
+                           include_fulltime=False):
     """
     固定表头导出后台任务（V1.8新页面）。
 
-    逻辑与 V1.7 类似：查完场比赛 → 分片 → 用 FixedExporter 生成
-    8 个固定表头 Sheet 的 Excel。
+    逻辑与 V1.7 一致：
+    - fulltime：查完场比赛
+    - halftime / custom：查非完场快照（含可选完场 label 文件）
+    生成 8 个固定表头 Sheet 的 Excel。
+    文件名遵循 V1.7：{时间戳}_{联赛}_{起日}_{止日}_{类型}_{字段}.xlsx
     """
     try:
-        from football_export.db_reader import query_matches
         from football_export.fixed_exporter import (
-            export_fixed_excel, generate_fixed_filename,
+            export_fixed_excel,
         )
 
         with _task_lock:
             _export_tasks[task_id]['progress'] = 10
             _export_tasks[task_id]['message'] = '正在查询比赛数据...'
 
-        matches = query_matches(
-            db_path=config.DEFAULT_DB_PATH,
-            start_datetime=start_datetime,
-            end_datetime=end_datetime,
-            sclass_names=sclass_names,
-            team_name=team_keyword,
-            limit=limit,
-        )
+        date_start = (start_datetime or '')[:10] or None
+        date_end = (end_datetime or '')[:10] or None
+
+        matches = []
+        label_snapshots = []
+        if match_mode in ('halftime', 'custom'):
+            from football_export.db_reader import query_non_fulltime_snapshots
+            if match_mode == 'halftime':
+                snapshot_filter = {'mode': 'halftime'}
+            else:
+                snapshot_filter = {'mode': 'custom', 'min': min_minute, 'max': max_minute}
+            result = query_non_fulltime_snapshots(
+                db_path=config.DEFAULT_DB_PATH,
+                snapshot_filter=snapshot_filter,
+                include_fulltime=include_fulltime,
+                start_date=date_start,
+                end_date=date_end,
+                start_datetime=start_datetime,
+                end_datetime=end_datetime,
+                sclass_names=sclass_names,
+                team_name=team_keyword,
+                limit=limit,
+            )
+            matches = result['prediction_snapshots']
+            label_snapshots = result['label_snapshots']
+        else:
+            from football_export.db_reader import query_matches
+            matches = query_matches(
+                db_path=config.DEFAULT_DB_PATH,
+                start_datetime=start_datetime,
+                end_datetime=end_datetime,
+                sclass_names=sclass_names,
+                team_name=team_keyword,
+                limit=limit,
+            )
 
         with _task_lock:
             _export_tasks[task_id]['progress'] = 30
@@ -736,55 +789,79 @@ def _run_fixed_export_task(task_id, start_datetime, end_datetime, sclass_names,
         if not matches:
             with _task_lock:
                 _export_tasks[task_id]['status'] = 'failed'
-                _export_tasks[task_id]['error'] = '没有找到符合条件的完场比赛数据'
+                _export_tasks[task_id]['error'] = '没有找到符合条件的比赛数据'
                 _export_tasks[task_id]['message'] = '未找到数据'
             return
 
-        total_matches = len(matches)
-        league = sclass_names[0] if sclass_names and len(sclass_names) == 1 else 'multi'
-        start_tag = (start_datetime or 'all')[:10].replace('-', '')
-        end_tag = (end_datetime or 'all')[:10].replace('-', '')
+        # V1.7 风格文件名：{时间戳}_{联赛}_{起日}_{止日}_{类型}_{字段}
+        from football_export.excel_exporter import generate_filename_v15
+        snap_type_map = {'fulltime': 'fulltime', 'halftime': 'halftime', 'custom': 'custom'}
+        snap_type = snap_type_map.get(match_mode, 'fulltime')
 
-        if total_matches <= max_per_file:
-            filename = generate_fixed_filename(league, start_tag, end_tag)
-            output_path = os.path.join(output_dir, filename)
-            export_fixed_excel(matches, output_path)
-
-            rel_path = os.path.basename(output_path)
-            with _task_lock:
-                _export_tasks[task_id]['progress'] = 100
-                _export_tasks[task_id]['status'] = 'completed'
-                _export_tasks[task_id]['message'] = f'导出完成：{total_matches}场比赛'
-                _export_tasks[task_id]['output_path'] = output_path
-                _export_tasks[task_id]['filename'] = rel_path
-                _export_tasks[task_id]['download_url'] = f"/download/{rel_path}"
-                if os.path.exists(output_path):
-                    _export_tasks[task_id]['file_size_kb'] = round(
-                        os.path.getsize(output_path) / 1024, 1)
-        else:
-            import math
-            num_parts = math.ceil(total_matches / max_per_file)
-            files_info = []
-            for i in range(num_parts):
-                start_idx = i * max_per_file
-                end_idx = min((i + 1) * max_per_file, total_matches)
-                part_matches = matches[start_idx:end_idx]
-                part_filename = generate_fixed_filename(league, start_tag, end_tag).replace(
-                    '.xlsx', f'_{i+1:02d}.xlsx')
-                part_output_path = os.path.join(output_dir, part_filename)
-                export_fixed_excel(part_matches, part_output_path)
-                files_info.append({
-                    'filename': part_filename,
-                    'download_url': f"/download/{part_filename}",
-                    'file_size_kb': round(os.path.getsize(part_output_path) / 1024, 1),
-                    'match_count': len(part_matches),
-                    'part_index': i + 1,
+        def _do_export(matches_to_export, role=None):
+            files = []
+            total = len(matches_to_export)
+            if total == 0:
+                return files
+            if total <= max_per_file:
+                filename = generate_filename_v15(
+                    sclass_names=sclass_names or None,
+                    start_date=date_start,
+                    end_date=date_end,
+                    sheets_to_export=config.ALL_SHEET_IDS_V15,
+                    snapshot_type=snap_type,
+                    file_role=role,
+                )
+                output_path = os.path.join(output_dir, filename)
+                export_fixed_excel(matches_to_export, output_path)
+                files.append({
+                    'filename': os.path.basename(output_path),
+                    'download_url': f"/download/{os.path.basename(output_path)}",
+                    'file_size_kb': round(os.path.getsize(output_path) / 1024, 1),
+                    'match_count': total,
+                    'role': role,
                 })
-            with _task_lock:
-                _export_tasks[task_id]['progress'] = 100
-                _export_tasks[task_id]['status'] = 'completed'
-                _export_tasks[task_id]['message'] = f'导出完成：{total_matches}场比赛，分{num_parts}个文件'
-                _export_tasks[task_id]['files'] = files_info
+            else:
+                import math
+                num_parts = math.ceil(total / max_per_file)
+                for i in range(num_parts):
+                    start_idx = i * max_per_file
+                    end_idx = min((i + 1) * max_per_file, total)
+                    part_matches = matches_to_export[start_idx:end_idx]
+                    part_filename = generate_filename_v15(
+                        sclass_names=sclass_names or None,
+                        start_date=date_start,
+                        end_date=date_end,
+                        sheets_to_export=config.ALL_SHEET_IDS_V15,
+                        snapshot_type=snap_type,
+                        file_role=role,
+                        part_index=i + 1,
+                    )
+                    part_output_path = os.path.join(output_dir, part_filename)
+                    export_fixed_excel(part_matches, part_output_path)
+                    files.append({
+                        'filename': part_filename,
+                        'download_url': f"/download/{part_filename}",
+                        'file_size_kb': round(os.path.getsize(part_output_path) / 1024, 1),
+                        'match_count': len(part_matches),
+                        'role': role,
+                        'part_index': i + 1,
+                    })
+            return files
+
+        files_info = []
+        files_info.extend(_do_export(matches, role='prediction' if match_mode != 'fulltime' else None))
+        if include_fulltime and label_snapshots:
+            files_info.extend(_do_export(label_snapshots, role='label'))
+
+        with _task_lock:
+            _export_tasks[task_id]['progress'] = 100
+            _export_tasks[task_id]['status'] = 'completed'
+            _export_tasks[task_id]['message'] = f'导出完成：{len(matches)}场比赛，{len(files_info)}个文件'
+            if len(files_info) == 1:
+                _export_tasks[task_id]['output_path'] = os.path.join(output_dir, files_info[0]['filename'])
+                _export_tasks[task_id]['filename'] = files_info[0]['filename']
+            _export_tasks[task_id]['files'] = files_info
 
     except Exception as e:
         traceback.print_exc()
