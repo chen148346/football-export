@@ -318,16 +318,25 @@ def _scan_brief_match(m: dict, col: ScanCollector):
             col.record_team(tid, _get_name(name_raw), _name_lang(name_raw))
 
 
+def _analysis_cond(only_analysis: bool) -> str:
+    """为完场查询拼接仅取 analysis 非空快照的过滤条件（避免引号嵌套问题）。"""
+    if not only_analysis:
+        return ""
+    return "AND COALESCE(s.analysis_json, '') != '' "
+
+
 # ============================================================================
 # 数据库连接与遍历
 # ============================================================================
-def iter_matches(db_path: str, limit: int = None):
+def iter_matches(db_path: str, limit: int = None, only_analysis: bool = False):
     """
     只读连接，遍历"带完场快照"的比赛（与导出主逻辑口径一致）。
 
     优先用 matches.fulltime_snapshot_id 关联；
     若该字段大面积为空，则回退到 snapshots 中 snapshot_type='fulltime'。
     生成 row: (match_id, sclass_name, home_team, away_team, shijian, analysis)
+    only_analysis=True 时只返回 analysis_json 非空的完场（有效数据段），
+    使覆盖率基于"有效完场"而非被无分析比赛稀释的总量。
     """
     uri = f"file:{db_path}?mode=ro"
     conn = sqlite3.connect(uri, uri=True)
@@ -352,7 +361,8 @@ def iter_matches(db_path: str, limit: int = None):
                 "FROM matches m "
                 "LEFT JOIN snapshots s ON s.id = m.fulltime_snapshot_id "
                 "WHERE m.latest_state_code = -1 "
-                "ORDER BY m.match_time DESC"
+                + _analysis_cond(only_analysis)
+                + "ORDER BY m.match_time DESC"
             )
         else:
             sql = (
@@ -362,7 +372,8 @@ def iter_matches(db_path: str, limit: int = None):
                 "LEFT JOIN snapshots s "
                 "  ON s.match_id = m.id AND s.snapshot_type = 'fulltime' "
                 "WHERE m.latest_state_code = -1 "
-                "ORDER BY m.match_time DESC"
+                + _analysis_cond(only_analysis)
+                + "ORDER BY m.match_time DESC"
             )
 
         params = ()
@@ -629,6 +640,26 @@ def write_summary_txt(report: dict, team_seed: dict, path: str):
         else:
             add(f"  - {info['title']:<8}: 列固定")
     add("")
+    add("字段分级建议（覆盖率基于有效完场计算）：")
+    for sheet in TARGET_SHEETS:
+        info = report["sheets"][sheet]
+        kinds = info.get("kinds") or info.get("event_kinds") or {}
+        if not kinds:
+            continue
+
+        def _kind_count(v):
+            # kinds 值是 dict（含 match_count），event_kinds 值是 int
+            return v["match_count"] if isinstance(v, dict) else v
+
+        fixed = [k for k, v in kinds.items() if _kind_count(v) / total >= 0.5]
+        optional = [k for k, v in kinds.items() if 0.2 <= _kind_count(v) / total < 0.5]
+        drop = [k for k, v in kinds.items() if _kind_count(v) / total < 0.2]
+        add(
+            f"  - {info['title']:<8}: 固定(≥50%) {len(fixed)} | 可选(20-50%) {len(optional)} | "
+            f"剔除(<20%) {len(drop)}"
+        )
+    add("（说明：固定=进固定表头；可选=你评估后决定；剔除=仅个别比赛才有的罕见字段）")
+    add("")
     # 多名称写法的球队（翻译不一致重点对象）
     multi_name = [
         (tid, info) for tid, info in team_seed.items()
@@ -665,6 +696,10 @@ def main():
         "--dist", action="store_true",
         help="只输出带JSON比赛的月份分布（快速聚合），不做全量扫描"
     )
+    parser.add_argument(
+        "--valid", action="store_true",
+        help="只看带 analysis 的有效完场（推荐），覆盖率基于有效完场计算"
+    )
     args = parser.parse_args()
 
     db_path = os.path.abspath(args.db)
@@ -688,10 +723,12 @@ def main():
         print(f"[信息] 采样模式    ：最近 {args.limit} 场")
     else:
         print("[信息] 全量扫描")
+    if args.valid:
+        print("[信息] 有效范围    ：仅带 analysis 的完场（覆盖率基于有效完场）")
 
     col = ScanCollector()
     processed = 0
-    for row in iter_matches(db_path, limit=args.limit):
+    for row in iter_matches(db_path, limit=args.limit, only_analysis=args.valid):
         scan_match(row, col)
         processed += 1
         if processed % 2000 == 0:
