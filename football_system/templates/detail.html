@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ match.sclass_name }} {{ match.home_team }} vs {{ match.away_team }}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            font-size: 14px;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%);
+            color: white;
+            padding: 18px 30px;
+        }
+        .header a { color: white; text-decoration: none; font-size: 13px; opacity: 0.85; }
+        .header h1 { font-size: 20px; margin-top: 5px; }
+        .container { max-width: 900px; margin: 20px auto; padding: 0 20px; }
+
+        .match-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        .match-info {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+        }
+        .team-name { font-size: 20px; font-weight: 700; }
+        .team-rank { font-size: 12px; color: #999; }
+        .score-display { font-size: 36px; font-weight: 700; color: #2c3e50; }
+        .match-meta { margin-top: 15px; text-align: center; color: #666; font-size: 13px; }
+        .match-meta span { margin: 0 10px; }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        .section h2 {
+            font-size: 16px;
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .snapshot-list, .report-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .snapshot-item, .report-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #2e86c1;
+        }
+        .snapshot-info, .report-info { flex: 1; }
+        .snapshot-type { font-weight: 600; color: #2c3e50; }
+        .snapshot-meta { font-size: 12px; color: #888; margin-top: 3px; }
+
+        .btn {
+            padding: 6px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .btn-primary { background: #2e86c1; color: white; }
+        .btn-primary:hover { background: #1a5276; }
+        .btn-success { background: #27ae60; color: white; }
+        .btn-success:hover { background: #229954; }
+        .btn-danger { background: #e74c3c; color: white; }
+        .btn-danger:hover { background: #c0392b; }
+        .btn:disabled { background: #bdc3c7; cursor: not-allowed; }
+
+        .actions { display: flex; gap: 8px; }
+        .empty { text-align: center; padding: 30px; color: #999; }
+        .loading { color: #2e86c1; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/">← 返回比赛列表</a>
+        <h1>{{ match.sclass_name }} {{ match.home_team }} vs {{ match.away_team }}</h1>
+    </div>
+
+    <div class="container">
+        <div class="match-card">
+            <div class="match-info">
+                <div>
+                    <div class="team-name">{{ match.home_team }}</div>
+                    {% if match.home_rank %}<div class="team-rank">排名 [{{ match.home_rank }}]</div>{% endif %}
+                </div>
+                <div>
+                    <div class="score-display">{{ match.home_score }} - {{ match.away_score }}</div>
+                    <div style="font-size: 13px; color: #888; margin-top: 5px;">{{ match.state_display }}</div>
+                </div>
+                <div>
+                    <div class="team-name">{{ match.away_team }}</div>
+                    {% if match.away_rank %}<div class="team-rank">排名 [{{ match.away_rank }}]</div>{% endif %}
+                </div>
+            </div>
+            <div class="match-meta">
+                {% if match.round_info %}<span>{{ match.round_info }}</span>{% endif %}
+                <span>{{ match.match_time[:4] }}-{{ match.match_time[4:6] }}-{{ match.match_time[6:8] }} {{ match.match_time[8:10] }}:{{ match.match_time[10:12] }}</span>
+                {% if match.weather %}<span>🌤 {{ match.weather }}</span>{% endif %}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📸 数据快照</h2>
+            <div style="margin-bottom: 15px;">
+                <button class="btn btn-primary" onclick="createSnapshot()">手动创建快照</button>
+                <span class="loading" id="snapshotLoading" style="display:none;">正在抓取数据...</span>
+            </div>
+            {% if snapshots %}
+            <div class="snapshot-list">
+                {% for s in snapshots %}
+                <div class="snapshot-item">
+                    <div class="snapshot-info">
+                        <div class="snapshot-type">
+                            {% if s.snapshot_type == 'halftime' %}半场快照
+                            {% elif s.snapshot_type == 'fulltime' %}全场快照
+                            {% else %}手动快照{% endif %}
+                            - {{ s.state_text }}
+                        </div>
+                        <div class="snapshot-meta">
+                            比分: {{ s.home_score }}-{{ s.away_score }}
+                            {% if s.elapsed_min %} | {{ s.elapsed_min }}分钟{% endif %}
+                            | {{ s.created_at }}
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-success" onclick="generateReport({{ s.id }})">生成报告</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty">暂无快照数据</div>
+            {% endif %}
+        </div>
+
+        <div class="section">
+            <h2>📄 分析报告</h2>
+            {% if reports %}
+            <div class="report-list">
+                {% for r in reports %}
+                <div class="report-item">
+                    <div class="report-info">
+                        <div class="snapshot-type">{{ r.file_name }}</div>
+                        <div class="snapshot-meta">{{ r.created_at }}</div>
+                    </div>
+                    <div class="actions">
+                        <a href="/download/{{ r.id }}" class="btn btn-primary">下载</a>
+                        <button class="btn btn-danger" onclick="deleteReport({{ r.id }})">删除</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty">暂无报告，请先创建快照并生成报告</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        function createSnapshot() {
+            const btn = event.target;
+            btn.disabled = true;
+            document.getElementById('snapshotLoading').style.display = 'inline';
+            fetch('/api/snapshot/{{ match.id }}', { method: 'POST' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('快照创建成功');
+                        location.reload();
+                    } else {
+                        alert('创建失败: ' + data.error);
+                    }
+                })
+                .catch(e => alert('请求失败: ' + e))
+                .finally(() => {
+                    btn.disabled = false;
+                    document.getElementById('snapshotLoading').style.display = 'none';
+                });
+        }
+
+        function generateReport(snapshotId) {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '生成中...';
+            fetch('/api/report/{{ match.id }}/' + snapshotId, { method: 'POST' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('报告生成成功');
+                        location.reload();
+                    } else {
+                        alert('生成失败: ' + data.error);
+                    }
+                })
+                .catch(e => alert('请求失败: ' + e))
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.textContent = '生成报告';
+                });
+        }
+
+        function deleteReport(reportId) {
+            if (!confirm('确定删除此报告？')) return;
+            fetch('/api/report/' + reportId, { method: 'DELETE' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('删除失败: ' + data.error);
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

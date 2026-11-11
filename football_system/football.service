@@ -1,0 +1,15 @@
+[Unit]
+Description=Football Match Data System V2.5.8
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root/football_system
+Environment="PATH=/root/football_system/venv/bin"
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/root/football_system/venv/bin/python app.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

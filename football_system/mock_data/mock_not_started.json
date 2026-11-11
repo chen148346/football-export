@@ -1,0 +1,4254 @@
+{
+  "match_id": 2999999,
+  "shijian_json": {
+    "events": {
+      "eventList": []
+    },
+    "techStat": {
+      "itemList": [],
+      "firstHalfList": [],
+      "secondHalfList": []
+    },
+    "lastTechStat": {
+      "itemList": [],
+      "firstHalfList": [],
+      "secondHalfList": []
+    },
+    "lineup": {
+      "homePlayerList": [],
+      "guestPlayerList": [],
+      "homeBakPlayerList": [],
+      "guestBakPlayerList": [],
+      "homeFormation": "4-3-3",
+      "guestFormation": "4-2-3-1",
+      "homeInjury": [
+        {
+          "number": "22",
+          "name": "麦肯基",
+          "Id": 163035,
+          "imgUrl": "images/1j0n5fqe3p11.png",
+          "injuryReson": "疑似伤病",
+          "siteY": 0,
+          "siteX": 0,
+          "pos": "中卫",
+          "captainType": 0,
+          "playerKind": 4
+        },
+        {
+          "number": "15",
+          "name": "洛达",
+          "Id": 130071,
+          "imgUrl": "images/166832454027.png",
+          "injuryReson": "疑似伤病",
+          "siteY": 0,
+          "siteX": 0,
+          "pos": "中前卫",
+          "captainType": 0,
+          "playerKind": 4
+        }
+      ],
+      "guestInjury": [
+        {
+          "number": "2",
+          "name": "Z.德巴斯特",
+          "Id": 205665,
+          "imgUrl": "images/205665/1je8eftjrt1w.png",
+          "injuryReson": "腘绳肌损伤",
+          "siteY": 0,
+          "siteX": 0,
+          "pos": "后卫",
+          "captainType": 0,
+          "playerKind": 4
+        }
+      ]
+    },
+    "jsq": {
+      "jsqList": []
+    },
+    "info": {
+      "id": 2999999,
+      "stateCode": 0,
+      "homeName": "巴西",
+      "awayName": "阿根廷"
+    },
+    "last3TechStat": {
+      "itemList": [
+        {
+          "home": {
+            "value": 2,
+            "text": "2.0"
+          },
+          "away": {
+            "value": 2.3,
+            "text": "2.3"
+          },
+          "name": "进球",
+          "kind": "GOAL"
+        },
+        {
+          "home": {
+            "value": 1,
+            "text": "1.0"
+          },
+          "away": {
+            "value": 1,
+            "text": "1.0"
+          },
+          "name": "失球",
+          "kind": "LOSS"
+        },
+        {
+          "home": {
+            "value": 8,
+            "text": "8.0"
+          },
+          "away": {
+            "value": 10.7,
+            "text": "10.7"
+          },
+          "name": "被射门",
+          "kind": "BE_SHOOT"
+        },
+        {
+          "home": {
+            "value": 6.7,
+            "text": "6.7"
+          },
+          "away": {
+            "value": 5.3,
+            "text": "5.3"
+          },
+          "name": "角球",
+          "kind": "CORNER"
+        },
+        {
+          "home": {
+            "value": 1.3,
+            "text": "1.3"
+          },
+          "away": {
+            "value": 0.7,
+            "text": "0.7"
+          },
+          "name": "黄牌",
+          "kind": "YELLOW"
+        },
+        {
+          "home": {
+            "value": 10.7,
+            "text": "10.7"
+          },
+          "away": {
+            "value": 12,
+            "text": "12.0"
+          },
+          "name": "犯规",
+          "kind": "FOULS"
+        },
+        {
+          "home": {
+            "value": 54.3,
+            "text": "54.3%"
+          },
+          "away": {
+            "value": 58.7,
+            "text": "58.7%"
+          },
+          "name": "控球率",
+          "kind": "CONTROL_PERCENT"
+        }
+      ],
+      "firstHalfList": [],
+      "secondHalfList": []
+    },
+    "conerEvent": {
+      "homeId": 797,
+      "guestId": 645,
+      "home": [],
+      "homeHalf": 1,
+      "guest": [],
+      "guestHalf": 3,
+      "detail": []
+    },
+    "eventTxt": {
+      "EventTxtLives": []
+    },
+    "playerTech": {
+      "homeTeamDatas": {
+        "teamId": 797,
+        "formation": "4-3-3",
+        "playerTechInfo": [],
+        "teamName": "美国"
+      },
+      "guestTeamDatas": {
+        "teamId": 645,
+        "formation": "4-2-3-1",
+        "playerTechInfo": [],
+        "teamName": "比利时"
+      },
+      "titles": [
+        {
+          "infoTitle": "位置",
+          "infoKind": "Position"
+        },
+        {
+          "infoTitle": "射门",
+          "infoKind": "Shots"
+        },
+        {
+          "infoTitle": "射正",
+          "infoKind": "ShotOnTarget"
+        },
+        {
+          "infoTitle": "关键传球",
+          "infoKind": "KeyPass"
+        },
+        {
+          "infoTitle": "传球成功率",
+          "infoKind": "PassSucceeRatio"
+        },
+        {
+          "infoTitle": "争顶成功",
+          "infoKind": "HeadBulbSuccee"
+        },
+        {
+          "infoTitle": "身体接触",
+          "infoKind": "BodyContact"
+        },
+        {
+          "infoTitle": "评分",
+          "infoKind": "Ranking"
+        },
+        {
+          "infoTitle": "带球过人",
+          "infoKind": "ControlPass"
+        },
+        {
+          "infoTitle": "被侵犯",
+          "infoKind": "BeAttacked"
+        },
+        {
+          "infoTitle": "被抢断",
+          "infoKind": "BeSteal"
+        },
+        {
+          "infoTitle": "失误",
+          "infoKind": "Fault"
+        },
+        {
+          "infoTitle": "越位",
+          "infoKind": "Offside"
+        },
+        {
+          "infoTitle": "抢断",
+          "infoKind": "Steal"
+        },
+        {
+          "infoTitle": "拦截",
+          "infoKind": "Intercept"
+        },
+        {
+          "infoTitle": "解围次数",
+          "infoKind": "Clearances"
+        },
+        {
+          "infoTitle": "有效解围",
+          "infoKind": "ClearanceWon"
+        },
+        {
+          "infoTitle": "封堵",
+          "infoKind": "ShotsBlocked"
+        },
+        {
+          "infoTitle": "制造越位",
+          "infoKind": "OffsideProvoked"
+        },
+        {
+          "infoTitle": "犯规",
+          "infoKind": "Fouls"
+        },
+        {
+          "infoTitle": "传球次数",
+          "infoKind": "PassBall"
+        },
+        {
+          "infoTitle": "传球成功",
+          "infoKind": "PassBallSuc"
+        },
+        {
+          "infoTitle": "横传次数",
+          "infoKind": "CrossNum"
+        },
+        {
+          "infoTitle": "精确横传",
+          "infoKind": "CrossWon"
+        },
+        {
+          "infoTitle": "长传次数",
+          "infoKind": "LongPass"
+        },
+        {
+          "infoTitle": "精确长传",
+          "infoKind": "LongBallsWon"
+        },
+        {
+          "infoTitle": "直塞次数",
+          "infoKind": "ThroughBall"
+        },
+        {
+          "infoTitle": "精确直塞",
+          "infoKind": "ThroughBallWon"
+        }
+      ]
+    },
+    "last5TechStat": {
+      "itemList": [
+        {
+          "home": {
+            "value": 2.2,
+            "text": "2.2"
+          },
+          "away": {
+            "value": 2.6,
+            "text": "2.6"
+          },
+          "name": "进球",
+          "kind": "GOAL"
+        },
+        {
+          "home": {
+            "value": 1.2,
+            "text": "1.2"
+          },
+          "away": {
+            "value": 0.8,
+            "text": "0.8"
+          },
+          "name": "失球",
+          "kind": "LOSS"
+        },
+        {
+          "home": {
+            "value": 9,
+            "text": "9.0"
+          },
+          "away": {
+            "value": 10.6,
+            "text": "10.6"
+          },
+          "name": "被射门",
+          "kind": "BE_SHOOT"
+        },
+        {
+          "home": {
+            "value": 6.6,
+            "text": "6.6"
+          },
+          "away": {
+            "value": 6.4,
+            "text": "6.4"
+          },
+          "name": "角球",
+          "kind": "CORNER"
+        },
+        {
+          "home": {
+            "value": 1.2,
+            "text": "1.2"
+          },
+          "away": {
+            "value": 1,
+            "text": "1.0"
+          },
+          "name": "黄牌",
+          "kind": "YELLOW"
+        },
+        {
+          "home": {
+            "value": 11.2,
+            "text": "11.2"
+          },
+          "away": {
+            "value": 12,
+            "text": "12.0"
+          },
+          "name": "犯规",
+          "kind": "FOULS"
+        },
+        {
+          "home": {
+            "value": 56.2,
+            "text": "56.2%"
+          },
+          "away": {
+            "value": 59.2,
+            "text": "59.2%"
+          },
+          "name": "控球率",
+          "kind": "CONTROL_PERCENT"
+        }
+      ],
+      "firstHalfList": [],
+      "secondHalfList": []
+    },
+    "lastXgTechStat": {
+      "itemList": [
+        {
+          "home": {
+            "value": 1,
+            "text": "0.98"
+          },
+          "name": "",
+          "kind": 52
+        },
+        {
+          "home": {
+            "value": 4,
+            "text": "1.34"
+          },
+          "name": "",
+          "kind": 52
+        },
+        {
+          "home": {
+            "value": 2,
+            "text": "1.30"
+          },
+          "name": "",
+          "kind": 52
+        },
+        {
+          "home": {
+            "value": 2,
+            "text": "2.13"
+          },
+          "name": "",
+          "kind": 52
+        },
+        {
+          "home": {
+            "value": 2,
+            "text": "0.88"
+          },
+          "name": "",
+          "kind": 52
+        },
+        {
+          "away": {
+            "value": 5,
+            "text": "3.86"
+          },
+          "name": "",
+          "kind": 52
+        },
+        {
+          "away": {
+            "value": 1,
+            "text": "1.31"
+          },
+          "name": "",
+          "kind": 52
+        },
+        {
+          "away": {
+            "value": 0,
+            "text": "1.82"
+          },
+          "name": "",
+          "kind": 52
+        },
+        {
+          "away": {
+            "value": 5,
+            "text": "3.64"
+          },
+          "name": "",
+          "kind": 52
+        },
+        {
+          "away": {
+            "value": 2,
+            "text": "1.74"
+          },
+          "name": "",
+          "kind": 52
+        }
+      ],
+      "firstHalfList": [],
+      "secondHalfList": []
+    }
+  },
+  "analysis_json": {
+    "scheduleId": 2907397,
+    "currentPoints": null,
+    "cupPoints": null,
+    "vsMatches": {
+      "homeTeamId": 797,
+      "awayTeamId": 645,
+      "matches": [
+        {
+          "id": 2965199,
+          "leagueId": 1366,
+          "leagueName": "国际友谊",
+          "matchTime": "1774726200",
+          "homeTeam": {
+            "id": 797,
+            "name": "美国",
+            "score": 2,
+            "halfScore": 1,
+            "corner": 6,
+            "yellowCard": 2,
+            "redCard": 0,
+            "halfCorner": 4,
+            "nameShort": "",
+            "teamFlag": "images/1kd9x10rpm2a.png",
+            "isFirstGoal": true,
+            "shotOnTarget": 0
+          },
+          "awayTeam": {
+            "id": 645,
+            "name": "比利时",
+            "score": 5,
+            "halfScore": 1,
+            "corner": 6,
+            "yellowCard": 0,
+            "redCard": 0,
+            "halfCorner": 5,
+            "nameShort": "",
+            "teamFlag": "images/1kd9szmt7c1b.png",
+            "isFirstGoal": false,
+            "shotOnTarget": 0
+          },
+          "isNeutrality": false,
+          "leaugsKind": 2,
+          "leagueNameFull": "国际友谊赛",
+          "leagueColor": "#4666bb",
+          "countryId": 52,
+          "rating": 0,
+          "hasCorner": true,
+          "hasHalfCorner": true,
+          "isShowDb": true
+        },
+        {
+          "id": 991668,
+          "leagueId": 75,
+          "leagueName": "世界杯",
+          "matchTime": "1404244800",
+          "homeTeam": {
+            "id": 645,
+            "name": "比利时",
+            "score": 0,
+            "halfScore": 0,
+            "corner": 16,
+            "yellowCard": 1,
+            "redCard": 0,
+            "halfCorner": 0,
+            "nameShort": "",
+            "teamFlag": "images/1kd9szmt7c1b.png",
+            "isFirstGoal": true,
+            "shotOnTarget": 0
+          },
+          "awayTeam": {
+            "id": 797,
+            "name": "美国",
+            "score": 0,
+            "halfScore": 0,
+            "corner": 4,
+            "yellowCard": 1,
+            "redCard": 0,
+            "halfCorner": 0,
+            "nameShort": "",
+            "teamFlag": "images/1kd9x10rpm2a.png",
+            "isFirstGoal": false,
+            "shotOnTarget": 0
+          },
+          "isNeutrality": true,
+          "leaugsKind": 2,
+          "leagueNameFull": "世界杯",
+          "leagueColor": "#660000",
+          "countryId": 52,
+          "rating": 0,
+          "hasCorner": true,
+          "hasHalfCorner": false,
+          "isShowDb": true
+        },
+        {
+          "id": 847488,
+          "leagueId": 41,
+          "leagueName": "球会友谊",
+          "matchTime": "1369872900",
+          "homeTeam": {
+            "id": 797,
+            "name": "美国",
+            "score": 2,
+            "halfScore": 1,
+            "corner": 5,
+            "yellowCard": 1,
+            "redCard": 0,
+            "halfCorner": 0,
+            "nameShort": "",
+            "teamFlag": "images/1kd9x10rpm2a.png",
+            "isFirstGoal": false,
+            "shotOnTarget": 0
+          },
+          "awayTeam": {
+            "id": 645,
+            "name": "比利时",
+            "score": 4,
+            "halfScore": 1,
+            "corner": 4,
+            "yellowCard": 1,
+            "redCard": 0,
+            "halfCorner": 0,
+            "nameShort": "",
+            "teamFlag": "images/1kd9szmt7c1b.png",
+            "isFirstGoal": true,
+            "shotOnTarget": 0
+          },
+          "isNeutrality": false,
+          "leaugsKind": 2,
+          "leagueNameFull": "球会友谊赛",
+          "leagueColor": "#00A8A8",
+          "countryId": 52,
+          "rating": 0,
+          "hasCorner": true,
+          "hasHalfCorner": false,
+          "isShowDb": true
+        },
+        {
+          "id": 616164,
+          "leagueId": 41,
+          "leagueName": "球会友谊",
+          "matchTime": "1315334700",
+          "homeTeam": {
+            "id": 645,
+            "name": "比利时",
+            "score": 1,
+            "halfScore": 0,
+            "corner": 0,
+            "yellowCard": 0,
+            "redCard": 0,
+            "halfCorner": 0,
+            "nameShort": "",
+            "teamFlag": "images/1kd9szmt7c1b.png",
+            "isFirstGoal": true,
+            "shotOnTarget": 0
+          },
+          "awayTeam": {
+            "id": 797,
+            "name": "美国",
+            "score": 0,
+            "halfScore": 0,
+            "corner": 0,
+            "yellowCard": 0,
+            "redCard": 0,
+            "halfCorner": 0,
+            "nameShort": "",
+            "teamFlag": "images/1kd9x10rpm2a.png",
+            "isFirstGoal": false,
+            "shotOnTarget": 0
+          },
+          "isNeutrality": false,
+          "leaugsKind": 2,
+          "leagueNameFull": "球会友谊赛",
+          "leagueColor": "#00A8A8",
+          "countryId": 52,
+          "rating": 0,
+          "hasCorner": false,
+          "hasHalfCorner": false,
+          "isShowDb": true
+        }
+      ],
+      "companyList": [
+        {
+          "company": "CROWN",
+          "CompanyName": "Crow*",
+          "companyId": 3,
+          "company2": "NONE"
+        },
+        {
+          "company": "BET365",
+          "CompanyName": "36*",
+          "companyId": 8,
+          "company2": "NONE"
+        },
+        {
+          "company": "EASYBET",
+          "CompanyName": "易*",
+          "companyId": 12,
+          "company2": "NONE"
+        },
+        {
+          "company": "BET12",
+          "CompanyName": "12*",
+          "companyId": 24,
+          "company2": "NONE"
+        }
+      ],
+      "matches2": [],
+      "isNeutrality": false,
+      "companyList2": [
+        {
+          "company": "CROWN",
+          "CompanyName": "澳*",
+          "companyId": 1,
+          "company2": "MACAUSLOT"
+        }
+      ]
+    },
+    "nearMatches": {
+      "homeMatches": {
+        "teamId": 797,
+        "teamName": "美国",
+        "matches": [
+          {
+            "id": 2907385,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1782950400",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 4,
+              "yellowCard": 0,
+              "redCard": 1,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 782,
+              "name": "波黑",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 3,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1krg0gedq426.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 7.13,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2907370,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1782439200",
+            "homeTeam": {
+              "id": 762,
+              "name": "土耳其",
+              "score": 3,
+              "halfScore": 2,
+              "corner": 2,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kv4yjemr72v.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 9,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.55,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2906951,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1781895600",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 2,
+              "corner": 7,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 913,
+              "name": "澳大利亚",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 4,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x2rd7q7.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.91,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2906706,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1781312400",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 4,
+              "halfScore": 3,
+              "corner": 3,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 776,
+              "name": "巴拉圭",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 1,
+              "yellowCard": 5,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x06mhg1c.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.99,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2991519,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1780770900",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 10,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 8,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 650,
+              "name": "德国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 2,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x52q0c0.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2990737,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1780256100",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 3,
+              "halfScore": 2,
+              "corner": 4,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 815,
+              "name": "塞内加尔",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 7,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd59fqdks1t.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2966693,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1774998000",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 2,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 765,
+              "name": "葡萄牙",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 8,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kda23vp7420.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2965199,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1774726200",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 6,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 5,
+              "halfScore": 1,
+              "corner": 6,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2899753,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1763510400",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 5,
+              "halfScore": 4,
+              "corner": 7,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 767,
+              "name": "乌拉圭",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 5,
+              "yellowCard": 2,
+              "redCard": 1,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9twt0q412.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 7.17,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2899163,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1763244000",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 5,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 776,
+              "name": "巴拉圭",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 8,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x06mhg1c.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 6.88,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2887830,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1760490000",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 3,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 913,
+              "name": "澳大利亚",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 2,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x2rd7q7.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 6.9,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2885471,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1760142600",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 8,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 7,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 779,
+              "name": "厄瓜多尔",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 4,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x5x0yg1h.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 6.92,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2867629,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1757460600",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 3,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 903,
+              "name": "日本",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 6,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9xadskf2v.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2862866,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1757192400",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 6,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 898,
+              "name": "韩国",
+              "score": 2,
+              "halfScore": 2,
+              "corner": 3,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9t7mybnb.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2808097,
+            "leagueId": 232,
+            "leagueName": "美金杯",
+            "matchTime": "1751842800",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 0,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 819,
+              "name": "墨西哥",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 12,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kd9t4bkpnb.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "中北美洲及加勒比金杯",
+            "leagueColor": "#696900",
+            "countryId": 54,
+            "rating": 6.78,
+            "hasCorner": false,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2803409,
+            "leagueId": 232,
+            "leagueName": "美金杯",
+            "matchTime": "1751497200",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 2,
+              "corner": 2,
+              "yellowCard": 4,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 801,
+              "name": "危地马拉",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 6,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/165018922859.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "中北美洲及加勒比金杯",
+            "leagueColor": "#696900",
+            "countryId": 54,
+            "rating": 6.92,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2793678,
+            "leagueId": 232,
+            "leagueName": "美金杯",
+            "matchTime": "1751238000",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 9,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 914,
+              "name": "哥斯达黎加",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 2,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1h5by3q63y2r.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "中北美洲及加勒比金杯",
+            "leagueColor": "#696900",
+            "countryId": 54,
+            "rating": 7.06,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2779812,
+            "leagueId": 232,
+            "leagueName": "美金杯",
+            "matchTime": "1750633200",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 6,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 909,
+              "name": "海地",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 5,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/1kd9wz49sw2b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "中北美洲及加勒比金杯",
+            "leagueColor": "#696900",
+            "countryId": 54,
+            "rating": 6.97,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2779810,
+            "leagueId": 232,
+            "leagueName": "美金杯",
+            "matchTime": "1750382100",
+            "homeTeam": {
+              "id": 891,
+              "name": "沙特阿拉伯",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 2,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9tvn8rc1h.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "中北美洲及加勒比金杯",
+            "leagueColor": "#696900",
+            "countryId": 54,
+            "rating": 6.98,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2779807,
+            "leagueId": 232,
+            "leagueName": "美金杯",
+            "matchTime": "1750024800",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 5,
+              "halfScore": 3,
+              "corner": 10,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 6,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 912,
+              "name": "特立尼达和多巴哥",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/165018921272.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "中北美洲及加勒比金杯",
+            "leagueColor": "#696900",
+            "countryId": 54,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2783689,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1749600000",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 1,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 648,
+              "name": "瑞士",
+              "score": 4,
+              "halfScore": 4,
+              "corner": 7,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 6,
+              "nameShort": "",
+              "teamFlag": "images/1kd9tcnft7h.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2782693,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1749325200",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 4,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 762,
+              "name": "土耳其",
+              "score": 2,
+              "halfScore": 2,
+              "corner": 5,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kv4yjemr72v.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2302610,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1670079600",
+            "homeTeam": {
+              "id": 646,
+              "name": "荷兰",
+              "score": 3,
+              "halfScore": 2,
+              "corner": 4,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x92yqm14.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 5,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.35,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2185074,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1669748400",
+            "homeTeam": {
+              "id": 783,
+              "name": "伊朗",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 1,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9t4tft00.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 5,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.77,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2185075,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1669402800",
+            "homeTeam": {
+              "id": 744,
+              "name": "英格兰",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 3,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kda293ej631.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 7,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.54,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2185339,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1669057200",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 5,
+              "yellowCard": 4,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 7384,
+              "name": "威尔士",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 3,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/164984044545.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.42,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          }
+        ],
+        "sameHandicapMatches": [],
+        "sameOuMatches": [],
+        "companyList": [
+          {
+            "company": "CROWN",
+            "CompanyName": "Crow*",
+            "companyId": 3,
+            "company2": "NONE"
+          },
+          {
+            "company": "BET365",
+            "CompanyName": "36*",
+            "companyId": 8,
+            "company2": "NONE"
+          },
+          {
+            "company": "EASYBET",
+            "CompanyName": "易*",
+            "companyId": 12,
+            "company2": "NONE"
+          },
+          {
+            "company": "BET12",
+            "CompanyName": "12*",
+            "companyId": 24,
+            "company2": "NONE"
+          }
+        ],
+        "teamNameShort": "",
+        "companyList2": [
+          {
+            "company": "CROWN",
+            "CompanyName": "澳*",
+            "companyId": 1,
+            "company2": "MACAUSLOT"
+          }
+        ]
+      },
+      "awayMatches": {
+        "teamId": 645,
+        "teamName": "比利时",
+        "matches": [
+          {
+            "id": 2907384,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1782936000",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 2,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 815,
+              "name": "塞内加尔",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 1,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd59fqdks1t.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.96,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2906962,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1782529200",
+            "homeTeam": {
+              "id": 2363,
+              "name": "新西兰",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 5,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9t67nxv21.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 5,
+              "halfScore": 1,
+              "corner": 8,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 7.12,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2906959,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1782068400",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 1,
+              "redCard": 1,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 783,
+              "name": "伊朗",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 2,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9t4tft00.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.65,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2906720,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1781550000",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 2,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 735,
+              "name": "埃及",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 7,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/1kd9t2vfd01a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.62,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2991521,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1780750800",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 5,
+              "halfScore": 1,
+              "corner": 14,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 9,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 823,
+              "name": "突尼斯",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 0,
+              "yellowCard": 2,
+              "redCard": 1,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd4y40jnv1v.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2990964,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1780416000",
+            "homeTeam": {
+              "id": 768,
+              "name": "克罗地亚",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 3,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kda2amc8t28.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 4,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2966698,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1775005200",
+            "homeTeam": {
+              "id": 819,
+              "name": "墨西哥",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 3,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9t4bkpnb.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 2,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2965199,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1774726200",
+            "homeTeam": {
+              "id": 797,
+              "name": "美国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 6,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x10rpm2a.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 5,
+              "halfScore": 1,
+              "corner": 6,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2758842,
+            "leagueId": 650,
+            "leagueName": "欧洲预选",
+            "matchTime": "1763495100",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 7,
+              "halfScore": 3,
+              "corner": 15,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 8,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 764,
+              "name": "列支敦士登",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 0,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/16498375914.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯欧洲区预选赛",
+            "leagueColor": "#660033",
+            "countryId": 52,
+            "rating": 7.69,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2758845,
+            "leagueId": 650,
+            "leagueName": "欧洲预选",
+            "matchTime": "1763215200",
+            "homeTeam": {
+              "id": 763,
+              "name": "哈萨克斯坦",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 5,
+              "yellowCard": 4,
+              "redCard": 1,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/165018952324.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 12,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 7,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯欧洲区预选赛",
+            "leagueColor": "#660033",
+            "countryId": 52,
+            "rating": 6.71,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2700492,
+            "leagueId": 650,
+            "leagueName": "欧洲预选",
+            "matchTime": "1760381100",
+            "homeTeam": {
+              "id": 7384,
+              "name": "威尔士",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 6,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/164984044545.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 4,
+              "halfScore": 2,
+              "corner": 5,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯欧洲区预选赛",
+            "leagueColor": "#660033",
+            "countryId": 52,
+            "rating": 6.76,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2700490,
+            "leagueId": 650,
+            "leagueName": "欧洲预选",
+            "matchTime": "1760121900",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 13,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 770,
+              "name": "北马其顿",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 2,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/164983284393.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯欧洲区预选赛",
+            "leagueColor": "#660033",
+            "countryId": 52,
+            "rating": 6.69,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2700488,
+            "leagueId": 650,
+            "leagueName": "欧洲预选",
+            "matchTime": "1757270700",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 6,
+              "halfScore": 2,
+              "corner": 11,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 9,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 763,
+              "name": "哈萨克斯坦",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 1,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/165018952324.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯欧洲区预选赛",
+            "leagueColor": "#660033",
+            "countryId": 52,
+            "rating": 7.61,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2700486,
+            "leagueId": 650,
+            "leagueName": "欧洲预选",
+            "matchTime": "1757011500",
+            "homeTeam": {
+              "id": 764,
+              "name": "列支敦士登",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 0,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/16498375914.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 6,
+              "halfScore": 1,
+              "corner": 10,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯欧洲区预选赛",
+            "leagueColor": "#660033",
+            "countryId": 52,
+            "rating": 7.57,
+            "hasCorner": false,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2700484,
+            "leagueId": 650,
+            "leagueName": "欧洲预选",
+            "matchTime": "1749494700",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 4,
+              "halfScore": 3,
+              "corner": 7,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 7384,
+              "name": "威尔士",
+              "score": 3,
+              "halfScore": 1,
+              "corner": 5,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/164984044545.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯欧洲区预选赛",
+            "leagueColor": "#660033",
+            "countryId": 52,
+            "rating": 6.65,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2700482,
+            "leagueId": 650,
+            "leagueName": "欧洲预选",
+            "matchTime": "1749235500",
+            "homeTeam": {
+              "id": 770,
+              "name": "北马其顿",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 1,
+              "yellowCard": 6,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/164983284393.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 10,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 8,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯欧洲区预选赛",
+            "leagueColor": "#660033",
+            "countryId": 52,
+            "rating": 6.55,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2694249,
+            "leagueId": 1864,
+            "leagueName": "欧国联",
+            "matchTime": "1742759100",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 3,
+              "halfScore": 0,
+              "corner": 10,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 634,
+              "name": "乌克兰",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 1,
+              "yellowCard": 4,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1h406gpzk731.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家联赛",
+            "leagueColor": "#fc9b0a",
+            "countryId": 53,
+            "rating": 7.26,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2694245,
+            "leagueId": 1864,
+            "leagueName": "欧国联",
+            "matchTime": "1742499900",
+            "homeTeam": {
+              "id": 634,
+              "name": "乌克兰",
+              "score": 3,
+              "halfScore": 0,
+              "corner": 3,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1h406gpzk731.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 4,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家联赛",
+            "leagueColor": "#fc9b0a",
+            "countryId": 53,
+            "rating": 6.3,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2597479,
+            "leagueId": 1864,
+            "leagueName": "欧国联",
+            "matchTime": "1731872700",
+            "homeTeam": {
+              "id": 760,
+              "name": "以色列",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 5,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/16498416847.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 5,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家联赛",
+            "leagueColor": "#fc9b0a",
+            "countryId": 53,
+            "rating": 6.42,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2597477,
+            "leagueId": 1864,
+            "leagueName": "欧国联",
+            "matchTime": "1731613500",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 7,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 771,
+              "name": "意大利",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 1,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/164983674430.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家联赛",
+            "leagueColor": "#fc9b0a",
+            "countryId": 53,
+            "rating": 6.27,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2597474,
+            "leagueId": 1864,
+            "leagueName": "欧国联",
+            "matchTime": "1728585900",
+            "homeTeam": {
+              "id": 771,
+              "name": "意大利",
+              "score": 2,
+              "halfScore": 2,
+              "corner": 0,
+              "yellowCard": 2,
+              "redCard": 1,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/164983674430.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 12,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家联赛",
+            "leagueColor": "#fc9b0a",
+            "countryId": 53,
+            "rating": 6.38,
+            "hasCorner": false,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2597471,
+            "leagueId": 1864,
+            "leagueName": "欧国联",
+            "matchTime": "1725907500",
+            "homeTeam": {
+              "id": 649,
+              "name": "法国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 5,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kda1tadyh9.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 7,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家联赛",
+            "leagueColor": "#fc9b0a",
+            "countryId": 53,
+            "rating": 6.34,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2545214,
+            "leagueId": 67,
+            "leagueName": "欧洲杯",
+            "matchTime": "1719849540",
+            "homeTeam": {
+              "id": 649,
+              "name": "法国",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 5,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kda1tadyh9.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 2,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家杯",
+            "leagueColor": "#660000",
+            "countryId": 53,
+            "rating": 6.3,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2506003,
+            "leagueId": 67,
+            "leagueName": "欧洲杯",
+            "matchTime": "1719417540",
+            "homeTeam": {
+              "id": 634,
+              "name": "乌克兰",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 3,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1h406gpzk731.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 7,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家杯",
+            "leagueColor": "#660000",
+            "countryId": 53,
+            "rating": 6.54,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2556873,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1711482300",
+            "homeTeam": {
+              "id": 744,
+              "name": "英格兰",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 6,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kda293ej631.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 2,
+              "halfScore": 2,
+              "corner": 1,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2551870,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1711213200",
+            "homeTeam": {
+              "id": 630,
+              "name": "爱尔兰",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/164984027618.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 6,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2364875,
+            "leagueId": 67,
+            "leagueName": "欧洲杯",
+            "matchTime": "1697222700",
+            "homeTeam": {
+              "id": 647,
+              "name": "奥地利",
+              "score": 2,
+              "halfScore": 0,
+              "corner": 6,
+              "yellowCard": 4,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kda1wqsej1c.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 3,
+              "halfScore": 1,
+              "corner": 3,
+              "yellowCard": 5,
+              "redCard": 1,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家杯",
+            "leagueColor": "#660000",
+            "countryId": 53,
+            "rating": 6.79,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2364870,
+            "leagueId": 67,
+            "leagueName": "欧洲杯",
+            "matchTime": "1694264400",
+            "homeTeam": {
+              "id": 758,
+              "name": "阿塞拜疆",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/164984164163.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 13,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 7,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家杯",
+            "leagueColor": "#660000",
+            "countryId": 53,
+            "rating": 6.8,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2364868,
+            "leagueId": 67,
+            "leagueName": "欧洲杯",
+            "matchTime": "1687286700",
+            "homeTeam": {
+              "id": 636,
+              "name": "爱沙尼亚",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/164983507622.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 3,
+              "halfScore": 2,
+              "corner": 5,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "欧洲国家杯",
+            "leagueColor": "#660000",
+            "countryId": 53,
+            "rating": 7.04,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2360020,
+            "leagueId": 1366,
+            "leagueName": "国际友谊",
+            "matchTime": "1680029100",
+            "homeTeam": {
+              "id": 650,
+              "name": "德国",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 8,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9x52q0c0.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 3,
+              "halfScore": 2,
+              "corner": 3,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": false,
+            "leaugsKind": 2,
+            "leagueNameFull": "国际友谊赛",
+            "leagueColor": "#4666bb",
+            "countryId": 52,
+            "rating": 0,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2185090,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1669906800",
+            "homeTeam": {
+              "id": 768,
+              "name": "克罗地亚",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 2,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kda2amc8t28.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.73,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 2185093,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1669554000",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 9,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 6,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 813,
+              "name": "摩洛哥",
+              "score": 2,
+              "halfScore": 0,
+              "corner": 1,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd4ndnmtw17.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.15,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 2185094,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1669230000",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 1,
+              "halfScore": 1,
+              "corner": 4,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 795,
+              "name": "加拿大",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9te475h31.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.85,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 1483065,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1531576800",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 2,
+              "halfScore": 1,
+              "corner": 4,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 744,
+              "name": "英格兰",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 5,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 1,
+              "nameShort": "",
+              "teamFlag": "images/1kda293ej631.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 7.15,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 1483058,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1531245600",
+            "homeTeam": {
+              "id": 649,
+              "name": "法国",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 4,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kda1tadyh9.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 5,
+              "yellowCard": 3,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 6.49,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 1483055,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1530900000",
+            "homeTeam": {
+              "id": 778,
+              "name": "巴西",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 8,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kd9wy18gb2t.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 2,
+              "halfScore": 2,
+              "corner": 4,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 3,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 7.08,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          },
+          {
+            "id": 1560046,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1530554400",
+            "homeTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 3,
+              "halfScore": 0,
+              "corner": 10,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 5,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 903,
+              "name": "日本",
+              "score": 2,
+              "halfScore": 0,
+              "corner": 6,
+              "yellowCard": 1,
+              "redCard": 0,
+              "halfCorner": 0,
+              "nameShort": "",
+              "teamFlag": "images/1kd9xadskf2v.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 7.1,
+            "hasCorner": true,
+            "hasHalfCorner": false,
+            "isShowDb": true
+          },
+          {
+            "id": 1482863,
+            "leagueId": 75,
+            "leagueName": "世界杯",
+            "matchTime": "1530208800",
+            "homeTeam": {
+              "id": 744,
+              "name": "英格兰",
+              "score": 0,
+              "halfScore": 0,
+              "corner": 7,
+              "yellowCard": 0,
+              "redCard": 0,
+              "halfCorner": 4,
+              "nameShort": "",
+              "teamFlag": "images/1kda293ej631.png",
+              "isFirstGoal": false,
+              "shotOnTarget": 0
+            },
+            "awayTeam": {
+              "id": 645,
+              "name": "比利时",
+              "score": 1,
+              "halfScore": 0,
+              "corner": 2,
+              "yellowCard": 2,
+              "redCard": 0,
+              "halfCorner": 2,
+              "nameShort": "",
+              "teamFlag": "images/1kd9szmt7c1b.png",
+              "isFirstGoal": true,
+              "shotOnTarget": 0
+            },
+            "isNeutrality": true,
+            "leaugsKind": 2,
+            "leagueNameFull": "世界杯",
+            "leagueColor": "#660000",
+            "countryId": 52,
+            "rating": 7.08,
+            "hasCorner": true,
+            "hasHalfCorner": true,
+            "isShowDb": true
+          }
+        ],
+        "sameHandicapMatches": [],
+        "sameOuMatches": [],
+        "companyList": [
+          {
+            "company": "CROWN",
+            "CompanyName": "Crow*",
+            "companyId": 3,
+            "company2": "NONE"
+          },
+          {
+            "company": "BET365",
+            "CompanyName": "36*",
+            "companyId": 8,
+            "company2": "NONE"
+          },
+          {
+            "company": "EASYBET",
+            "CompanyName": "易*",
+            "companyId": 12,
+            "company2": "NONE"
+          },
+          {
+            "company": "BET12",
+            "CompanyName": "12*",
+            "companyId": 24,
+            "company2": "NONE"
+          }
+        ],
+        "teamNameShort": "",
+        "companyList2": [
+          {
+            "company": "CROWN",
+            "CompanyName": "澳*",
+            "companyId": 1,
+            "company2": "MACAUSLOT"
+          }
+        ]
+      },
+      "leagueId": 75,
+      "isNeutrality": false
+    },
+    "injury": {
+      "homeInjury": [
+        {
+          "id": 163035,
+          "name": {
+            "cn": "马克·麦肯基",
+            "hk": "馬傑麥根斯爾",
+            "sb": "馬傑麥根斯爾",
+            "th": "มาร์ก แมคเคนซี่",
+            "en": "Mark McKenzie",
+            "idn": "Mark McKenzie",
+            "vn": "Mark McKenzie",
+            "ko": "마크 맥켄지",
+            "ru": "Марк Маккензи",
+            "esp": "Mark McKenzie",
+            "it": "Mark McKenzie",
+            "fr": "Mark McKenzie",
+            "jp": "マーク マッケンジー",
+            "my": "Mark McKenzie",
+            "de": "Mark McKenzie",
+            "in": "मार्क मैकेंजी",
+            "pt": "Mark McKenzie",
+            "bra": "Mark McKenzie"
+          },
+          "position": {
+            "cn": "中卫",
+            "hk": "中衛",
+            "sb": "中衛",
+            "th": "กองหลังตัวกลาง",
+            "en": "Centre Back",
+            "idn": "Bek Tengah",
+            "vn": "Hậu vệ trung tâm",
+            "ko": "중앙 수비수",
+            "ru": "Центральный защитник",
+            "esp": "Defensa Central",
+            "it": "Centre Back",
+            "fr": "Défenseur Central",
+            "jp": "センターバック",
+            "my": "Centre Back",
+            "de": "Centre Back",
+            "in": "Centre Back",
+            "pt": "Zagueiro Central",
+            "bra": "Centre Back"
+          },
+          "number": 22,
+          "reason": "疑似伤病",
+          "pic": "images/1j0n5fqe3p11.png",
+          "extends": null
+        },
+        {
+          "id": 130071,
+          "name": {
+            "cn": "克里斯蒂安·洛达",
+            "hk": "C.朗丹",
+            "sb": "C.朗丹",
+            "th": "คริสเตียน โรลแดน",
+            "en": "Cristian Roldan",
+            "idn": "Cristian Roldan",
+            "vn": "Cristian Roldan",
+            "ko": "크리스티안 롤단",
+            "ru": "Кристиан Рольдан",
+            "esp": "Cristian Roldan",
+            "it": "Cristian Roldan",
+            "fr": "Cristian Roldan",
+            "jp": "クリスティアン ロルダン",
+            "my": "Cristian Roldan",
+            "de": "Cristian Roldán",
+            "in": "क्रिस्टियन रोल्डन",
+            "pt": "Cristian Roldan",
+            "bra": "Cristian Roldan"
+          },
+          "position": {
+            "cn": "中前卫",
+            "hk": "中前衛",
+            "sb": "中前衛",
+            "th": "กองกลาง",
+            "en": "Central Midfield",
+            "idn": "Gelandang Tengah",
+            "vn": "Tiền vệ",
+            "ko": "중앙 미드필더",
+            "ru": "Центральный полузащитник",
+            "esp": "Centrocampista",
+            "it": "Central Midfield",
+            "fr": "Le demi central",
+            "jp": "セントラルMF",
+            "my": "Central Midfield",
+            "de": "Central Midfield",
+            "in": "Central Midfield",
+            "pt": "Centra Meio Campo",
+            "bra": "Central Midfield"
+          },
+          "number": 15,
+          "reason": "疑似伤病",
+          "pic": "images/166832454027.png",
+          "extends": null
+        }
+      ],
+      "awayInjury": [
+        {
+          "id": 205665,
+          "name": {
+            "cn": "泽诺.德巴斯特",
+            "hk": "澤諾.德巴斯特",
+            "sb": "澤諾.德巴斯特",
+            "th": "Zeno Debast",
+            "en": "Zeno Debast",
+            "idn": "Zeno Debast",
+            "vn": "Zeno Debast",
+            "ko": "제노 데바스트",
+            "ru": "Зено Дебас",
+            "esp": "Zeno Debast",
+            "it": "Zeno Debast",
+            "fr": "Zeno Debast",
+            "jp": "ゼノ デバスト",
+            "my": "Zeno Debast",
+            "de": "Zeno Debast",
+            "in": "ज़ेनो डेबास्ट",
+            "pt": "Zeno Debast",
+            "bra": "Zeno Debast"
+          },
+          "position": {
+            "cn": "后卫",
+            "hk": "後衛",
+            "sb": "後衛",
+            "th": "กองหลัง",
+            "en": "Defender",
+            "idn": "Bek",
+            "vn": "Hậu vệ",
+            "ko": "수비수",
+            "ru": "Защитник",
+            "esp": "Defensa",
+            "it": "Defender",
+            "fr": "Arrière",
+            "jp": "DF",
+            "my": "Defender",
+            "de": "Defender",
+            "in": "Defender",
+            "pt": "Zagueiro",
+            "bra": "Defender"
+          },
+          "number": 2,
+          "reason": "腘绳肌损伤",
+          "pic": "images/205665/1je8eftjrt1w.png",
+          "extends": null
+        }
+      ],
+      "homeStop": [],
+      "awayStop": []
+    },
+    "mediaForecast": null,
+    "constract": {
+      "normal": [
+        {
+          "teamId": 797,
+          "teamName": "美国",
+          "datas": [
+            {
+              "kind": "NEAR_5",
+              "total": 5,
+              "totalGetGoal": 11,
+              "avgGetGoal": 2.2,
+              "totalLoseGoal": 6,
+              "avgLoseGoal": 1.2,
+              "winScale": 60,
+              "drawScale": 0,
+              "loseScale": 40,
+              "avgCorner": 6.6,
+              "avgYellow": 1.2,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 56.2,
+              "wasShots": 9,
+              "fouls": 11.2
+            },
+            {
+              "kind": "NEAR_10",
+              "total": 10,
+              "totalGetGoal": 23,
+              "avgGetGoal": 2.3,
+              "totalLoseGoal": 17,
+              "avgLoseGoal": 1.7,
+              "winScale": 60,
+              "drawScale": 0,
+              "loseScale": 40,
+              "avgCorner": 5.7,
+              "avgYellow": 1.4,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 52.8,
+              "wasShots": 10.2,
+              "fouls": 12
+            },
+            {
+              "kind": "NEAR_15",
+              "total": 15,
+              "totalGetGoal": 29,
+              "avgGetGoal": 1.9,
+              "totalLoseGoal": 23,
+              "avgLoseGoal": 1.53,
+              "winScale": 53.3,
+              "drawScale": 6.7,
+              "loseScale": 40,
+              "avgCorner": 5.1,
+              "avgYellow": 1.3,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 53.3,
+              "wasShots": 10.1,
+              "fouls": 11.5
+            }
+          ]
+        },
+        {
+          "teamId": 645,
+          "teamName": "比利时",
+          "datas": [
+            {
+              "kind": "NEAR_5",
+              "total": 5,
+              "totalGetGoal": 13,
+              "avgGetGoal": 2.6,
+              "totalLoseGoal": 4,
+              "avgLoseGoal": 0.8,
+              "winScale": 40,
+              "drawScale": 60,
+              "loseScale": 0,
+              "avgCorner": 6.4,
+              "avgYellow": 1,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 59.2,
+              "wasShots": 10.6,
+              "fouls": 12
+            },
+            {
+              "kind": "NEAR_10",
+              "total": 10,
+              "totalGetGoal": 29,
+              "avgGetGoal": 2.9,
+              "totalLoseGoal": 8,
+              "avgLoseGoal": 0.8,
+              "winScale": 50,
+              "drawScale": 50,
+              "loseScale": 0,
+              "avgCorner": 7.1,
+              "avgYellow": 1.1,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 59.6,
+              "wasShots": 9.1,
+              "fouls": 11.7
+            },
+            {
+              "kind": "NEAR_15",
+              "total": 15,
+              "totalGetGoal": 49,
+              "avgGetGoal": 3.3,
+              "totalLoseGoal": 13,
+              "avgLoseGoal": 0.87,
+              "winScale": 60,
+              "drawScale": 40,
+              "loseScale": 0,
+              "avgCorner": 7.8,
+              "avgYellow": 1.2,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 60.9,
+              "wasShots": 8,
+              "fouls": 11.3
+            }
+          ]
+        }
+      ],
+      "theSame": [
+        {
+          "teamId": 797,
+          "teamName": "美国",
+          "datas": [
+            {
+              "kind": "NEAR_5",
+              "total": 5,
+              "totalGetGoal": 12,
+              "avgGetGoal": 2.4,
+              "totalLoseGoal": 5,
+              "avgLoseGoal": 1,
+              "winScale": 80,
+              "drawScale": 0,
+              "loseScale": 20,
+              "avgCorner": 5.6,
+              "avgYellow": 1.2,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 55,
+              "wasShots": 8.8,
+              "fouls": 12.2
+            },
+            {
+              "kind": "NEAR_10",
+              "total": 10,
+              "totalGetGoal": 23,
+              "avgGetGoal": 2.3,
+              "totalLoseGoal": 15,
+              "avgLoseGoal": 1.5,
+              "winScale": 70,
+              "drawScale": 0,
+              "loseScale": 30,
+              "avgCorner": 5.1,
+              "avgYellow": 1.4,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 53.9,
+              "wasShots": 10.2,
+              "fouls": 12.3
+            },
+            {
+              "kind": "NEAR_15",
+              "total": 15,
+              "totalGetGoal": 29,
+              "avgGetGoal": 1.9,
+              "totalLoseGoal": 21,
+              "avgLoseGoal": 1.4,
+              "winScale": 60,
+              "drawScale": 6.7,
+              "loseScale": 33.3,
+              "avgCorner": 4.7,
+              "avgYellow": 1.5,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 53,
+              "wasShots": 10.8,
+              "fouls": 11.7
+            }
+          ]
+        },
+        {
+          "teamId": 645,
+          "teamName": "比利时",
+          "datas": [
+            {
+              "kind": "NEAR_5",
+              "total": 5,
+              "totalGetGoal": 18,
+              "avgGetGoal": 3.6,
+              "totalLoseGoal": 5,
+              "avgLoseGoal": 1,
+              "winScale": 80,
+              "drawScale": 20,
+              "loseScale": 0,
+              "avgCorner": 7.4,
+              "avgYellow": 0.8,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 57.4,
+              "wasShots": 7,
+              "fouls": 9.2
+            },
+            {
+              "kind": "NEAR_10",
+              "total": 10,
+              "totalGetGoal": 23,
+              "avgGetGoal": 2.3,
+              "totalLoseGoal": 12,
+              "avgLoseGoal": 1.2,
+              "winScale": 40,
+              "drawScale": 50,
+              "loseScale": 10,
+              "avgCorner": 7.3,
+              "avgYellow": 0.9,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 57.2,
+              "wasShots": 10.5,
+              "fouls": 10.5
+            },
+            {
+              "kind": "NEAR_15",
+              "total": 15,
+              "totalGetGoal": 36,
+              "avgGetGoal": 2.4,
+              "totalLoseGoal": 16,
+              "avgLoseGoal": 1.07,
+              "winScale": 60,
+              "drawScale": 33.3,
+              "loseScale": 6.7,
+              "avgCorner": 7.1,
+              "avgYellow": 1.3,
+              "hasCorner": true,
+              "hasYellow": true,
+              "avgControl": 55.9,
+              "wasShots": 11.1,
+              "fouls": 10.1
+            }
+          ]
+        }
+      ]
+    },
+    "referee": {
+      "homeStatistics": {
+        "teamId": 797,
+        "teamName": "美国",
+        "win": 0,
+        "draw": 0,
+        "loss": 0,
+        "matchCount": 0,
+        "shangScale": 0,
+        "avgYellow": 0
+      },
+      "awayStatistics": {
+        "teamId": 645,
+        "teamName": "比利时",
+        "win": 1,
+        "draw": 0,
+        "loss": 0,
+        "matchCount": 1,
+        "shangScale": 100,
+        "avgYellow": 0
+      },
+      "matchScale": {
+        "near": 10,
+        "shangScale": 44.44
+      },
+      "avgYellow": {
+        "near": 10,
+        "avgNumber": 4.33
+      },
+      "referee": {
+        "id": 10370,
+        "name": {
+          "cn": "A.穆罕默德",
+          "hk": "A.穆罕默德",
+          "sb": "A.穆罕默德",
+          "th": "Adham Mohammad",
+          "en": "Adham Mohammad",
+          "idn": "Adham Mohammad",
+          "vn": "Adham Mohammad",
+          "ko": "Adham Mohammad",
+          "ru": "Adham Mohammad",
+          "esp": "Adham Mohammad",
+          "it": "Adham Mohammad",
+          "fr": "Adham Mohammad",
+          "jp": "Adham Mohammad",
+          "my": "Adham Mohammad",
+          "de": "Adham Mohammad",
+          "in": "Adham Mohammad",
+          "pt": "Adham Mohammad",
+          "ng": "Adham Mohammad",
+          "bra": "Adham Mohammad"
+        }
+      }
+    },
+    "preInformation": null,
+    "leagueStatistics": null,
+    "future3Matches": {
+      "homeMatches": null,
+      "awayMatches": {
+        "teamId": 645,
+        "teamName": "比利时",
+        "matches": [
+          {
+            "id": 2981429,
+            "matchTime": "1790361900",
+            "leagueId": 1864,
+            "leagueName": "欧国联",
+            "homeTeamId": 771,
+            "homeTeam": "意大利",
+            "awayTeamId": 645,
+            "awayTeam": "比利时",
+            "seperator": 81,
+            "homeNameShort": "",
+            "awayNameShort": "",
+            "leagueColor": "#fc9b0a",
+            "countryId": 53,
+            "leagueNameFull": "欧洲国家联赛"
+          },
+          {
+            "id": 2981437,
+            "matchTime": "1790621100",
+            "leagueId": 1864,
+            "leagueName": "欧国联",
+            "homeTeamId": 645,
+            "homeTeam": "比利时",
+            "awayTeamId": 649,
+            "awayTeam": "法国",
+            "seperator": 84,
+            "homeNameShort": "",
+            "awayNameShort": "",
+            "leagueColor": "#fc9b0a",
+            "countryId": 53,
+            "leagueNameFull": "欧洲国家联赛"
+          },
+          {
+            "id": 2981446,
+            "matchTime": "1790966700",
+            "leagueId": 1864,
+            "leagueName": "欧国联",
+            "homeTeamId": 645,
+            "homeTeam": "比利时",
+            "awayTeamId": 762,
+            "awayTeam": "土耳其",
+            "seperator": 88,
+            "homeNameShort": "",
+            "awayNameShort": "",
+            "leagueColor": "#fc9b0a",
+            "countryId": 53,
+            "leagueNameFull": "欧洲国家联赛"
+          }
+        ],
+        "teamNameShort": ""
+      }
+    },
+    "matchFeature": null,
+    "goalsGetLoss": null,
+    "halfFullStatistic": null,
+    "leagueGoalInStatistic": null,
+    "matchTechStatistic": null,
+    "attackDefendStatistic": null,
+    "matchEventStatistic": null,
+    "transfer": {
+      "homeList": [],
+      "guestList": []
+    },
+    "isNeutrality": false,
+    "preInfo": {
+      "preInfos": [
+        {
+          "content": "美国与比利时即将展开交锋。近期状态对比，美国近十场六胜四负无平局，稳定性欠佳；比利时近十场五胜五平保持不败，状态更为平稳，士气更盛。双方今年三月友谊赛交手，比利时客场五比二大胜，此番再战，美国面临复仇压力，而比利时则具备心理优势。阵容方面，美国中卫马克·麦肯基与中场克里斯蒂安·洛达疑似伤病，防守与中场组织存疑；比利时后卫泽诺·德巴斯特因伤缺阵，防线存在隐患。整体趋势上，比利时延续不败走势，美国则需克服战绩波动与往绩劣势带来的双重压力。",
+          "teamId": 797,
+          "teamName": ""
+        },
+        {
+          "content": "",
+          "teamId": 645,
+          "teamName": ""
+        }
+      ]
+    },
+    "firstGoal": null,
+    "statusCon": null,
+    "refereeMultiStat": {
+      "multiStatistics": [
+        {
+          "homeStatistics": {
+            "teamId": 797,
+            "teamName": "美国",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "matchCount": 0,
+            "shangScale": 0,
+            "avgYellow": 0
+          },
+          "awayStatistics": {
+            "teamId": 645,
+            "teamName": "比利时",
+            "win": 1,
+            "draw": 0,
+            "loss": 0,
+            "matchCount": 1,
+            "shangScale": 100,
+            "avgYellow": 0
+          },
+          "matchScale": {
+            "near": 5,
+            "shangScale": 40
+          },
+          "avgYellow": {
+            "near": 5,
+            "avgNumber": 3.4
+          },
+          "referee": {
+            "id": 10370,
+            "name": {
+              "cn": "A.穆罕默德",
+              "hk": "A.穆罕默德",
+              "sb": "A.穆罕默德",
+              "th": "Adham Mohammad",
+              "en": "Adham Mohammad",
+              "idn": "Adham Mohammad",
+              "vn": "Adham Mohammad",
+              "ko": "Adham Mohammad",
+              "ru": "Adham Mohammad",
+              "esp": "Adham Mohammad",
+              "it": "Adham Mohammad",
+              "fr": "Adham Mohammad",
+              "jp": "Adham Mohammad",
+              "my": "Adham Mohammad",
+              "de": "Adham Mohammad",
+              "in": "Adham Mohammad",
+              "pt": "Adham Mohammad",
+              "ng": "Adham Mohammad",
+              "bra": "Adham Mohammad"
+            }
+          }
+        },
+        {
+          "homeStatistics": {
+            "teamId": 797,
+            "teamName": "美国",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "matchCount": 0,
+            "shangScale": 0,
+            "avgYellow": 0
+          },
+          "awayStatistics": {
+            "teamId": 645,
+            "teamName": "比利时",
+            "win": 1,
+            "draw": 0,
+            "loss": 0,
+            "matchCount": 1,
+            "shangScale": 100,
+            "avgYellow": 0
+          },
+          "matchScale": {
+            "near": 10,
+            "shangScale": 44.44
+          },
+          "avgYellow": {
+            "near": 10,
+            "avgNumber": 4.33
+          },
+          "referee": {
+            "id": 10370,
+            "name": {
+              "cn": "A.穆罕默德",
+              "hk": "A.穆罕默德",
+              "sb": "A.穆罕默德",
+              "th": "Adham Mohammad",
+              "en": "Adham Mohammad",
+              "idn": "Adham Mohammad",
+              "vn": "Adham Mohammad",
+              "ko": "Adham Mohammad",
+              "ru": "Adham Mohammad",
+              "esp": "Adham Mohammad",
+              "it": "Adham Mohammad",
+              "fr": "Adham Mohammad",
+              "jp": "Adham Mohammad",
+              "my": "Adham Mohammad",
+              "de": "Adham Mohammad",
+              "in": "Adham Mohammad",
+              "pt": "Adham Mohammad",
+              "ng": "Adham Mohammad",
+              "bra": "Adham Mohammad"
+            }
+          }
+        },
+        {
+          "homeStatistics": {
+            "teamId": 797,
+            "teamName": "美国",
+            "win": 0,
+            "draw": 0,
+            "loss": 0,
+            "matchCount": 0,
+            "shangScale": 0,
+            "avgYellow": 0
+          },
+          "awayStatistics": {
+            "teamId": 645,
+            "teamName": "比利时",
+            "win": 1,
+            "draw": 0,
+            "loss": 0,
+            "matchCount": 1,
+            "shangScale": 100,
+            "avgYellow": 0
+          },
+          "matchScale": {
+            "near": 20,
+            "shangScale": 44.44
+          },
+          "avgYellow": {
+            "near": 20,
+            "avgNumber": 4.33
+          },
+          "referee": {
+            "id": 10370,
+            "name": {
+              "cn": "A.穆罕默德",
+              "hk": "A.穆罕默德",
+              "sb": "A.穆罕默德",
+              "th": "Adham Mohammad",
+              "en": "Adham Mohammad",
+              "idn": "Adham Mohammad",
+              "vn": "Adham Mohammad",
+              "ko": "Adham Mohammad",
+              "ru": "Adham Mohammad",
+              "esp": "Adham Mohammad",
+              "it": "Adham Mohammad",
+              "fr": "Adham Mohammad",
+              "jp": "Adham Mohammad",
+              "my": "Adham Mohammad",
+              "de": "Adham Mohammad",
+              "in": "Adham Mohammad",
+              "pt": "Adham Mohammad",
+              "ng": "Adham Mohammad",
+              "bra": "Adham Mohammad"
+            }
+          }
+        }
+      ],
+      "nearKinds": [
+        5,
+        10,
+        20
+      ]
+    },
+    "curLeagueStat": null
+  },
+  "weather": "晴 25℃～26℃",
+  "round_info": ""
+}

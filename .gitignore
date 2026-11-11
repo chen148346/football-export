@@ -100,3 +100,9 @@ logs/
 # CodeGraph tool cache (do not commit)
 .codegraph/
 .codegraph
+
+# 爬取系统运行时目录（VPS 部署时生成）
+football_system/download/
+football_system/reports/
+football_system/venv/
+football_system/output.log

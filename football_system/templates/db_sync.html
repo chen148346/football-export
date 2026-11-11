@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据库同步 - 足球比赛数据文档分析系统 V2.6.3</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #f0f2f5; color: #333; font-size: 14px; }
+        .header { background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%); color: white; padding: 18px 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .header h1 { font-size: 22px; margin-bottom: 5px; }
+        .header .subtitle { font-size: 13px; opacity: 0.9; }
+        .nav { margin-top: 10px; }
+        .nav a { color: white; text-decoration: none; font-size: 13px; opacity: 0.9; margin-right: 20px; border: 1px solid rgba(255,255,255,0.3); padding: 4px 12px; border-radius: 4px; }
+        .nav a:hover { opacity: 1; background: rgba(255,255,255,0.1); }
+        .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
+        .card { background: white; border-radius: 8px; padding: 25px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .card h2 { font-size: 18px; color: #1a5276; margin-bottom: 15px; border-bottom: 2px solid #2e86c1; padding-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: #555; }
+        .form-group input[type="datetime-local"] { width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        .form-group input[type="datetime-local"]:focus { border-color: #2e86c1; outline: none; }
+        .form-row { display: flex; gap: 15px; }
+        .form-row .form-group { flex: 1; }
+        .btn { padding: 10px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 600; transition: background 0.2s; }
+        .btn-primary { background: #2e86c1; color: white; }
+        .btn-primary:hover { background: #21618c; }
+        .btn-primary:disabled { background: #95a5a6; cursor: not-allowed; }
+        .btn-success { background: #27ae60; color: white; }
+        .btn-success:hover { background: #1e8449; }
+        .hint { font-size: 12px; color: #888; margin-top: 4px; }
+        .result { display: none; margin-top: 15px; padding: 12px; border-radius: 4px; font-size: 13px; }
+        .result.success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .result.error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .loading { display: none; margin-top: 10px; color: #2e86c1; font-size: 13px; }
+        .loading.show { display: block; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 10px; }
+        .stat-item { background: #f8f9fa; padding: 10px; border-radius: 4px; text-align: center; border: 1px solid #e9ecef; }
+        .stat-item .label { font-size: 12px; color: #888; margin-bottom: 4px; }
+        .stat-item .value { font-size: 20px; font-weight: 700; color: #2e86c1; }
+        /* V2.5.1: 穿梭框样式（复用export页面） */
+        .sclass-option { padding: 4px 8px; cursor: pointer; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
+        .sclass-option:hover { background: #e8f4f8; }
+        .sclass-selected-item { padding: 4px 8px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 3px; margin-bottom: 4px; cursor: pointer; font-size: 13px; display: flex; justify-content: space-between; }
+        .sclass-selected-item:hover { background: #c3e6cb; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>💾 数据库同步 - 足球比赛数据文档分析系统 V2.6.3</h1>
+        <div class="subtitle">数据库级别导入/导出 · 时间精度到分钟 · 联赛多选筛选 · 独立于数据导出页面</div>
+        <div class="nav">
+            <a href="/">🏠 首页</a>
+            <a href="/export">📊 数据导出</a>
+            <a href="/monitor">⏱ 定时监控</a>
+            <a href="/db_sync">💾 数据库同步</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 数据库导出区块 -->
+        <div class="card">
+            <h2>📤 数据库导出</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>起始时间（精确到分钟）</label>
+                    <input type="datetime-local" id="datetimeStart" step="60">
+                    <div class="hint">默认所选日期 00:00</div>
+                </div>
+                <div class="form-group">
+                    <label>结束时间（精确到分钟）</label>
+                    <input type="datetime-local" id="datetimeEnd" step="60">
+                    <div class="hint">默认所选日期 23:59</div>
+                </div>
+            </div>
+
+            <!-- V2.5.1: 联赛多选筛选器（穿梭框布局，复用export页面组件） -->
+            <div class="form-group">
+                <label>联赛筛选（可多选） <span id="sclassCount" style="color: #2e86c1; font-weight: 600;">已选择 0 个联赛（不选则导出全部）</span></label>
+                <div style="display: flex; gap: 10px; margin-top: 8px;">
+                    <!-- 左侧：已选联赛 -->
+                    <div style="flex: 1; border: 1px solid #ddd; border-radius: 4px; padding: 8px; min-height: 150px; max-height: 200px; overflow-y: auto; background: #f8f9fa;">
+                        <div style="font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 600;">已选联赛（点击移除）</div>
+                        <div id="selectedSclassList"></div>
+                    </div>
+                    <!-- 右侧：可选联赛 -->
+                    <div style="flex: 1.5; border: 1px solid #ddd; border-radius: 4px; padding: 8px;">
+                        <input type="text" id="sclassSearch" placeholder="🔍 搜索联赛..." style="width: 100%; padding: 4px 8px; margin-bottom: 6px; border: 1px solid #ccc; border-radius: 3px;">
+                        <div style="display: flex; gap: 6px; margin-bottom: 6px;">
+                            <button type="button" onclick="selectAllVisibleSclass()" style="padding: 3px 10px; font-size: 12px; background: #27ae60; color: white; border: none; border-radius: 3px; cursor: pointer;">全选可见</button>
+                            <button type="button" onclick="clearAllSclass()" style="padding: 3px 10px; font-size: 12px; background: #e74c3c; color: white; border: none; border-radius: 3px; cursor: pointer;">清空选择</button>
+                        </div>
+                        <div id="sclassOptions" style="max-height: 130px; overflow-y: auto; border: 1px solid #eee; border-radius: 3px;">
+                            <div style="color: #aaa; font-size: 12px; padding: 8px; text-align: center;">加载中...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="exportBtn" onclick="doExport()">📤 导出数据库</button>
+            <div class="loading" id="exportLoading">⏳ 正在导出，请稍候...</div>
+            <div class="result" id="exportResult"></div>
+        </div>
+
+        <!-- 数据库导入区块 -->
+        <div class="card">
+            <h2>📥 数据库导入</h2>
+            <div class="form-group">
+                <label>选择数据库文件（仅支持 .db 文件）</label>
+                <input type="file" id="importFile" accept=".db" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            <button class="btn btn-success" id="importBtn" onclick="doImport()">📥 导入数据库</button>
+            <div class="loading" id="importLoading">⏳ 正在导入，监控线程已暂停，请稍候...</div>
+            <div class="result" id="importResult"></div>
+        </div>
+    </div>
+
+    <script>
+        // V2.5.1: 默认时间填充
+        function setDefaultDateTime() {
+            var today = new Date();
+            var yyyy = today.getFullYear();
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var dd = String(today.getDate()).padStart(2, '0');
+            document.getElementById('datetimeStart').value = yyyy + '-' + mm + '-' + dd + 'T00:00';
+            document.getElementById('datetimeEnd').value = yyyy + '-' + mm + '-' + dd + 'T23:59';
+        }
+        setDefaultDateTime();
+
+        // V2.5.1: 联赛穿梭框交互（复用export页面逻辑）
+        var selectedSclass = new Set();
+        var allSclassList = [];
+
+        // 加载联赛列表
+        function loadSclassList() {
+            fetch('/api/get_sclass_list')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        allSclassList = data.sclass_list.map(s => s.sclass_name);
+                        renderSclassOptions();
+                    }
+                }).catch(e => console.error('加载联赛列表失败:', e));
+        }
+
+        function renderSclassOptions() {
+            var container = document.getElementById('sclassOptions');
+            if (allSclassList.length === 0) {
+                container.innerHTML = '<div style="color: #aaa; font-size: 12px; padding: 8px; text-align: center;">暂无联赛数据</div>';
+                return;
+            }
+            container.innerHTML = allSclassList.map(function(name) {
+                return '<div class="sclass-option" data-name="' + name + '" onclick="toggleSclass(\'' + name.replace(/'/g, "\\'") + '\')">' +
+                    '<span class="sclass-check" style="display: inline-block; width: 14px;">☐</span> ' + name + '</div>';
+            }).join('');
+            updateSclassUI();
+        }
+
+        function toggleSclass(name) {
+            if (selectedSclass.has(name)) {
+                selectedSclass.delete(name);
+            } else {
+                selectedSclass.add(name);
+            }
+            updateSclassUI();
+        }
+
+        function updateSclassUI() {
+            var listEl = document.getElementById('selectedSclassList');
+            if (selectedSclass.size === 0) {
+                listEl.innerHTML = '<div style="color: #aaa; font-size: 12px; padding: 4px;">未选择任何联赛（将导出全部）</div>';
+            } else {
+                listEl.innerHTML = Array.from(selectedSclass).map(function(name) {
+                    return '<div class="sclass-selected-item" onclick="toggleSclass(\'' + name.replace(/'/g, "\\'") + '\')">' +
+                        '<span>' + name + '</span><span style="color: #e74c3c;">✕</span></div>';
+                }).join('');
+            }
+            document.getElementById('sclassCount').textContent =
+                selectedSclass.size === 0 ? '已选择 0 个联赛（不选则导出全部）' : '已选择 ' + selectedSclass.size + ' 个联赛';
+            document.querySelectorAll('.sclass-option').forEach(function(el) {
+                var name = el.dataset.name;
+                var check = el.querySelector('.sclass-check');
+                if (selectedSclass.has(name)) {
+                    check.textContent = '☑';
+                    el.style.background = '#d4edda';
+                } else {
+                    check.textContent = '☐';
+                    el.style.background = '';
+                }
+            });
+        }
+
+        function selectAllVisibleSclass() {
+            document.querySelectorAll('.sclass-option').forEach(function(el) {
+                if (el.style.display !== 'none') {
+                    selectedSclass.add(el.dataset.name);
+                }
+            });
+            updateSclassUI();
+        }
+
+        function clearAllSclass() {
+            selectedSclass.clear();
+            updateSclassUI();
+        }
+
+        document.getElementById('sclassSearch').addEventListener('input', function(e) {
+            var keyword = e.target.value.toLowerCase();
+            document.querySelectorAll('.sclass-option').forEach(function(el) {
+                var name = el.dataset.name.toLowerCase();
+                el.style.display = name.includes(keyword) ? '' : 'none';
+            });
+        });
+
+        loadSclassList();
+
+        // V2.5.1: 导出功能
+        function doExport() {
+            var datetimeStart = document.getElementById('datetimeStart').value;
+            var datetimeEnd = document.getElementById('datetimeEnd').value;
+            var sclassNames = Array.from(selectedSclass);
+
+            if (!datetimeStart || !datetimeEnd) {
+                showResult('exportResult', '❌ 请选择时间范围', 'error');
+                return;
+            }
+
+            document.getElementById('exportBtn').disabled = true;
+            document.getElementById('exportLoading').classList.add('show');
+            document.getElementById('exportResult').style.display = 'none';
+
+            fetch('/api/export_database', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    datetime_start: datetimeStart,
+                    datetime_end: datetimeEnd,
+                    sclass_names: sclassNames
+                })
+            })
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('exportBtn').disabled = false;
+                document.getElementById('exportLoading').classList.remove('show');
+                if (data.success) {
+                    var html = '<div style="font-weight: 600; margin-bottom: 8px;">✅ ' + data.message + '</div>';
+                    html += '<div style="margin-bottom: 8px;">📁 文件名: <code>' + data.filename + '</code></div>';
+                    html += '<div style="margin-bottom: 8px;">💾 <a href="/download_db?filename=' + encodeURIComponent(data.filename) + '" style="color: #2e86c1;">点击下载文件</a></div>';
+                    var stats = data.export_stats;
+                    html += '<div class="stats-grid">';
+                    html += '<div class="stat-item"><div class="label">导出比赛</div><div class="value">' + stats.match_count + '</div></div>';
+                    html += '<div class="stat-item"><div class="label">导出快照</div><div class="value">' + stats.snapshot_count + '</div></div>';
+                    html += '</div>';
+                    showResult('exportResult', html, 'success');
+                } else {
+                    showResult('exportResult', '❌ ' + data.message, 'error');
+                }
+            })
+            .catch(e => {
+                document.getElementById('exportBtn').disabled = false;
+                document.getElementById('exportLoading').classList.remove('show');
+                showResult('exportResult', '❌ 导出失败: ' + e, 'error');
+            });
+        }
+
+        function doImport() {
+            var fileInput = document.getElementById('importFile');
+            if (!fileInput.files[0]) {
+                showResult('importResult', '❌ 请选择.db文件', 'error');
+                return;
+            }
+            if (!fileInput.files[0].name.endsWith('.db')) {
+                showResult('importResult', '❌ 仅支持.db文件', 'error');
+                return;
+            }
+
+            document.getElementById('importBtn').disabled = true;
+            document.getElementById('importLoading').classList.add('show');
+            document.getElementById('importResult').style.display = 'none';
+
+            var formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            fetch('/api/import_database', {
+                method: 'POST',
+                body: formData
+            })
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('importBtn').disabled = false;
+                document.getElementById('importLoading').classList.remove('show');
+                if (data.success) {
+                    var html = '<div style="font-weight: 600; margin-bottom: 8px;">✅ ' + data.message + '</div>';
+                    var stats = data.import_stats;
+                    html += '<div class="stats-grid">';
+                    html += '<div class="stat-item"><div class="label">新增比赛</div><div class="value">' + stats.matches_inserted + '</div></div>';
+                    html += '<div class="stat-item"><div class="label">更新比赛</div><div class="value">' + stats.matches_updated + '</div></div>';
+                    html += '<div class="stat-item"><div class="label">跳过比赛</div><div class="value">' + stats.matches_skipped + '</div></div>';
+                    html += '<div class="stat-item"><div class="label">新增快照</div><div class="value">' + stats.snapshots_inserted + '</div></div>';
+                    html += '<div class="stat-item"><div class="label">跳过快照</div><div class="value">' + stats.snapshots_skipped + '</div></div>';
+                    html += '</div>';
+                    showResult('importResult', html, 'success');
+                } else {
+                    showResult('importResult', '❌ ' + data.message, 'error');
+                }
+            })
+            .catch(e => {
+                document.getElementById('importBtn').disabled = false;
+                document.getElementById('importLoading').classList.remove('show');
+                showResult('importResult', '❌ 导入失败: ' + e, 'error');
+            });
+        }
+
+        function showResult(elementId, html, type) {
+            var el = document.getElementById(elementId);
+            el.innerHTML = html;
+            el.className = 'result ' + type;
+            el.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

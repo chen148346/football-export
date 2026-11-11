@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>足球比赛数据文档分析系统 V2.6.3</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            font-size: 14px;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%);
+            color: white;
+            padding: 18px 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .header h1 { font-size: 22px; margin-bottom: 4px; }
+        .header .subtitle { font-size: 13px; opacity: 0.85; }
+        .container { max-width: 1400px; margin: 20px auto; padding: 0 20px; }
+
+        .toolbar {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .toolbar label { font-weight: 600; color: #555; }
+        .toolbar select, .toolbar button {
+            padding: 7px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            outline: none;
+        }
+        .toolbar select { min-width: 140px; cursor: pointer; }
+        .toolbar button {
+            background: #2e86c1;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .toolbar button:hover { background: #21618c; }
+        .toolbar button:disabled { background: #95a5a6; cursor: not-allowed; }
+        .toolbar button.green { background: #27ae60; }
+        .toolbar button.green:hover { background: #1e8449; }
+        .toolbar .info { margin-left: auto; color: #666; font-size: 13px; }
+
+        .match-list {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        .match-row {
+            display: grid;
+            grid-template-columns: 120px 80px 1fr 100px 1fr 90px 140px;
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.15s;
+            gap: 8px;
+        }
+        .match-row:hover { background: #f8f9fa; }
+        .match-row.header-row {
+            background: #f5f6fa;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 13px;
+            cursor: default;
+        }
+        .match-row.header-row:hover { background: #f5f6fa; }
+
+        .sclass-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: white;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 110px;
+        }
+        .match-time { font-weight: 600; font-size: 14px; }
+        .match-date { font-size: 11px; color: #999; }
+        .team {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+        }
+        .team .rank { color: #999; font-size: 11px; }
+        .score {
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+        .score .half { font-size: 11px; color: #999; font-weight: normal; }
+        .card-icon { font-size: 11px; margin-left: 2px; }
+        .red-card { color: #e74c3c; }
+        .yellow-card { color: #f1c40f; }
+
+        .state { display: inline-block; padding: 3px 10px; border-radius: 12px; font-weight: 600; font-size: 12px; text-align: center; min-width: 60px; }
+        .state-live { background: #e74c3c; color: white; }
+        .state-halftime { background: #f39c12; color: white; }
+        .state-upcoming { background: #3498db; color: white; }
+        .state-finished { background: #95a5a6; color: white; }
+        .state-other { background: #bdc3c7; color: #555; }
+
+        .report-cell { display: flex; align-items: center; gap: 4px; }
+        .report-badge { display: inline-block; width: 7px; height: 7px; border-radius: 50%; }
+        .report-badge.halftime { background: #f39c12; }
+        .report-badge.min60 { background: #9b59b6; }
+        .report-badge.fulltime { background: #27ae60; }
+        .quick-report-btn, .team-report-btn {
+            padding: 4px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            color: white;
+            transition: all 0.2s;
+        }
+        .quick-report-btn { background: #3498db; }
+        .quick-report-btn:hover { background: #2980b9; }
+        .team-report-btn { background: #9b59b6; }
+        .team-report-btn:hover { background: #8e44ad; }
+        .quick-report-btn:disabled, .team-report-btn:disabled { background: #95a5a6; cursor: not-allowed; }
+        .monitor-btn { padding: 3px 10px; font-size: 12px; border: none; border-radius: 3px; cursor: pointer; background: #8e44ad; color: white; margin-left: 4px; }
+        .monitor-btn:hover { background: #7d3c98; }
+        .monitor-btn:disabled { background: #95a5a6; cursor: not-allowed; }
+        .monitor-btn.monitored { background: #27ae60; }
+
+        .empty { text-align: center; padding: 60px 20px; color: #999; }
+
+        /* 进度条弹窗 */
+        .progress-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .progress-modal.active { display: flex; }
+        .progress-box {
+            background: white;
+            border-radius: 8px;
+            padding: 30px 40px;
+            min-width: 400px;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .progress-box h3 { margin-bottom: 15px; color: #2c3e50; }
+        .progress-bar-container {
+            background: #f0f0f0;
+            border-radius: 10px;
+            height: 24px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #2e86c1, #3498db);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 10px;
+        }
+        .progress-text { font-size: 13px; color: #666; text-align: center; }
+        .progress-detail { font-size: 12px; color: #999; margin-top: 8px; max-height: 150px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚽ 足球比赛数据文档分析系统 V2.6.3</h1>
+        <div class="subtitle">手动刷新 · 手动报告 · Word格式 · 近期赛况 · 批量导入 · 定时监控 · 数据库同步 · ±10小时窗口 · Excel导出</div>
+        <div style="margin-top: 10px;">
+            <a href="/" style="color: white; text-decoration: none; font-size: 13px; opacity: 0.9; margin-right: 20px; border: 1px solid rgba(255,255,255,0.3); padding: 4px 12px; border-radius: 4px;">🏠 首页</a>
+            <a href="/export" style="color: white; text-decoration: none; font-size: 13px; opacity: 0.9; margin-right: 20px; border: 1px solid rgba(255,255,255,0.3); padding: 4px 12px; border-radius: 4px;">📊 数据导出</a>
+            <a href="/monitor" style="color: white; text-decoration: none; font-size: 13px; opacity: 0.9; margin-right: 20px; border: 1px solid rgba(255,255,255,0.3); padding: 4px 12px; border-radius: 4px;">⏱ 定时监控</a>
+            <a href="/db_sync" style="color: white; text-decoration: none; font-size: 13px; opacity: 0.9; border: 1px solid rgba(255,255,255,0.3); padding: 4px 12px; border-radius: 4px;">💾 数据库同步</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="toolbar">
+            <label>联赛:</label>
+            <select id="sclassFilter" onchange="filterMatches()">
+                <option value="">全部联赛</option>
+                {% for s in sclass_list %}
+                <option value="{{ s }}" {% if current_sclass == s %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+            </select>
+
+            <label>状态:</label>
+            <select id="stateFilter" onchange="filterMatches()">
+                <option value="">全部状态</option>
+                <option value="live" {% if current_state == 'live' %}selected{% endif %}>进行中</option>
+                <option value="upcoming" {% if current_state == 'upcoming' %}selected{% endif %}>未开始</option>
+                <option value="finished" {% if current_state == 'finished' %}selected{% endif %}>已完场</option>
+                <option value="other" {% if current_state == 'other' %}selected{% endif %}>其他</option>
+            </select>
+
+            <button onclick="refreshData()" id="refreshBtn">🔄 刷新数据</button>
+            <button class="green" onclick="document.getElementById('batchImportFile').click()">📁 批量导入</button>
+            <input type="file" id="batchImportFile" accept=".txt" style="display:none" onchange="batchImport(event)">
+
+            <div class="info" id="matchCount">当前展示 ±10小时窗口内 {{ matches|length }} 场比赛（数据库全量数据请用"数据导出"）</div>
+        </div>
+
+        <div class="match-list">
+            <div class="match-row header-row">
+                <div>联赛</div>
+                <div>时间</div>
+                <div>主队</div>
+                <div>比分</div>
+                <div>客队</div>
+                <div>状态</div>
+                <div>操作</div>
+            </div>
+            {% if matches %}
+            {% for m in matches %}
+            <a href="/match/{{ m.id }}" class="match-row">
+                <div>
+                    <span class="sclass-badge" style="background: {{ m.sclass_color or '#2e86c1' }}">{{ m.sclass_name }}</span>
+                </div>
+                <div>
+                    <div class="match-time">{{ m.match_time }}</div>
+                    <div class="match-date">{{ m.match_date }}</div>
+                </div>
+                <div class="team">
+                    {{ m.home_team }}
+                    {% if m.home_rank %}<span class="rank">[{{ m.home_rank }}]</span>{% endif %}
+                    {% if m.home_red %}<span class="card-icon red-card">🟥{{ m.home_red }}</span>{% endif %}
+                    {% if m.home_yellow %}<span class="card-icon yellow-card">🟨{{ m.home_yellow }}</span>{% endif %}
+                </div>
+                <div class="score">
+                    {{ m.home_score }} - {{ m.away_score }}
+                    {% if m.home_half_score is not none %}
+                    <div class="half">半 {{ m.home_half_score }}-{{ m.away_half_score }}</div>
+                    {% endif %}
+                </div>
+                <div class="team">
+                    {{ m.away_team }}
+                    {% if m.away_rank %}<span class="rank">[{{ m.away_rank }}]</span>{% endif %}
+                    {% if m.away_red %}<span class="card-icon red-card">🟥{{ m.away_red }}</span>{% endif %}
+                    {% if m.away_yellow %}<span class="card-icon yellow-card">🟨{{ m.away_yellow }}</span>{% endif %}
+                </div>
+                <div>
+                    {% if m.state_code in [1,3,4] %}
+                    <span class="state state-live">{{ m.state_display }}</span>
+                    {% elif m.state_code == 2 %}
+                    <span class="state state-halftime">{{ m.state_display }}</span>
+                    {% elif m.state_code == 0 %}
+                    <span class="state state-upcoming">{{ m.state_display }}</span>
+                    {% elif m.state_code == -1 %}
+                    <span class="state state-finished">{{ m.state_display }}</span>
+                    {% else %}
+                    <span class="state state-other">{{ m.state_display }}</span>
+                    {% endif %}
+                </div>
+                <div class="report-cell">
+                    {% if m.has_halftime_report %}<span class="report-badge halftime" title="半场报告"></span>{% endif %}
+                    {% if m.has_min60_report %}<span class="report-badge min60" title="60分钟报告"></span>{% endif %}
+                    {% if m.has_fulltime_report %}<span class="report-badge fulltime" title="全场报告"></span>{% endif %}
+                    <button class="quick-report-btn" onclick="quickReport(event, {{ m.id }})">报告</button>
+                    <button class="team-report-btn" onclick="teamReport(event, {{ m.id }})">赛况</button>
+                    <button class="monitor-btn" id="monitor-btn-{{ m.id }}" onclick="addMonitor(event, {{ m.id }}, {{ m.state_code }})">监控</button>
+                </div>
+            </a>
+            {% endfor %}
+            {% else %}
+            <div class="empty">暂无比赛数据，请点击"刷新数据"</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- 进度条弹窗 -->
+    <div class="progress-modal" id="progressModal">
+        <div class="progress-box">
+            <h3 id="progressTitle">处理中...</h3>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">0%</div>
+            <div class="progress-detail" id="progressDetail"></div>
+        </div>
+    </div>
+
+    <script>
+        function filterMatches() {
+            const sclass = document.getElementById('sclassFilter').value;
+            const state = document.getElementById('stateFilter').value;
+            const params = new URLSearchParams();
+            if (sclass) params.set('sclass', sclass);
+            if (state) params.set('state', state);
+            window.location.href = '/?' + params.toString();
+        }
+
+        function refreshData() {
+            const btn = document.getElementById('refreshBtn');
+            btn.disabled = true;
+            btn.textContent = '刷新中...';
+            fetch('/api/refresh', { method: 'POST' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('刷新成功！数据库共入库 ' + data.count + ' 场比赛。\n\n当前页面展示北京时间±10小时窗口内的比赛（约300-500场），\n如需查看全量数据请使用"数据导出"功能。');
+                        location.reload();
+                    } else {
+                        alert('刷新失败: ' + data.error);
+                    }
+                })
+                .catch(e => alert('请求失败: ' + e))
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.textContent = '🔄 刷新数据';
+                });
+        }
+
+        // V2.5: 加入监控快捷按钮
+        function addMonitor(event, matchId, stateCode) {
+            event.preventDefault();
+            event.stopPropagation();
+            const btn = document.getElementById('monitor-btn-' + matchId);
+            if (!btn) return;
+
+            // 已完场比赛：置灰显示"已完场"
+            if (stateCode === -1) {
+                btn.disabled = true;
+                btn.textContent = '已完场';
+                btn.style.background = '#95a5a6';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = '...';
+            fetch('/api/add_monitor_task', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({match_id: matchId})
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    btn.textContent = '已监控';
+                    btn.classList.add('monitored');
+                    btn.disabled = true;
+                } else {
+                    btn.textContent = '监控';
+                    btn.disabled = false;
+                    alert(data.message);
+                }
+            })
+            .catch(e => {
+                btn.textContent = '监控';
+                btn.disabled = false;
+                alert('加入监控失败: ' + e);
+            });
+        }
+
+        // V2.5: 页面加载后检查每场比赛的监控状态
+        function checkMonitorStatus() {
+            document.querySelectorAll('.monitor-btn').forEach(btn => {
+                const matchId = btn.id.replace('monitor-btn-', '');
+                fetch('/api/check_monitor_status/' + matchId)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.is_monitoring) {
+                            btn.textContent = '已监控';
+                            btn.classList.add('monitored');
+                            btn.disabled = true;
+                        }
+                    })
+                    .catch(() => {});
+            });
+        }
+
+        // 页面加载完成后检查监控状态
+        document.addEventListener('DOMContentLoaded', checkMonitorStatus);
+
+        function quickReport(event, matchId) {
+            event.preventDefault();
+            event.stopPropagation();
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '...';
+            fetch('/api/quick_report/' + matchId, { method: 'POST' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('报告生成成功: ' + data.file_name);
+                        location.reload();
+                    } else {
+                        alert('生成失败: ' + data.error);
+                    }
+                })
+                .catch(e => alert('请求失败: ' + e))
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.textContent = '报告';
+                });
+        }
+
+        function teamReport(event, matchId) {
+            event.preventDefault();
+            event.stopPropagation();
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '...';
+
+            showProgress('生成近期赛况报告', '正在获取近期比赛列表...');
+
+            fetch('/api/team_report/' + matchId, { method: 'POST' })
+                .then(r => r.json())
+                .then(data => {
+                    hideProgress();
+                    if (data.success) {
+                        alert('近期赛况报告生成成功！\n主队: ' + data.home_team + ' (' + data.home_count + '场)\n客队: ' + data.away_team + ' (' + data.away_count + '场)');
+                        location.reload();
+                    } else {
+                        alert('生成失败: ' + data.error);
+                    }
+                })
+                .catch(e => { hideProgress(); alert('请求失败: ' + e); })
+                .finally(() => {
+                    btn.disabled = false;
+                    btn.textContent = '赛况';
+                });
+        }
+
+        function batchImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (!confirm('确认导入文件: ' + file.name + '？\n系统将为每个完场比赛生成快照和报告，可能需要较长时间。')) {
+                event.target.value = '';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            showProgress('批量导入中', '开始处理...');
+
+            fetch('/api/batch_import', { method: 'POST', body: formData })
+                .then(r => r.json())
+                .then(data => {
+                    hideProgress();
+                    if (data.success) {
+                        const r = data.result;
+                        alert('批量导入完成！\n总计: ' + r.total + '\n成功: ' + r.success + '\n不存在: ' + r.skipped_not_exist + '\n未完场: ' + r.skipped_not_finished + '\n出错: ' + r.skipped_error);
+                        location.reload();
+                    } else {
+                        alert('导入失败: ' + data.error);
+                    }
+                })
+                .catch(e => { hideProgress(); alert('请求失败: ' + e); })
+                .finally(() => { event.target.value = ''; });
+        }
+
+        function showProgress(title, text) {
+            document.getElementById('progressTitle').textContent = title;
+            document.getElementById('progressText').textContent = text;
+            document.getElementById('progressBar').style.width = '30%';
+            document.getElementById('progressModal').classList.add('active');
+        }
+
+        function hideProgress() {
+            document.getElementById('progressBar').style.width = '100%';
+            setTimeout(() => {
+                document.getElementById('progressModal').classList.remove('active');
+            }, 500);
+        }
+    </script>
+</body>
+</html>
