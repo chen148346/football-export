@@ -53,6 +53,17 @@ output.log
 *.log.*
 logs/
 
+# football_system / football_odds 运行产物
+football_system/download/
+football_system/reports/
+football_system/venv/
+football_odds/download/
+football_odds/reports/
+football_odds/venv/
+*.db
+*.db-wal
+*.db-shm
+
 # 视频文件
 *.mp4
 *.avi

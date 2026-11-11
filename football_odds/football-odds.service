@@ -1,0 +1,16 @@
+[Unit]
+Description=Football Odds Data System football_odds V1.0
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root/football_odds
+Environment="PATH=/root/football_odds/venv/bin"
+Environment="PYTHONUNBUFFERED=1"
+Environment="DEPLOY_RUN_PORT=8083"
+ExecStart=/root/football_odds/venv/bin/python app.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
