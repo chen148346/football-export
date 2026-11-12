@@ -7,7 +7,9 @@ User=root
 WorkingDirectory=/root/football_odds
 Environment="PATH=/root/football_odds/venv/bin"
 Environment="PYTHONUNBUFFERED=1"
-Environment="DEPLOY_RUN_PORT=8083"
+# 后端仅监听本机回环，由 Nginx(8083, Basic Auth) 反向代理对外
+Environment="BIND_HOST=127.0.0.1"
+Environment="DEPLOY_RUN_PORT=8090"
 ExecStart=/root/football_odds/venv/bin/python app.py
 Restart=always
 RestartSec=10

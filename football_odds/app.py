@@ -1098,8 +1098,10 @@ if __name__ == '__main__':
     from waitress import serve
     # [football_odds] 端口优先取环境变量 DEPLOY_RUN_PORT，其次 config.SERVICE_PORT(8083)
     port = int(os.environ.get('DEPLOY_RUN_PORT', SERVICE_PORT))
-    print(f"足球赔率数据系统 football_odds V1.0 启动: http://0.0.0.0:{port}")
+    # [football_odds] BIND_HOST=127.0.0.1 时仅监听本机（配合 Nginx Basic Auth 反向代理对外）
+    bind_host = os.environ.get('BIND_HOST', '0.0.0.0')
+    print(f"足球赔率数据系统 football_odds V1.0 启动: http://{bind_host}:{port}")
     print("  - 保留全部 odds 数据（亚盘/大小球/欧赔逐次变动、角球盘、盘路统计）")
     print("  - 监控节点：中场(halftime) + 完场(fulltime)")
     print("  - 独立数据库 football_odds.db")
-    serve(app, host='0.0.0.0', port=port, threads=8)
+    serve(app, host=bind_host, port=port, threads=8)

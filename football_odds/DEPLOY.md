@@ -10,7 +10,7 @@ football_odds V1.0 是从 football_system V2.6.3 fork 的独立系统：**抓取
 |---|---|---|
 | 目录 | /root/football_system | /root/football_odds |
 | 数据库 | football.db | football_odds.db |
-| 端口 | 80 | 8083 |
+| 端口 | 80 | 8083（Nginx Basic Auth 对外）→ 127.0.0.1:8090（后端） |
 | 服务 | football.service | football-odds.service |
 | 定时刷新 | 04:00 / 16:00 | 04:01 / 16:01（偏移1分钟，避免同时请求球探网） |
 | 快照节点 | 中场/60分/75分/完场 | 仅 中场/完场 |
@@ -47,7 +47,30 @@ iptables -I INPUT -p tcp --dport 8083 -j ACCEPT
 # 云服务器还需在安全组放行 8083
 ```
 
-访问：`http://<VPS_IP>:8083`
+访问：`http://<VPS_IP>:8083`（Nginx Basic Auth 弹窗验证，与旧系统一致）
+
+## 访问保护（Nginx Basic Auth 反代）
+
+后端服务只监听本机回环 `127.0.0.1:8090`（service 文件里 `BIND_HOST` + `DEPLOY_RUN_PORT=8090`），外部无法直连；Nginx 监听 8083 对外，先弹密码验证再反代到后端。
+
+Nginx 配置示例（`/etc/nginx/conf.d/football-odds.conf`）：
+
+```nginx
+server {
+    listen 8083;
+    server_name _;
+    auth_basic "football_odds";
+    auth_basic_user_file /etc/nginx/.htpasswd;   # 与旧系统共用密码文件
+    location / {
+        proxy_pass http://127.0.0.1:8090;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+修改后端绑定后需 `systemctl daemon-reload && systemctl restart football-odds`，Nginx 改配置后 `nginx -t && systemctl reload nginx`。
 
 ## 使用方式
 

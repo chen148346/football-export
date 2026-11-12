@@ -8,7 +8,7 @@
 |---|---|---|
 | `football-export/` | 报表导出模块（当前沙箱运行的主模块，Next.js 之外的独立 Flask 应用） | 5000 / VPS 8081 |
 | `football_system/` | 比赛数据爬取系统 V2.6.3（抓取时过滤丢弃全部 odds 数据） | VPS 80 |
-| `football_odds/` | 赔率数据系统 V1.0（从 V2.6.3 fork，**全量保留 odds 数据**） | VPS 8083 |
+| `football_odds/` | 赔率数据系统 V1.0（从 V2.6.3 fork，**全量保留 odds 数据**） | VPS 8083（Nginx Basic Auth）→ 后端 127.0.0.1:8090 |
 
 三个模块均为 Python Flask + SQLite(WAL) + APScheduler 架构，各自独立目录、独立数据库、独立 systemd 服务，互不依赖。
 
