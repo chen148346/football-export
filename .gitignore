@@ -117,3 +117,6 @@ football_system/download/
 football_system/reports/
 football_system/venv/
 football_system/output.log
+
+# assets 为文件传输中转区（用户上传/临时分发），不入库
+assets/
