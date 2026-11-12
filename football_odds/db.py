@@ -1131,7 +1131,13 @@ def export_database(date_start, date_end, output_path, sclass_names=None):
             first_seen_state INTEGER,
             halftime_snapshot_id INTEGER,
             min60_snapshot_id INTEGER,
-            fulltime_snapshot_id INTEGER
+            fulltime_snapshot_id INTEGER,
+            -- [football_odds] 赛程阶段赔率（亚盘 + 大小球），与 init_db 结构保持一致
+            asian_home REAL,
+            asian_letgoal REAL,
+            asian_away REAL,
+            ou_line REAL,
+            ou_result TEXT
         )
     """)
 
